@@ -1,21 +1,73 @@
-create table user (
-  id int unsigned primary key auto_increment not null,
-  email varchar(255) not null unique,
-  password varchar(255) not null
+-- Table: users
+CREATE TABLE user (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  avatar_url VARCHAR(255),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  zip_code VARCHAR(10),
+  name VARCHAR(100) NOT NULL,
+  first_name VARCHAR(100) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL
 );
 
-create table item (
-  id int unsigned primary key auto_increment not null,
-  title varchar(255) not null,
-  user_id int unsigned not null,
-  foreign key(user_id) references user(id)
+-- Table: artists
+CREATE TABLE artist (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  bio TEXT,
+  profile_image_url VARCHAR(255),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  avatar_url VARCHAR(255)
 );
 
-insert into user(id, email, password)
-values
-  (1, "jdoe@mail.com", "123456");
+-- Table: artworks
+CREATE TABLE artwork (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(100),
+  description TEXT,
+  image_url VARCHAR(255),
+  latitude DECIMAL(9,6) NOT NULL,
+  longitude DECIMAL(9,6) NOT NULL,
+  artist_id INT,
+  points INT DEFAULT 10,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (artist_id) REFERENCES artists(id)
+);
 
-insert into item(id, title, user_id)
-values
-  (1, "Stuff", 1),
-  (2, "Doodads", 1);
+-- Table: discovered_artworks
+CREATE TABLE discovered_artwork (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  artwork_id INT NOT NULL,
+  discovered_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (artwork_id) REFERENCES artworks(id),
+  UNIQUE KEY unique_discovery (user_id, artwork_id)
+);
+
+-- Table: scores
+CREATE TABLE score (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  total_points INT DEFAULT 0,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- Quelques données de test
+INSERT INTO users (email, name, first_name, password_hash, zip_code)
+VALUES ('test@example.com', 'Durand', 'Alice', 'hashedpassword123', '75001');
+
+INSERT INTO artists (name, bio)
+VALUES ('Banksy', 'Artiste anonyme connu pour ses œuvres engagées.');
+
+INSERT INTO artworks (title, description, image_url, latitude, longitude, artist_id)
+VALUES ('Street Art Example', 'Un graffiti dans le centre-ville.', 'https://example.com/art.jpg', 48.8566, 2.3522, 1);
+
+INSERT INTO discovered_artworks (user_id, artwork_id)
+VALUES (1, 1);
+
+INSERT INTO scores (user_id, total_points)
+VALUES (1, 10);
