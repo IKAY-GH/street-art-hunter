@@ -1,4 +1,4 @@
--- Table: users
+-- Table: user
 CREATE TABLE user (
   id INT AUTO_INCREMENT PRIMARY KEY,
   email VARCHAR(100) NOT NULL UNIQUE,
@@ -11,7 +11,7 @@ CREATE TABLE user (
   password_hash VARCHAR(255) NOT NULL
 );
 
--- Table: artists
+-- Table: artist
 CREATE TABLE artist (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE artist (
   avatar_url VARCHAR(255)
 );
 
--- Table: artworks
+-- Table: artwork
 CREATE TABLE artwork (
   id INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(100),
@@ -36,7 +36,7 @@ CREATE TABLE artwork (
   FOREIGN KEY (artist_id) REFERENCES artists(id)
 );
 
--- Table: discovered_artworks
+-- Table: discovered_artwork
 CREATE TABLE discovered_artwork (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
@@ -57,13 +57,13 @@ CREATE TABLE score (
 );
 
 -- Quelques données de test
-INSERT INTO users (email, name, first_name, password_hash, zip_code)
+INSERT INTO user (email, name, first_name, password_hash, zip_code)
 VALUES ('test@example.com', 'Durand', 'Alice', 'hashedpassword123', '75001');
 
 INSERT INTO artists (name, bio)
 VALUES ('Banksy', 'Artiste anonyme connu pour ses œuvres engagées.');
 
-INSERT INTO artworks (title, description, image_url, latitude, longitude, artist_id)
+INSERT INTO artwork (title, description, image_url, latitude, longitude, artist_id)
 VALUES ('Street Art Example', 'Un graffiti dans le centre-ville.', 'https://example.com/art.jpg', 48.8566, 2.3522, 1);
 
 INSERT INTO discovered_artworks (user_id, artwork_id)
