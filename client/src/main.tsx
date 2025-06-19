@@ -1,4 +1,3 @@
-// Import necessary modules from React and React Router
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
@@ -11,7 +10,9 @@ import App from "./App";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 
+import About from "./pages/about";
 // import About from "./pages/About";
+import Home from "./pages/home";
 // import Contact from "./pages/Contact";
 
 /* ************************************************************************* */
@@ -20,9 +21,20 @@ import App from "./App";
 // You can add more routes as you build out your app!
 const router = createBrowserRouter([
   {
-    path: "/", // The root path
+    // The root path
     element: <App />, // Renders the App component for the home page
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+    ],
   },
+
   // Try adding a new route! For example, "/about" with an About component
 ]);
 
@@ -49,6 +61,8 @@ createRoot(rootElement).render(
  *    Then, import that component above like this:
  *
  *    import About from "./pages/About";
+ *
+ *
  *
  *    Add a new route to the router:
  *
