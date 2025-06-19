@@ -1,0 +1,30 @@
+.footer {
+  background-color: #222;
+  color: #eee;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between; /* espace entre les 2 parties */
+  align-items: center; /* alignement vertical centré */
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+}
+
+.footer .links {
+  display: flex;
+  gap: 1.5rem; /* espace entre les liens */
+}
+
+.footer .links a {
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer .links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer .copyright {
+  margin: 0;
+}
