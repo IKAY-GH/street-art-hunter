@@ -10,7 +10,7 @@ function Footer() {
         <a href="/mentions-legales">Mentions légales</a>
         <a href="/cgu">CGU</a>
         <a
-          href="https://www.linkedin.com/"
+          href="https://www.linkedin.com/in/ridouane-z-0452a2361/" // mettre votre url linkedin
           target="_blank"
           rel="noopener noreferrer"
         >
