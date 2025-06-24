@@ -3,9 +3,9 @@ function home() {
     console.log(" click ! ");
   }
   return (
-    <div>
+    <div className="container">
       <h1>STREET ART HUNTER</h1>
-      <button className="btn" onClick={handleclick} type="button">
+      <button className="btn-start" onClick={handleclick} type="button">
         START
       </button>
     </div>

@@ -1,9 +1,11 @@
-function about() {
+function About() {
   return (
     <>
-      <h1>About</h1>
+      <div>
+        <h2>A propos</h2>
+      </div>
     </>
   );
 }
 
-export default about;
+export default About;
