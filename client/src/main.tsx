@@ -10,8 +10,8 @@ import App from "./App";
 
 // Import the main pages
 
-import Home from "./pages/Home";
 import CGU from "./pages/Cgu";
+import Home from "./pages/Home";
 import MentionsLegales from "./pages/MentionsLegales";
 import Equipe from "./pages/Equipe";
 
