@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import burger from "../assets/icon/burger.svg";
 import "../assets/styles/burger.css";
 
@@ -17,9 +18,11 @@ function MenuBurger() {
       {menuOuvert && (
         <nav className="menu-nav">
           <div className="lien">
-            <a href="A propos">A propos</a>
-            <a href="Gallerie">Galleries</a>
-            <a href="Cartes">Cartes</a>
+            <Link to="/gallerie">Galleries</Link>
+            <Link to="/cartes">Cartes</Link>
+            <Link to="/infos">Instructions/informations</Link>
+            <Link to="/classement">Classement</Link>
+            <Link to="/administrateur">Administrateur</Link>
           </div>
         </nav>
       )}

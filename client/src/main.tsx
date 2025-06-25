@@ -7,13 +7,18 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 // Import the main app component
 import App from "./App";
 
+import Cartes from "./pages/cartes";
+import Classement from "./pages/classement";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
+import Gallerie from "./pages/gallerie";
+import Infos from "./pages/infos";
 
-import About from "./pages/about";
 // import About from "./pages/About";
 import Home from "./pages/home";
+
 // import Contact from "./pages/Contact";
+import Administrateur from "./pages/administrateur";
 
 /* ************************************************************************* */
 
@@ -29,8 +34,28 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/about",
-        element: <About />,
+        path: "/administrateur",
+        element: <Administrateur />,
+      },
+
+      {
+        path: "/gallerie",
+        element: <Gallerie />,
+      },
+
+      {
+        path: "/cartes",
+        element: <Cartes />,
+      },
+
+      {
+        path: "/infos",
+        element: <Infos />,
+      },
+
+      {
+        path: "/classement",
+        element: <Classement />,
       },
     ],
   },
