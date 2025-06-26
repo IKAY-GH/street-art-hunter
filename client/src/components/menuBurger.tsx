@@ -87,7 +87,7 @@ function MenuBurger() {
                 setFermeture(true);
                 setMenuOuvert(false);
               }}
-              to="/cartes"
+              to="/carte"
             >
               Cartes
             </Link>

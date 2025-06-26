@@ -1,6 +1,6 @@
-function home() {
+function accueil() {
   function handleclick() {
-    console.log(" click ! ");
+
   }
   return (
     <div className="container">
@@ -12,4 +12,4 @@ function home() {
   );
 }
 
-export default home;
+export default accueil;

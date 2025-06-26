@@ -1,4 +1,4 @@
-function cartes() {
+function carte() {
   return (
     <>
       <div>
@@ -8,4 +8,4 @@ function cartes() {
   );
 }
 
-export default cartes;
+export default carte;
