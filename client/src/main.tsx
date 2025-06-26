@@ -7,15 +7,15 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 // Import the main app component
 import App from "./App";
 
-import Cartes from "./pages/cartes";
+import Carte from "./pages/carte";
 import Classement from "./pages/classement";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 import Gallerie from "./pages/gallerie";
-import Infos from "./pages/infos";
+import Info from "./pages/info";
 
 // import About from "./pages/About";
-import Home from "./pages/home";
+import Accueil from "./pages/accueil";
 
 // import Contact from "./pages/Contact";
 import Administrateur from "./pages/administrateur";
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Accueil />,
       },
       {
         path: "/administrateur",
@@ -44,13 +44,13 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/cartes",
-        element: <Cartes />,
+        path: "/carte",
+        element: <Carte />,
       },
 
       {
         path: "/infos",
-        element: <Infos />,
+        element: <Info />,
       },
 
       {
