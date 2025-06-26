@@ -1,7 +1,5 @@
 function accueil() {
-  function handleclick() {
-
-  }
+  function handleclick() {}
   return (
     <div className="container">
       <h1>STREET ART HUNTER</h1>
