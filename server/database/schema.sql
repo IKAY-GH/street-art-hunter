@@ -1,4 +1,4 @@
--- Table: users
+-- Table: user
 CREATE TABLE user (
   id INT AUTO_INCREMENT PRIMARY KEY,
   email VARCHAR(100) NOT NULL UNIQUE,
@@ -11,7 +11,7 @@ CREATE TABLE user (
   password_hash VARCHAR(255) NOT NULL
 );
 
--- Table: artists
+-- Table: artist
 CREATE TABLE artist (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE artist (
   avatar_url VARCHAR(255)
 );
 
--- Table: artworks
+-- Table: artwork
 CREATE TABLE artwork (
   id INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(100),
@@ -36,7 +36,7 @@ CREATE TABLE artwork (
   FOREIGN KEY (artist_id) REFERENCES artist(id)
 );
 
--- Table: discovered_artworks
+-- Table: discovered_artwork
 CREATE TABLE discovered_artwork (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE discovered_artwork (
   UNIQUE KEY unique_discovery (user_id, artwork_id)
 );
 
--- Table: scores
+-- Table: score
 CREATE TABLE score (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
