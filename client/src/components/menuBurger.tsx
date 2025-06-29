@@ -98,7 +98,8 @@ function MenuBurger() {
               }}
               to="/infos"
             >
-              Instructions/informations
+              Instructions /
+              informations
             </Link>
             <Link
               onClick={() => {

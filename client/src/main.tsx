@@ -20,6 +20,8 @@ import Accueil from "./pages/accueil";
 // import Contact from "./pages/Contact";
 import Administrateur from "./pages/administrateur";
 
+import Formulaire from "./pages/formulaire";
+
 /* ************************************************************************* */
 
 // Create router configuration with routes
@@ -56,6 +58,11 @@ const router = createBrowserRouter([
       {
         path: "/classement",
         element: <Classement />,
+      },
+
+      {
+        path: "/connexion",
+        element: <Formulaire />,
       },
     ],
   },

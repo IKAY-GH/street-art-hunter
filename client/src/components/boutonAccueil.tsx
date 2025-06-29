@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import logo from "../assets/icon/logo-street-art-hunter.svg";
+import logo from "../assets/icon/logo maison.png";
 
 function BoutonAccueil() {
   const navigate = useNavigate();
