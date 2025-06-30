@@ -1,4 +1,4 @@
- .logo {
+.logo {
   left: 30%;
   border-radius: 9999px;
   height: 25px;
@@ -8,15 +8,14 @@
 }
 
 .logo:hover {
-  box-shadow:  0 0 20px red;
+  box-shadow: 0 0 20px red;
 }
 
 @media screen and (min-width: 769px) {
-
   .logo {
-   position: fixed;
-   left: 80px;     
-  height: 30px;
-  width: 30px;
+    position: fixed;
+    left: 80px;
+    height: 30px;
+    width: 30px;
   }
 }

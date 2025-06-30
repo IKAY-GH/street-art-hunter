@@ -1,90 +1,93 @@
 h2 {
-    position: fixed;
-    top: 90px;
-    left: 20px;
+  position: fixed;
+  top: 90px;
+  left: 20px;
 }
 
-#pseudo, #nom, #prenom, #email {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 25px;
-    width: 150px;
-    font-size: 20px;
+#pseudo,
+#nom,
+#prenom,
+#email {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 150px;
+  font-size: 20px;
 }
 
 .profil {
-    font-size: 20px;
-    display: flex;
-    flex-direction: column;
-    padding-left: 250px;
-    align-items: flex-start;
-    padding-right: 350px;
-
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 250px;
+  align-items: flex-start;
+  padding-right: 350px;
 }
 
 button#btn-valide {
-    height: 50px;
-    width: 80px;
-    margin: 2rem;
+  height: 50px;
+  width: 80px;
+  margin: 2rem;
 }
 
 #btn-valide:hover {
-    background-color:silver;
+  background-color: silver;
 }
 
 .connexion {
-    position: fixed;
-    top: 20px;
-    right: 10px;
+  position: fixed;
+  top: 20px;
+  right: 10px;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    position: fixed;
-    top: 170px;
-    left: 20px;
-    
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: fixed;
+  top: 170px;
+  left: 20px;
 }
 
 .ligne-separation {
-    position: fixed;
-    top: 100px;
-    left: 170px;
-    height: 70vh;
-    width: 2px;
-    background-color: rgb(0, 255, 187);
-    margin: 0 2rem ;
+  position: fixed;
+  top: 100px;
+  left: 170px;
+  height: 70vh;
+  width: 2px;
+  background-color: rgb(0, 255, 187);
+  margin: 0 2rem;
 }
-
 
 @media screen and (min-width: 769px) {
-
-h2 {
+  h2 {
     font-size: 50px;
-     position: fixed;
+    position: fixed;
     left: 25%;
     top: 30%;
-}
+  }
 
-form {
+  form {
     position: fixed;
     left: 25%;
     top: 40%;
     display: flex;
     flex-direction: column;
     gap: 15px;
+  }
 
-}
+  button#btn-valide {
+    margin: 5rem;
+    width: 180px;
+    height: 90px;
+  }
 
-button#btn-valide {
- margin: 5rem;   
-}
-
-#pseudo, #nom, #prenom, #email {
+  #pseudo,
+  #nom,
+  #prenom,
+  #email {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -92,14 +95,11 @@ button#btn-valide {
     height: 25px;
     width: 250px;
     font-size: 20px;
-}
+  }
 
-.ligne-separation {
+  .ligne-separation {
     margin: 0 50rem;
     position: fixed;
     top: 200px;
+  }
 }
-
-}
-
-

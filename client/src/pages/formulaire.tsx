@@ -1,43 +1,51 @@
-import React from "react";
+import type React from "react";
 
 function Formulaire() {
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-        const form = e.currentTarget;
+    const form = e.currentTarget;
 
-        const formData = new FormData(form);
+    const formData = new FormData(form);
 
-        const pseudo = formData.get("pseudo")?.toString() || "";
-        const email = formData.get("email")?.toString() || "";
+    const pseudo = formData.get("pseudo")?.toString() || "";
+    const email = formData.get("email")?.toString() || "";
 
-        form.reset();
+    form.reset();
 
-        alert(`Bienvenue ${pseudo} ! Votre email : ${email}`)
-    }
+    alert(`Bienvenue ${pseudo} ! Votre email : ${email}`);
+  };
 
-    return (
-        <div className="profil">
-            <h2>Inscription</h2>
+  return (
+    <div className="profil">
+      <h2>Inscription</h2>
 
-            <div className="ligne-separation"></div>
+      <div className="ligne-separation" />
 
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="pseudo">pseudo</label>
-                <input name="pseudo" type="text" id="pseudo" required />
-                <label htmlFor="nom">nom</label>
-                <input name="nom" type="text" id="nom" required />
-                <label htmlFor="prenom">prenom</label>
-                <input name="prenom" type="text" id="prenom" required />
-                <label htmlFor="email">email</label>
-                <input name="email" type="email" id="email" required />
+      <form onSubmit={handleSubmit}>
 
-                <button id= "btn-valide" type="submit">Inscription</button>
-            </form>
+        <div>
+        <input name="pseudo" type="text" id="pseudo" required />
+        <label htmlFor="pseudo">pseudo</label>
         </div>
-    )
+        <div>
+        <input name="nom" type="text" id="nom" required />
+        <label htmlFor="nom">nom</label>
+        </div>
+        <div>
+        <input name="prenom" type="text" id="prenom" required />
+        <label htmlFor="prenom">prenom</label>
+        </div>
+        <div>
+        <label htmlFor="email">email</label>
+        <input name="email" type="email" id="email" required />
+        </div>
+        <div>
+        <button id="btn-valide" type="submit">Inscription</button>
+        </div>
+      </form>
+    </div>
+  );
 }
-
-
 
 export default Formulaire;

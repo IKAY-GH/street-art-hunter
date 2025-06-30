@@ -30,76 +30,74 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-
-h1 {
-  position: fixed;
-  left: 50%;
-  top: 40%;
-  transform: translate(-50%, -50%);
-  font-family: "RetroGaming", monospace;
-  color: #40e0d0;
-  font-size: 8vh;
-  text-align: center;
-}
-
-.btn-start {
-  position: fixed;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 30px;
-  font-family: "RetroGaming", monospace;
-  border-radius: 9999px;
-  background-color: rgb(255, 128, 0);
-  padding: 20px 40px;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-}
-
-button:hover, .btn-start:hover {
-    background-color: orange;
-    box-shadow: 0 0 15px red, 0 0 5px red inset;
-  }
-}
-
-  @media screen and (min-width: 769px) {
-
-h1 {
-  position: fixed;
-  left: 50%;
-  top: 40%;
-  transform: translate(-50%, -50%);
-  font-family: "RetroGaming", monospace;
-  color: #40e0d0;
-  font-size: 10vh;
-  text-align: center;
+  h1 {
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    font-family: "RetroGaming", monospace;
+    color: #40e0d0;
+    font-size: 8vh;
+    text-align: center;
   }
 
   .btn-start {
-  position: fixed;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 30px;
-  font-family: "RetroGaming", monospace;
-  border-radius: 9999px;
-  background-color: rgb(255, 128, 0);
-  padding: 20px 40px;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-  width: 250px;
-  height: 100px;
-  font-size: 3rem;
-
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    font-family: "RetroGaming", monospace;
+    border-radius: 9999px;
+    background-color: rgb(255, 128, 0);
+    padding: 20px 40px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
   }
 
-  button:hover, .btn-start:hover {
+  button:hover,
+  .btn-start:hover {
     background-color: orange;
     box-shadow: 0 0 15px red, 0 0 5px red inset;
   }
+}
 
+@media screen and (min-width: 769px) {
+  h1 {
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    font-family: "RetroGaming", monospace;
+    color: #40e0d0;
+    font-size: 10vh;
+    text-align: center;
   }
+
+  .btn-start {
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    font-family: "RetroGaming", monospace;
+    border-radius: 9999px;
+    background-color: rgb(255, 128, 0);
+    padding: 20px 40px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    width: 250px;
+    height: 100px;
+    font-size: 3rem;
+  }
+
+  button:hover,
+  .btn-start:hover {
+    background-color: orange;
+    box-shadow: 0 0 15px red, 0 0 5px red inset;
+  }
+}
