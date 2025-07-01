@@ -1,10 +1,9 @@
 import { Outlet } from "react-router";
 
+import BoutonConnexion from "../src/components/boutonConnexion";
 import Footer from "./components/FooterComponent";
 import BoutonAccueil from "./components/boutonAccueil";
 import MenuBurger from "./components/menuBurger";
-import BoutonConnexion from "../src/components/boutonConnexion"
-
 
 import "./assets/styles/accueil.css";
 import "./assets/styles/boutonAccueil.css";

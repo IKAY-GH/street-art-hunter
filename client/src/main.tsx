@@ -11,7 +11,6 @@ import App from "./App";
 
 import CGU from "./pages/Cgu";
 import Equipe from "./pages/Equipe";
-import Home from "./pages/Home";
 import MentionsLegales from "./pages/MentionsLegales";
 
 import Carte from "./pages/carte";
@@ -72,27 +71,27 @@ const router = createBrowserRouter([
         element: <Formulaire />,
       },
 
-     { 
-      path: "/Cgu", 
-      element: <CGU /> 
-    },
+      {
+        path: "/Cgu",
+        element: <CGU />,
+      },
 
-  { 
-    path: "/Mentions-Legales", 
-    element: <MentionsLegales /> 
-  },
+      {
+        path: "/Mentions-Legales",
+        element: <MentionsLegales />,
+      },
 
-  { 
-    path: "/", 
-    element: <App /> 
-  },
-  {
-    path: "/equipe",
-    element: <Equipe />,
-  },
+      {
+        path: "/",
+        element: <App />,
+      },
+      {
+        path: "/equipe",
+        element: <Equipe />,
+      },
     ],
   },
-  
+
   // Try adding a new route! For example, "/about" with an About component
 ]);
 
