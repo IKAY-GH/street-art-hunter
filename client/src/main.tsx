@@ -71,18 +71,28 @@ const router = createBrowserRouter([
         path: "/connexion",
         element: <Formulaire />,
       },
-    ],
+
+     { 
+      path: "/Cgu", 
+      element: <CGU /> 
+    },
+
+  { 
+    path: "/Mentions-Legales", 
+    element: <MentionsLegales /> 
   },
 
-  { path: "/", element: <Home /> },
-  { path: "/Cgu", element: <CGU /> },
-  { path: "/Mentions-Legales", element: <MentionsLegales /> },
-  { path: "/", element: <App /> },
+  { 
+    path: "/", 
+    element: <App /> 
+  },
   {
     path: "/equipe",
     element: <Equipe />,
   },
-
+    ],
+  },
+  
   // Try adding a new route! For example, "/about" with an About component
 ]);
 

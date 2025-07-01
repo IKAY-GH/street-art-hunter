@@ -23,22 +23,22 @@ function Formulaire() {
       <div className="ligne-separation" />
 
       <form onSubmit={handleSubmit}>
-        <div>
+        
           <input name="pseudo" type="text" id="pseudo" required />
           <label htmlFor="pseudo">pseudo</label>
-        </div>
-        <div>
+        
+        
           <input name="nom" type="text" id="nom" required />
           <label htmlFor="nom">nom</label>
-        </div>
-        <div>
+        
+        
           <input name="prenom" type="text" id="prenom" required />
           <label htmlFor="prenom">prenom</label>
-        </div>
-        <div>
+        
+        
           <label htmlFor="email">email</label>
           <input name="email" type="email" id="email" required />
-        </div>
+        
         <div>
           <button id="btn-valide" type="submit">
             Inscription

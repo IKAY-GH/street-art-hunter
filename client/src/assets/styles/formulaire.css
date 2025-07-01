@@ -1,3 +1,11 @@
+body {
+  font-family: "retro-gaming", monospace;
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
 h2 {
   position: fixed;
   top: 90px;
@@ -34,12 +42,6 @@ button#btn-valide {
 
 #btn-valide:hover {
   background-color: silver;
-}
-
-.connexion {
-  position: fixed;
-  top: 20px;
-  right: 10px;
 }
 
 form {
@@ -88,11 +90,6 @@ form {
   #nom,
   #prenom,
   #email {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 25px;
     width: 250px;
     font-size: 20px;
   }
@@ -102,4 +99,5 @@ form {
     position: fixed;
     top: 200px;
   }
+
 }

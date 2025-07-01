@@ -1,21 +1,24 @@
-@font-face {
-  font-family: retro-gaming;
-  src: url("./font-family/retroGamingFont.ttf");
+.connexion {
+  position: fixed;
+  top: 20px;
+  right: 10px;
 }
 
 @media screen and (min-width: 769px) {
-  button.connexion {
-    width: 80px;
-    height: 30px;
-    border: none;
-  }
-}
 
 button.connexion {
+    width: 100px;
+    height: 50px;
+    border: none;
+  }
+
+  button.connexion {
   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 button.connexion:hover {
   background-color: rgb(251, 254, 252);
   cursor: pointer;
+}
+
 }
