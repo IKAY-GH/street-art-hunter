@@ -1,0 +1,35 @@
+/* Style principal de la carte */
+.artwork-card {
+  display: flex;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+/* Image à gauche */
+.artwork-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+/* Infos à droite */
+.artwork-info {
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Lien vers la carte */
+.map-link {
+  color: #0066cc;
+  text-decoration: none;
+  margin-top: 0.5rem;
+}
+
+.map-link:hover {
+  text-decoration: underline;
+}

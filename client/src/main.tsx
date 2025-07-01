@@ -9,7 +9,7 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 import App from "./App";
 
 // Import the main pages
-
+import Carte from "./pages/Carte";
 import CGU from "./pages/Cgu";
 import Equipe from "./pages/Equipe";
 import Home from "./pages/Home";
@@ -30,15 +30,22 @@ const router = createBrowserRouter([
     path: "/", // The root path
     element: <App />, // Renders the App component for the home page
   },
+
   { path: "/", element: <Home /> },
+
   { path: "/Cgu", element: <CGU /> },
+
   { path: "/Mentions-Legales", element: <MentionsLegales /> },
+
   { path: "/", element: <App /> },
   {
     path: "/equipe",
     element: <Equipe />,
   },
-
+  {
+    path: "/Carte",
+    element: <Carte />,
+  },
   // Try adding a new route! For example, "/about" with an About component
 ]);
 
