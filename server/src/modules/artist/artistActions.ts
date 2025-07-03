@@ -5,7 +5,11 @@ const repository = new artistRepository();
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
-    const artists = await repository.readAll();
+    // const artists = await repository.readAll();
+    const response = await fetch(
+      "https://streetartcities.com/api/frontend/sitemap/cities/toulouse/index.xml",
+    );
+    const artists = await response.json();
     res.json(artists);
   } catch (err) {
     next(err);
