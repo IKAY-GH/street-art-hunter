@@ -12,7 +12,7 @@ import App from "./App";
 import Carte from "./pages/Carte";
 import CGU from "./pages/Cgu";
 import Equipe from "./pages/Equipe";
-import Home from "./pages/Home";
+
 import MentionsLegales from "./pages/MentionsLegales";
 
 // Import additional components for new routes
@@ -31,8 +31,6 @@ const router = createBrowserRouter([
     element: <App />, // Renders the App component for the home page
   },
 
-  { path: "/", element: <Home /> },
-
   { path: "/Cgu", element: <CGU /> },
 
   { path: "/Mentions-Legales", element: <MentionsLegales /> },
@@ -46,6 +44,7 @@ const router = createBrowserRouter([
     path: "/Carte",
     element: <Carte />,
   },
+
   // Try adding a new route! For example, "/about" with an About component
 ]);
 
