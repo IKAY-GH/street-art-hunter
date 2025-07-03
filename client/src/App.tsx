@@ -1,16 +1,26 @@
-// src/App.tsx
 import { Outlet } from "react-router";
-import Footer from "./components/FooterComponent";
 
-export default function App() {
+import BoutonConnexion from "../src/components/boutonConnexion";
+import Footer from "./components/FooterComponent";
+import BoutonAccueil from "./components/boutonAccueil";
+import MenuBurger from "./components/menuBurger";
+
+import "./assets/styles/accueil.css";
+import "./assets/styles/boutonAccueil.css";
+import "./assets/styles/boutonConnexion.css";
+import "./assets/styles/formulaire.css";
+import "./components/FooterComponent.css";
+
+function App() {
   return (
     <>
-      <main>
-        <Outlet />{" "}
-        {/* Ici s'afficheront les composants des pages (Carte, Home, etc.) */}
-      </main>
-
+      <MenuBurger />
+      <BoutonConnexion />
+      <BoutonAccueil />
+      <Outlet />
       <Footer />
     </>
   );
 }
+
+export default App;
