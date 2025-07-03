@@ -1,4 +1,3 @@
-// Import necessary modules from React and React Router
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
@@ -9,17 +8,26 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 import App from "./App";
 
 // Import the main pages
-import Carte from "./pages/Carte";
+
 import CGU from "./pages/Cgu";
 import Equipe from "./pages/Equipe";
 
 import MentionsLegales from "./pages/MentionsLegales";
 
+import Carte from "./pages/MapComponent";
+import Classement from "./pages/classement";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
+import Gallerie from "./pages/gallerie";
+import Info from "./pages/info";
 
 // import About from "./pages/About";
+import Accueil from "./pages/accueil";
+
 // import Contact from "./pages/Contact";
+import Administrateur from "./pages/administrateur";
+
+import Formulaire from "./pages/formulaire";
 
 /* ************************************************************************* */
 
@@ -27,22 +35,58 @@ import MentionsLegales from "./pages/MentionsLegales";
 // You can add more routes as you build out your app!
 const router = createBrowserRouter([
   {
-    path: "/", // The root path
+    // The root path
     element: <App />, // Renders the App component for the home page
-  },
+    children: [
+      {
+        path: "/",
+        element: <Accueil />,
+      },
+      {
+        path: "/administrateur",
+        element: <Administrateur />,
+      },
 
-  { path: "/Cgu", element: <CGU /> },
+      {
+        path: "/gallerie",
+        element: <Gallerie />,
+      },
 
-  { path: "/Mentions-Legales", element: <MentionsLegales /> },
+      {
+        path: "/carte",
+        element: <Carte />,
+      },
 
-  { path: "/", element: <App /> },
-  {
-    path: "/equipe",
-    element: <Equipe />,
-  },
-  {
-    path: "/Carte",
-    element: <Carte />,
+      {
+        path: "/infos",
+        element: <Info />,
+      },
+
+      {
+        path: "/classement",
+        element: <Classement />,
+      },
+
+      {
+        path: "/connexion",
+        element: <Formulaire />,
+      },
+
+      {
+        path: "/Cgu",
+        element: <CGU />,
+      },
+
+      {
+        path: "/Mentions-Legales",
+        element: <MentionsLegales />,
+      },
+
+      {
+        path: "/equipe",
+        element: <Equipe />,
+      },
+    ],
   },
 
   // Try adding a new route! For example, "/about" with an About component
@@ -71,6 +115,8 @@ createRoot(rootElement).render(
  *    Then, import that component above like this:
  *
  *    import About from "./pages/About";
+ *
+ *
  *
  *    Add a new route to the router:
  *

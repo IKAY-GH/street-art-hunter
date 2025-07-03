@@ -1,42 +1,80 @@
 import type { RequestHandler } from "express";
-import artistRepository from "./artistRepository";
 
-const repository = new artistRepository();
+// Import access to data
+import artworkRepository from "./artistRepository";
 
+// The B of BREAD - Browse (Read All) operation
 const browse: RequestHandler = async (req, res, next) => {
   try {
-    const artists = await repository.readAll();
-    res.json(artists);
+    // Fetch all items
+    const artwork = await artworkRepository.readAll();
+
+    // Respond with the items in JSON format
+    res.json(artwork);
   } catch (err) {
+    // Pass any errors to the error-handling middleware
     next(err);
   }
 };
 
+// The R of BREAD - Read operation
 const read: RequestHandler = async (req, res, next) => {
   try {
-    const artistId = Number(req.params.id);
-    const artist = await repository.read(artistId);
-    if (artist == null) {
+    // Fetch a specific item based on the provided ID
+    const itemId = Number(req.params.id);
+    const artwork = await artworkRepository.read(itemId);
+
+    // If the item is not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with the item in JSON format
+    if (artwork == null) {
       res.sendStatus(404);
     } else {
-      res.json(artist);
+      res.json(artwork);
     }
   } catch (err) {
+    // Pass any errors to the error-handling middleware
     next(err);
   }
 };
+
+// The A of BREAD - Add (Create) operation
+// Define the type for new artwork
+interface NewArtwork {
+  title: string;
+  artist_id: number;
+  image_url: string;
+  latitude: number;
+  longitude: number;
+  point: number;
+  created_at: Date;
+  updated_at: Date;
+}
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    const newArtist = {
-      bio: req.body.bio,
-      name: req.body.name,
-      profile_image_url: req.body.profil_image_url,
-      avatar_url: req.body.avatar_url,
+    // Validate required fields
+    const { title, artist_id, image_url, latitude, longitude, point } =
+      req.body;
+
+    const now = new Date();
+    const newArtwork: NewArtwork = {
+      title,
+      artist_id,
+      image_url,
+      latitude,
+      longitude,
+      point,
+      created_at: now,
+      updated_at: now,
     };
-    const insertId = await repository.create(newArtist);
+
+    // Create the artwork
+    const insertId = await artworkRepository.create(newArtwork);
+
+    // Respond with HTTP 201 (Created) and the ID of the newly inserted item
     res.status(201).json({ insertId });
   } catch (err) {
+    // Pass any errors to the error-handling middleware
     next(err);
   }
 };

@@ -59,3 +59,10 @@ class ItemRepository {
 }
 
 export default new ItemRepository();
+
+// The D of CRUD - Delete operation
+// TODO: Implement the delete operation to remove an item by its ID
+
+// async delete(id: number) {
+//   ...
+// }

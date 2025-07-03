@@ -2,7 +2,7 @@
 .carte-container {
   min-height: 100vh;
   padding: 100px 20px 80px; /* place pour navbar + footer */
-  background-image: url("/assets/image/fond-carte.jpg"); /* mets le bon nom */
+  background-image: url("../assets/images/background.webp"); /* mets le bon nom */
   background-size: cover;
   background-position: center;
   color: white;
@@ -12,7 +12,7 @@
 
 .carte-title {
   font-size: 2.5rem;
-  color: #00f7ff; /* bleu cyan vif */
+  color: #f4f9fa; /* bleu cyan vif */
   text-shadow: 2px 2px 4px black;
   margin-bottom: 20px;
 }

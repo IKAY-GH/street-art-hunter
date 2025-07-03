@@ -1,53 +1,99 @@
-import type { Result, Rows } from "../../../database/client";
-
 import databaseClient from "../../../database/client";
 
-type Artist = {
+import type { Result, Rows } from "../../../database/client";
+
+type Artwork = {
   id: number;
-  name: string;
-  bio: string;
-  profile_image_url: string;
-  avatar_url: string;
+  title: string;
+  image_url: string;
+  latitude: number;
+  longitude: number;
+  artist_id: number;
+  point: number;
+  created_at: Date;
+  updated_at: Date;
 };
 
-class artistRepository {
-  async create(artist: Omit<Artist, "id">): Promise<Result> {
+class artworkRepository {
+  // The C of CRUD - Create operation
+
+  async create(artwork: Omit<Artwork, "id">) {
+    // Execute the SQL INSERT query to add a new item to the "item" table
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO artist (name, bio, profile_image_url, avatar_url) VALUES (?, ?, ?, ?)",
-      [artist.name, artist.bio, artist.profile_image_url, artist.avatar_url],
+      "insert into artwork (title, artist_id, latitude, longitude, point, created_at, updated_at, image_url) values (?, ?, ?, ?, ?, ?, ?, ?)",
+      [
+        artwork.title,
+        artwork.artist_id,
+        artwork.latitude,
+        artwork.longitude,
+        artwork.created_at,
+        artwork.updated_at,
+        artwork.point,
+        artwork.image_url,
+      ],
     );
-    return result;
+
+    // Return the ID of the newly inserted item
+    return result.insertId;
   }
 
+  // The Rs of CRUD - Read operations
+
   async read(id: number) {
+    // Execute the SQL SELECT query to retrieve a specific artwork by its ID
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT* FROM artist WHERE id = ?",
+      "select * from artwork where id = ?",
       [id],
     );
 
-    return rows[0] as Artist;
+    // Return the first row of the result, which represents the artwork
+    return rows[0] as Artwork;
   }
 
   async readAll() {
-    const [rows] = await databaseClient.query<Rows>("select * from artist");
-    return rows as Artist[];
+    // Execute the SQL SELECT query to retrieve all artwork from the "item" table
+    const [rows] = await databaseClient.query<Rows>("select * from artwork");
+
+    // Return the array of items
+    return rows as Artwork[];
   }
 
-  async update(artist: Artist) {
-    const [result] = await databaseClient.query<Result>(
-      "UPDATE artist SET bio = ?, profil_image_url = ?, created_at = ?, avatar_url = ? WHERE id = ?",
-      [artist.bio, artist.profile_image_url, artist.avatar_url, artist.id],
+  // The U of CRUD - Update operation
+
+  async update(
+    id: number,
+    artwork: Partial<Omit<Artwork, "id" | "created_at" | "update_at">>,
+  ) {
+    await databaseClient.query(
+      "UPDATE ITEM SET title = ?, artist_id = ?, image_url = ?, latitude = ?, longitude = ?, point = ?, update_at =  NOW() WHERE id = ?",
+      [
+        artwork.title,
+        artwork.artist_id,
+        artwork.image_url,
+        artwork.latitude,
+        artwork.longitude,
+        artwork.point,
+        id,
+      ],
     );
-    return result;
   }
+  // TODO: Implement the update operation to modify an existing item
+
+  // async update(item: Item) {
+  //   ...
+  // }
+
+  // The D of CRUD - Delete operation
 
   async delete(id: number) {
-    const [result] = await databaseClient.query<Result>(
-      "DELETE FROM artist WHERE id = ?",
-      [id],
-    );
-    return result;
+    await databaseClient.query("DELETE FROM artwork WHERE id = ?", [id]);
   }
+
+  // TODO: Implement the delete operation to remove an item by its ID
+
+  // async delete(id: number) {
+  //   ...
+  // }
 }
 
-export default artistRepository;
+export default new artworkRepository();
