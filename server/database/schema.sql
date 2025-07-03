@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS streetarthunterbdd;
+USE streetarthunterbdd;
+
 -- Table: user
 CREATE TABLE user (
   id INT AUTO_INCREMENT PRIMARY KEY,
