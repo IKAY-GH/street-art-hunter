@@ -30,15 +30,7 @@ const read: RequestHandler = async (req, res, next) => {
 // Add: ajouter un nouvel utilisateur
 const add: RequestHandler = async (req, res, next) => {
   try {
-    const {
-      pseudo,
-      nom,
-      prenom,
-      email,
-      age,
-      ville,
-      mot_de_passe,
-    } = req.body;
+    const { pseudo, nom, prenom, email, age, ville, mot_de_passe } = req.body;
 
     // Validation simple
     if (
@@ -46,11 +38,12 @@ const add: RequestHandler = async (req, res, next) => {
       !nom ||
       !prenom ||
       !email ||
-      age === undefined || age === null ||
+      age === undefined ||
+      age === null ||
       !ville ||
       !mot_de_passe
     ) {
-      res.status(400).json({ error: "Tous les champs sont obligatoires."});
+      res.status(400).json({ error: "Tous les champs sont obligatoires." });
       return;
     }
 

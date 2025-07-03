@@ -54,7 +54,9 @@ class utilisateurRepository {
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all utilisateurs from the "utilisateur" table
-    const [rows] = await databaseClient.query<Rows>("SELECT * FROM utilisateur");
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM utilisateur",
+    );
 
     // Return the array of utilisateurs
     return rows as Utilisateur[];
@@ -86,7 +88,7 @@ class utilisateurRepository {
         utilisateur.ville ?? null,
         utilisateur.mot_de_passe ?? null,
         id,
-      ]
+      ],
     );
   }
   // TODO: Implement the update operation to modify an existing item
@@ -101,12 +103,12 @@ class utilisateurRepository {
     await databaseClient.query("DELETE FROM artwork WHERE id = ?", [id]);
     await databaseClient.query("DELETE FROM utilisateur WHERE id = ?", [id]);
 
-  // TODO: Implement the delete operation to remove an item by its ID
+    // TODO: Implement the delete operation to remove an item by its ID
 
-  // async delete(id: number) {
-  //   ...
-  // }
-}
+    // async delete(id: number) {
+    //   ...
+    // }
+  }
 }
 
 export default new utilisateurRepository();
