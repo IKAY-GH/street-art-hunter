@@ -11,7 +11,8 @@ CREATE TABLE user (
   zip_code VARCHAR(10),
   last_name VARCHAR(100) NOT NULL,
   first_name VARCHAR(100) NOT NULL,
-  password_hash VARCHAR(255) NOT NULL
+  password_hash VARCHAR(255) NOT NULL,
+  pseudo VARCHAR(20) NOT NULL
 );
 
 -- Table: artist

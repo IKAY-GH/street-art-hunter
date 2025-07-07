@@ -1,47 +1,74 @@
 import type { RequestHandler } from "express";
 import userRepository from "./userRepository";
 
-const repository = new userRepository();
+// Browse: récupérer tous les utilisateurs
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
-    const users = await repository.readAll();
+    const users = await userRepository.readAll();
     res.json(users);
   } catch (err) {
     next(err);
   }
 };
-
+// Read: récupérer un utilisateur par ID
 const read: RequestHandler = async (req, res, next) => {
   try {
     const userId = Number(req.params.id);
-    const user = await repository.read(userId);
-    if (user == null) {
+    const user = await userRepository.read(userId);
+    if (!user) {
       res.sendStatus(404);
     } else {
       res.json(user);
     }
-  } catch (err) {
+  } catch (err: unknown) {
     next(err);
   }
 };
-
+// Add: ajouter un nouvel utilisateur
 const add: RequestHandler = async (req, res, next) => {
   try {
-    const user = {
-      email: req.body.email,
-      created_at: req.body.created_at,
-      updated_at: req.body.updated_at,
-      last_name: req.body.last_name,
-      first_name: req.body.first_name,
-      zip_code: req.body.zip_code,
-      password_hash: req.body.password_hash,
-      avatar_url: req.body.avatar_url,
+    const {
+      pseudo,
+      first_name,
+      last_name,
+      email,
+      password_hash,
+      zip_code,
+      avatar_url,
+    } = req.body;
+
+    if (
+      !pseudo ||
+      !first_name ||
+      !last_name ||
+      !email ||
+      !password_hash ||
+      !zip_code ||
+      !avatar_url
+    ) {
+      res.status(400).json({ error: "Tous les champs sont obligatoires." });
+      return;
+    }
+
+    const now = new Date();
+
+    const newUser = {
+      pseudo,
+      last_name,
+      first_name,
+      email,
+      password_hash,
+      zip_code,
+      avatar_url,
     };
-    const insertId = await repository.create(user);
+
+    const { insertId } = await userRepository.create(newUser);
     res.status(201).json({ insertId });
-  } catch (err) {
+    return;
+  } catch (err: unknown) {
     next(err);
+    return;
   }
 };
 

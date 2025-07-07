@@ -12,13 +12,6 @@ import itemActions from "./modules/item/itemActions";
 // Define item-related routes
 import userActions from "./modules/user/userActions";
 
-import user from "./modules/user/utilisateurAction";
-import utilisateurAction from "./modules/user/utilisateurAction";
-
-router.get("/api/user", utilisateurAction.browse);
-router.get("/api/user/:id", utilisateurAction.read);
-router.post("/api/user", utilisateurAction.add);
-
 router.get("/api/items", itemActions.browse);
 router.get("/api/items/:id", itemActions.read);
 router.post("/api/items", itemActions.add);
