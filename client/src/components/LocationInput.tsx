@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 
-import "./LocationInput.css"; // Fichier de style dédié
-
 // Type pour les props : on envoie la position au parent
 type Props = {
   onPositionFound: (latitude: number, longitude: number) => void;
