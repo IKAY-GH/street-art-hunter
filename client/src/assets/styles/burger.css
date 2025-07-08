@@ -6,63 +6,59 @@
 body {
   font-family: "retro-gaming" sans-serif;
   background-color: black;
-  text-shadow: 1px 1px 0 #00ff00;
+  /*text-shadow: 1px 1px 0 #00ff00;*/
   font-weight: bold;
 }
 
-@media screen and (max-width: 768px) {
-  .floating-btn {
-    position: fixed;
-    background: none;
-    cursor: pointer;
-    z-index: 1000;
-  }
+.floating-btn {
+  position: fixed;
+  background: none;
+  cursor: pointer;
+  z-index: 1000;
+}
 
-  img {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    width: 30px;
-    height: 30px;
-  }
+img {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 30px;
+}
 
-  .menu-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: white;
-    opacity: 70%;
-    width: 200px;
-    height: 100vh;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 20px;
-    z-index: 999;
-  }
+.menu-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  opacity: 70%;
+  width: 200px;
+  height: 100vh;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  z-index: 999;
+}
 
-  .lien {
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 70vh;
-    padding: 40px;
-    gap: 60px;
-    font-size: 21px;
-  }
+div.lien {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  padding: 40px;
+  gap: 60px;
+  font-size: 20px;
+}
 
-  a {
-    color: black;
-    text-decoration: none;
-    font-family: retro-gaming, monospace;
-  }
+a {
+  text-decoration: none;
+}
 
-  h2 {
-    color: white;
-  }
+h2 {
+  color: white;
 }
 
 @media screen and (min-width: 769px) {
@@ -86,32 +82,27 @@ body {
     left: 0;
     background-color: white;
     width: 100%;
-    top: 60px;
+    height: 30%;
+    top: 85px;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 20px;
     z-index: 999;
-    opacity: 100%;
+    opacity: 80%;
   }
 
-  .lien {
+  div.lien {
     display: flex;
-    text-align: center;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    height: 70vh;
+    width: 60rem;
     padding: 40px;
     gap: 60px;
-    font-size: 21px;
-  }
-
-  a {
-    color: black;
-    text-decoration: none;
-    font-family: retro-gaming, monospace;
+    font-size: 20px;
+    margin: 0 auto;
   }
 
   h2 {
