@@ -13,14 +13,14 @@ import CGU from "./pages/Cgu";
 import Equipe from "./pages/Equipe";
 import MentionsLegales from "./pages/MentionsLegales";
 
+import Accueil from "./pages/accueil";
+import Administrateur from "./pages/administrateur";
 import Carte from "./pages/carte";
 import Classement from "./pages/classement";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 import Gallerie from "./pages/gallerie";
 import Info from "./pages/info";
-import Accueil from "./pages/accueil";
-import Administrateur from "./pages/administrateur";
 
 import Formulaire from "./pages/formulaire";
 // import About from "./pages/About";
