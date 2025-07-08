@@ -1,6 +1,5 @@
 import AbstractSeeder from "./AbstractSeeder";
 
-
 class UserSeeder extends AbstractSeeder {
   constructor() {
     // Call the constructor of the parent class (AbstractSeeder) with appropriate options
