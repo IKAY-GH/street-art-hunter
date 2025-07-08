@@ -1,113 +1,58 @@
-/* Variables CSS globales */
-:root {
-  --font-family: "retro-gaming", monospace;
-  --color-bg: #f0f0f0;
-  --color-text: #333;
-  --color-primary: rgb(0, 255, 187);
-  --color-primary-focus-shadow: rgba(0, 255, 187, 0.6);
-  --color-dark: #222;
-  --color-light: white;
-  --color-btn-hover: silver;
-
-  --border-radius: 10px;
-  --transition: 0.3s ease;
+.btn-form {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
-
-/* Styles globaux */
-
-body {
-  font-family: var(--font-family);
-}
-
-.profil {
-  background-color: var(--color-light);
-  padding: 1.5rem 1.5rem;
-}
-
-h2 {
-  font-size: 26px;
-  margin-bottom: 2rem;
-  color: var(--color-dark);
-  text-align: center;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.trait-vertical {
+  width: 2px;
+  height: 2px;
+  background-color: #000;
 }
 
 form {
+  background-color: red;
+  width: 90vw;
+  height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  gap: 0.5rem;
-  width: 200px;
-  height: 410px;
+  align-content: center;
+  align-items: center;
+  padding: 30px 10px;
 }
 
-form div {
-  display: flex;
-  flex-direction: column;
+input #pseudo,
+#nom,
+#prenom,
+#email,
+#password,
+#confirm_password {
+  margin: 10px 0;
+  width: 80%;
+  padding: 8px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  padding: 0.6rem 1rem;
-  border: 1.5px solid #ccc;
-  border-radius: var(--border-radius);
-  font-size: 16px;
-  font-family: inherit;
-  transition: border-color var(--transition), box-shadow var(--transition);
-  box-sizing: border-box;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 7px var(--color-primary-focus-shadow);
-  outline: none;
-}
-
-button#btn-valide {
-  background-color: var(--color-dark);
-  color: var(--color-light);
-  font-weight: 700;
-  padding: 1rem;
-  border: none;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  font-size: 18px;
-  transition: background-color var(--transition), transform 0.2s ease;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-}
-
-button#btn-valide:hover {
-  background-color: var(--color-btn-hover);
-  color: var(--color-dark);
-  transform: scale(1.05);
-}
-
-/* Desktop spécifique */
 @media screen and (min-width: 769px) {
-  .profil {
-    max-width: 600px;
-    margin: 60px 1rem;
-    padding: 2rem 3rem;
+  button.btn-inscription,
+  .btn-connexion {
+    font-size: 20px;
+    width: 200px;
+    height: 60px;
+    border: none;
   }
 
-  h2 {
-    font-size: 28px;
+  button.inscription {
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  button.inscription:hover {
+    background-color: rgb(251, 254, 252);
+    cursor: pointer;
   }
 
   form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.10rem;
-    width: 300px;
-    height: 650px;
-  }
-
-  button#btn-valide {
-    padding: 1rem;
-    font-size: 17px;
+    width: 500px;
+    height: 500px;
   }
 }
