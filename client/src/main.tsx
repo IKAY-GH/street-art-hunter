@@ -19,14 +19,13 @@ import Classement from "./pages/classement";
 // Try creating these components in the "pages" folder
 import Gallerie from "./pages/gallerie";
 import Info from "./pages/info";
-
-// import About from "./pages/About";
 import Accueil from "./pages/accueil";
-
-// import Contact from "./pages/Contact";
 import Administrateur from "./pages/administrateur";
 
 import Formulaire from "./pages/formulaire";
+// import About from "./pages/About";
+
+// import Contact from "./pages/Contact";
 
 /* ************************************************************************* */
 
