@@ -18,8 +18,11 @@ const seed = async () => {
     // Construct each seeder
     const filePaths = fs
       .readdirSync(fixturesPath)
-      .filter((filePath: string) => !filePath.startsWith("Abstract"));
-
+      .filter(
+        (filePath: string) =>
+          !filePath.startsWith("Abstract") && !filePath.endsWith("Example.ts"),
+      );
+    console.log(filePaths);
     for (const filePath of filePaths) {
       const { default: SeederClass } = await import(
         `file://${path.join(fixturesPath, filePath)}`

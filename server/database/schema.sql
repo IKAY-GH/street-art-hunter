@@ -57,6 +57,9 @@ CREATE TABLE score (
     FOREIGN KEY (user_id) REFERENCES user (id)
 );
 
+-- -- Quelques données de test
+-- INSERT INTO user (email, last_name, first_name, password_hash, zip_code)
+-- VALUES ('test@example.com', 'Durand', 'Alice', 'hashedpassword123', '75001');
 -- Quelques données de test
 INSERT INTO
     user (
@@ -76,6 +79,8 @@ VALUES (
         '75001'
     );
 
+-- INSERT INTO artist (name, bio)
+-- VALUES ('Banksy', 'Artiste anonyme connu pour ses œuvres engagées.');
 INSERT INTO
     artist (name, bio)
 VALUES (
@@ -83,6 +88,8 @@ VALUES (
         'Artiste anonyme connu pour ses œuvres engagées.'
     );
 
+-- INSERT INTO artwork (title, description, image_url, latitude, longitude, artist_id)
+-- VALUES ('Street Art Example', 'Un graffiti dans le centre-ville.', 'https://example.com/art.jpg', 48.8566, 2.3522, 1);
 INSERT INTO
     artwork (
         title,
@@ -101,6 +108,8 @@ VALUES (
         1
     );
 
+-- INSERT INTO discovered_artwork (user_id, artwork_id)
+-- VALUES (1, 1);
 INSERT INTO discovered_artwork (user_id, artwork_id) VALUES (1, 1);
 
 INSERT INTO score (user_id, total_points) VALUES (1, 10);
