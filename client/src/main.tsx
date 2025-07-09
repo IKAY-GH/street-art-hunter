@@ -17,7 +17,7 @@ import Accueil from "./pages/accueil";
 // import Administrateur from "./pages/administrateur";
 import Carte from "./pages/carte";
 import Classement from "./pages/classement";
-import Formulaire from "./pages/formulaire";
+// import Formulaire from "./pages/formulaire";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 import Gallerie from "./pages/gallerie";
@@ -25,6 +25,10 @@ import Info from "./pages/info";
 // import About from "./pages/About";
 
 // import Contact from "./pages/Contact";
+// import Administrateur from "./pages/administrateur";
+
+// import Connexion from "./pages/connexion";
+// import Inscription from "./pages/inscription";
 
 /* ************************************************************************* */
 
@@ -64,18 +68,23 @@ const router = createBrowserRouter([
         element: <Classement />,
       },
 
-      {
-        path: "/connexion",
-        element: <Formulaire />,
-      },
+      // {
+      //   path: "/inscription",
+      //   element: <Inscription />,
+      // },
+
+      // {
+      //   path: "/connexion",
+      //   element: <Connexion />,
+      // },
 
       {
-        path: "/Cgu",
+        path: "/cgu",
         element: <CGU />,
       },
 
       {
-        path: "/Mentions-Legales",
+        path: "/mentions-Legales",
         element: <MentionsLegales />,
       },
 
