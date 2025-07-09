@@ -34,25 +34,5 @@ input #pseudo,
 }
 
 @media screen and (min-width: 769px) {
-  button.btn-inscription,
-  .btn-connexion {
-    font-size: 20px;
-    width: 200px;
-    height: 60px;
-    border: none;
-  }
-
-  button.inscription {
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-  }
-
-  button.inscription:hover {
-    background-color: rgb(251, 254, 252);
-    cursor: pointer;
-  }
-
-  form {
-    width: 500px;
-    height: 500px;
-  }
+ 
 }

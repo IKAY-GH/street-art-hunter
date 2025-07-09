@@ -18,7 +18,7 @@ router.post("/api/items", itemActions.add);
 
 router.get("/api/users", userActions.browse);
 router.get("/api/users/:id", userActions.read);
-router.post("/api/users", userActions.hashPassword, userActions.add);
+router.post("/api/users/inscription", userActions.hashPassword, userActions.add);
 
 router.get("/api/artists", artistActions.browse);
 router.get("/api/artists/:id", artistActions.read);

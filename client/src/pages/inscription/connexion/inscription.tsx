@@ -2,6 +2,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
+import "./inscription.css";
+
 const validationSchema = yup.object({
   pseudo: yup
     .string()
@@ -43,16 +45,44 @@ function Formulaire() {
   } = useForm<FormData>({
     resolver: yupResolver(validationSchema),
   });
-  const onSubmit = (data: FormData) => {
-    alert(`Bienvenue ${data.pseudo} ! votre email : ${data.email}`);
+  const onSubmit = async (data: FormData) => {
+    /*alert(`Bienvenue ${data.pseudo} ! votre email : ${data.email}`);*/
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/inscription`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          pseudo: data.pseudo,
+          first_name: data.first_name,
+          last_name: data.last_name,
+          email: data.email,
+          password: data.password,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("token", result.token);
+        alert(`Bienvenu ${data.pseudo} !`)
+        window.location.href = "/dashboard";
+      } else {
+        alert(result.message || "Erreur lors de l'inscription")
+      }
+    } catch (error) {
+      console.error("Erreur réseau", error);
+    }
+
     reset();
+
   };
-
   return (
-    <div className="profil">
+    <main className="inscription-container">
       <h2>Inscription</h2>
-
-      <div className="ligne-separation" />
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="pseudo">Pseudo</label>
@@ -129,7 +159,7 @@ function Formulaire() {
           </button>
         </div>
       </form>
-    </div>
+    </main>
   );
 }
 

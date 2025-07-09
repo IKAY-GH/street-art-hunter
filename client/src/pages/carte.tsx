@@ -1,9 +1,11 @@
 function carte() {
   return (
     <>
-      <div>
+     <main className="carte-container">
+
         <h2>Cartes</h2>
-      </div>
+        
+      </main>
     </>
   );
 }
