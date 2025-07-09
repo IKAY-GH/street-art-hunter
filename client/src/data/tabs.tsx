@@ -15,3 +15,5 @@ const tabsData = [
     tabTitle: "Signalement",
   },
 ];
+
+export default tabsData;

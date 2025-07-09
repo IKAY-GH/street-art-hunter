@@ -14,15 +14,14 @@ import Equipe from "./pages/Equipe";
 import MentionsLegales from "./pages/MentionsLegales";
 
 import Accueil from "./pages/accueil";
-import Administrateur from "./pages/administrateur";
+// import Administrateur from "./pages/administrateur";
 import Carte from "./pages/carte";
 import Classement from "./pages/classement";
+import Formulaire from "./pages/formulaire";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 import Gallerie from "./pages/gallerie";
 import Info from "./pages/info";
-
-import Formulaire from "./pages/formulaire";
 // import About from "./pages/About";
 
 // import Contact from "./pages/Contact";
@@ -40,10 +39,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Accueil />,
       },
-      {
-        path: "/administrateur",
-        element: <Administrateur />,
-      },
+      // {
+      //   path: "/administrateur",
+      //   element: <Administrateur />,
+      // },
 
       {
         path: "/gallerie",
