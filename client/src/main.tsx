@@ -11,11 +11,12 @@ import App from "./App";
 
 import CGU from "./pages/Cgu";
 import Equipe from "./pages/Equipe";
+
 import MentionsLegales from "./pages/MentionsLegales";
 
-import Accueil from "./pages/accueil";
-// import Administrateur from "./pages/administrateur";
-import Carte from "./pages/carte";
+// import Accueil from "./pages/accueil";
+import Carte from "./pages/MapComponent";
+//Changement de nom de composé afin de contourner un problème de commit
 import Classement from "./pages/classement";
 // import Formulaire from "./pages/formulaire";
 // Import additional components for new routes
@@ -39,10 +40,10 @@ const router = createBrowserRouter([
     // The root path
     element: <App />, // Renders the App component for the home page
     children: [
-      {
-        path: "/",
-        element: <Accueil />,
-      },
+      // {
+      //   path: "/",
+      //   element: <Accueil />,
+      // },
       // {
       //   path: "/administrateur",
       //   element: <Administrateur />,
