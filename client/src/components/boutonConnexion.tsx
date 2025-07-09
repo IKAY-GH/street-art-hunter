@@ -1,25 +1,21 @@
 import { NavLink } from "react-router";
 import "../assets/styles/boutonConnexion.css";
 
- 
- 
- function BoutonConnexion() {
+function BoutonConnexion() {
   return (
-    <> 
-        <NavLink to={"/connexion"}>
+    <>
+      <NavLink to={"/connexion"}>
         <button className="btn-connexion" type="button">
           Connexion
         </button>
-        </NavLink>
+      </NavLink>
     </>
   );
 }
 
 export default BoutonConnexion;
 
- 
- 
- /*function connexion() {
+/*function connexion() {
  
     return (
       <>

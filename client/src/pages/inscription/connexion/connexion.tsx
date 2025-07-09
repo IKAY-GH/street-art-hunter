@@ -31,7 +31,6 @@ function Connexion() {
 
   return (
     <main className="connexion-container">
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">Email</label>
         <input {...register("email")} type="email" id="email" required />

@@ -49,36 +49,38 @@ function Formulaire() {
     /*alert(`Bienvenue ${data.pseudo} ! votre email : ${data.email}`);*/
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/inscription`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/users/inscription`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
 
-        body: JSON.stringify({
-          pseudo: data.pseudo,
-          first_name: data.first_name,
-          last_name: data.last_name,
-          email: data.email,
-          password: data.password,
-        }),
-      });
+          body: JSON.stringify({
+            pseudo: data.pseudo,
+            first_name: data.first_name,
+            last_name: data.last_name,
+            email: data.email,
+            password: data.password,
+          }),
+        },
+      );
 
       const result = await response.json();
 
       if (response.ok) {
         localStorage.setItem("token", result.token);
-        alert(`Bienvenu ${data.pseudo} !`)
+        alert(`Bienvenu ${data.pseudo} !`);
         window.location.href = "/dashboard";
       } else {
-        alert(result.message || "Erreur lors de l'inscription")
+        alert(result.message || "Erreur lors de l'inscription");
       }
     } catch (error) {
       console.error("Erreur réseau", error);
     }
 
     reset();
-
   };
   return (
     <main className="inscription-container">
