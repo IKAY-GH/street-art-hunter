@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ArtworkList from "../components/ArtworkList";
 import LocationInput from "../components/LocationInput";
-import "./Carte.css";
+import "../assets/styles/Carte.css";
 
 export default function Carte() {
   const [userLatitude, setUserLatitude] = useState<number | null>(null);

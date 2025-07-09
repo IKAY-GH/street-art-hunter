@@ -1,43 +1,39 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function Chasse() {
+export default function CapturePhoto() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [photo, setPhoto] = useState<string | null>(null);
-  const [stream, setStream] = useState<MediaStream | null>(null);
 
   useEffect(() => {
-    let activeStream: MediaStream | null = null;
+    let stream: MediaStream | null = null;
 
     const startCamera = async () => {
       try {
-        const mediaStream = await navigator.mediaDevices.getUserMedia({
+        stream = await navigator.mediaDevices.getUserMedia({
           video: true,
         });
         if (videoRef.current) {
-          videoRef.current.srcObject = mediaStream;
+          videoRef.current.srcObject = stream;
         }
-        setStream(mediaStream);
-        activeStream = mediaStream;
       } catch (error) {
-        console.error("Erreur d'accès à la caméra:", error);
+        console.error("Erreur d'accès à la caméra :", error);
       }
     };
 
     startCamera();
 
     return () => {
-      const tracks = (activeStream || stream)?.getTracks();
-      if (tracks) {
-        for (const track of tracks) {
+      if (stream) {
+        for (const track of stream.getTracks()) {
           track.stop();
         }
       }
     };
-  }, [stream]);
+  }, []);
 
-  const capturePhoto = (): void => {
-    if (!canvasRef.current || !videoRef.current) return;
+  const capturePhoto = () => {
+    if (!videoRef.current || !canvasRef.current) return;
 
     const width = videoRef.current.videoWidth;
     const height = videoRef.current.videoHeight;
@@ -47,29 +43,35 @@ export default function Chasse() {
     canvasRef.current.width = width;
     canvasRef.current.height = height;
 
-    const context = canvasRef.current.getContext("2d");
-    if (context) {
-      context.drawImage(videoRef.current, 0, 0, width, height);
+    const ctx = canvasRef.current.getContext("2d");
+    if (ctx) {
+      ctx.drawImage(videoRef.current, 0, 0, width, height);
       const imageData = canvasRef.current.toDataURL("image/png");
       setPhoto(imageData);
     }
   };
 
   return (
-    <div className="camera-container">
-      <video ref={videoRef} autoPlay playsInline className="video">
+    <div className="capture-container">
+      <video
+        ref={videoRef}
+        autoPlay
+        playsInline
+        tabIndex={-1}
+        className="video-preview"
+      >
         <track kind="captions" />
       </video>
 
-      <button type="button" className="capture-button" onClick={capturePhoto}>
+      <button type="button" onClick={capturePhoto} className="capture-button">
         Prendre une photo
       </button>
 
-      <canvas ref={canvasRef} className="canvas" style={{ display: "none" }} />
+      <canvas ref={canvasRef} style={{ display: "none" }} />
 
       {photo && (
         <div className="photo-preview">
-          <img src={photo} alt="œuvre capturée" className="captured-image" />
+          <img src={photo} alt="oeuvre capturée" className="captured-image" />
         </div>
       )}
     </div>

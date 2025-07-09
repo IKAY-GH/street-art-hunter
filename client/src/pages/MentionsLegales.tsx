@@ -1,4 +1,4 @@
-import "./MentionsLegales.css";
+import "../assets/styles/MentionsLegales.css";
 
 export default function MentionsLegales() {
   return (

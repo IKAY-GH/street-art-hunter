@@ -4,8 +4,8 @@ import databaseClient from "../../../database/client";
 
 type discovered = {
   id: number;
-  user_Id: string;
-  artwork_Id: string;
+  user_Id: number;
+  artwork_Id: number;
   discovered_at: string;
 };
 

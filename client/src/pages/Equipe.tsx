@@ -1,4 +1,4 @@
-import "./Equipe.css";
+import "../assets/styles/Equipe.css";
 
 export default function Equipe() {
   return (

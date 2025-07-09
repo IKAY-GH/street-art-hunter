@@ -9,7 +9,7 @@ import "./assets/styles/accueil.css";
 import "./assets/styles/boutonAccueil.css";
 import "./assets/styles/boutonConnexion.css";
 import "./assets/styles/formulaire.css";
-import "./components/FooterComponent.css";
+import "./assets/styles/FooterComponent.css";
 
 function App() {
   return (
