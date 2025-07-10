@@ -11,9 +11,10 @@ import App from "./App";
 
 import CGU from "./pages/Cgu";
 import Equipe from "./pages/Equipe";
+
 import MentionsLegales from "./pages/MentionsLegales";
 
-import Carte from "./pages/carte";
+import Carte from "./pages/MapComponent";
 import Classement from "./pages/classement";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder

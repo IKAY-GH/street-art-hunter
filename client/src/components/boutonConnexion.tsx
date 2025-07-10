@@ -1,33 +1,11 @@
-import { NavLink } from "react-router";
-import "../assets/styles/boutonConnexion.css";
+import { Link } from "react-router";
 
-function BoutonConnexion() {
+function BoutonDesktop() {
   return (
-    <>
-      <NavLink to={"/connexion"}>
-        <button className="btn-connexion" type="button">
-          Connexion
-        </button>
-      </NavLink>
-    </>
+    <nav>
+      <Link to={"/connexion"}>connexion</Link>
+    </nav>
   );
 }
 
-export default BoutonConnexion;
-
-/*function connexion() {
- 
-    return (
-      <>
-<NavLink to={"/connexion"}>
-        <button className="btn-connexion" type="button">
-          Connexion
-        </button>
-        </NavLink>
-       
-       </>
-    )
-    }
- 
-
-    export default connexion*/
+export default BoutonDesktop;

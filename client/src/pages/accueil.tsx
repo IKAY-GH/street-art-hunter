@@ -1,21 +1,14 @@
-import BoutonConnexion from "../components/boutonConnexion";
-import BoutonInscription from "../components/boutonInscription";
-
-import "../assets/styles/accueil.css";
+import "./accueil.css";
 
 function accueil() {
-  function handleclick() {}
+  function handleClick() {}
   return (
-    <nav className="nav-container">
+    <main className="accueil-container">
       <h1>STREET ART HUNTER</h1>
-      <BoutonInscription />
-      <BoutonConnexion />
-      <div className="">
-        <button className="btn-start" onClick={handleclick} type="button">
-          START
-        </button>
-      </div>
-    </nav>
+      <button className="btn-start" onClick={handleClick} type="button">
+        START
+      </button>
+    </main>
   );
 }
 
