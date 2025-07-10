@@ -8,7 +8,7 @@ const validationSchema = yup.object({
   pseudo: yup
     .string()
     .required("Il faut préciser votre pseudo")
-    .min(2, "Un vrai pseudo"),
+    .min(2, "Un minimum de 2 caractères est demandé"),
   first_name: yup
     .string()
     .required("Il faut préciser votre nom")
