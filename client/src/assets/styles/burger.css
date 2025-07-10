@@ -3,12 +3,12 @@
   src: url("./font-family/retroGamingFont.ttf");
 }
 
-body {
+/*body {
   font-family: "retro-gaming" sans-serif;
   background-color: black;
-  /*text-shadow: 1px 1px 0 #00ff00;*/
+  text-shadow: 1px 1px 0 #00ff00;
   font-weight: bold;
-}
+}*/
 
 .floating-btn {
   position: fixed;

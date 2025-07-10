@@ -26,8 +26,8 @@ import Accueil from "./pages/accueil";
 // import Contact from "./pages/Contact";
 import Administrateur from "./pages/administrateur";
 
-import Connexion from "./pages/connexion";
-import Inscription from "./pages/inscription";
+import Connexion from "./pages/inscription/connexion/connexion";
+import Inscription from "./pages/inscription/connexion/inscription";
 
 /* ************************************************************************* */
 

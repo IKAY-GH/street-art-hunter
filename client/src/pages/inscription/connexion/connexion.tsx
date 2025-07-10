@@ -15,7 +15,7 @@ const validationSchema = yup.object({
 
 type FormData = yup.InferType<typeof validationSchema>;
 
-function connexion() {
+function Connexion() {
   const {
     register,
     handleSubmit,
@@ -30,9 +30,7 @@ function connexion() {
   };
 
   return (
-    <div className="connexion">
-      <div className="ligne-separation" />
-
+    <main className="connexion-container">
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">Email</label>
         <input {...register("email")} type="email" id="email" required />
@@ -54,8 +52,8 @@ function connexion() {
           </button>
         </div>
       </form>
-    </div>
+    </main>
   );
 }
 
-export default connexion;
+export default Connexion;
