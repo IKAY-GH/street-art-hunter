@@ -1,4 +1,5 @@
 import type React from "react";
+import "./formulaire.css";
 
 function Formulaire() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

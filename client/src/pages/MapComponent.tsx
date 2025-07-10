@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ArtworkList from "../components/ArtworkList";
 import LocationInput from "../components/LocationInput";
-import "./Carte.css";
+import "./MapComponent.css";
 
 export default function Carte() {
   const [userLatitude, setUserLatitude] = useState<number | null>(null);
@@ -18,18 +18,6 @@ export default function Carte() {
 
       {/* SECTION CENTRALE : CARTE + LISTE */}
       <div className="carte-content">
-        {/* CARTE INTERACTIVE */}
-        <div className="map-wrapper">
-          <iframe
-            title="Carte Toulouse"
-            width="100%"
-            height="350"
-            frameBorder="0"
-            src="https://www.google.com/maps/embed?pb=..."
-            allowFullScreen
-          />
-        </div>
-
         {/* LISTE DES ŒUVRES (EXEMPLE EN DUR) */}
         <div className="artwork-list">
           <div className="artwork-card">
@@ -73,6 +61,17 @@ export default function Carte() {
               </a>
             </div>
           </div>
+        </div>
+        {/* CARTE INTERACTIVE */}
+        <div className="map-wrapper">
+          <iframe
+            title="Carte Toulouse"
+            width="100%"
+            height="350"
+            frameBorder="0"
+            src="https://www.google.com/maps/embed?pb=..."
+            allowFullScreen
+          />
         </div>
       </div>
 

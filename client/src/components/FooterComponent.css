@@ -19,7 +19,7 @@
 .footer-links {
   display: flex;
   gap: 2rem; /* espacement égal entre les liens */
-  padding-right: 8rem;
+  list-style: none;
 }
 
 .footer-links a {
