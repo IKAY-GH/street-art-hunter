@@ -11,20 +11,24 @@ import App from "./App";
 
 import CGU from "./pages/Cgu";
 import Equipe from "./pages/Equipe";
+
 import MentionsLegales from "./pages/MentionsLegales";
 
-import Accueil from "./pages/accueil";
-// import Administrateur from "./pages/administrateur";
-import Carte from "./pages/carte";
+import Carte from "./pages/MapComponent";
 import Classement from "./pages/classement";
-import Formulaire from "./pages/formulaire";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 import Gallerie from "./pages/gallerie";
 import Info from "./pages/info";
+
 // import About from "./pages/About";
+import Accueil from "./pages/accueil";
 
 // import Contact from "./pages/Contact";
+// import Administrateur from "./pages/administrateur";
+
+import Connexion from "./pages/inscription/connexion/connexion";
+import Inscription from "./pages/inscription/connexion/inscription";
 
 /* ************************************************************************* */
 
@@ -65,17 +69,22 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/connexion",
-        element: <Formulaire />,
+        path: "/inscription",
+        element: <Inscription />,
       },
 
       {
-        path: "/Cgu",
+        path: "/connexion",
+        element: <Connexion />,
+      },
+
+      {
+        path: "/cgu",
         element: <CGU />,
       },
 
       {
-        path: "/Mentions-Legales",
+        path: "/mentions-Legales",
         element: <MentionsLegales />,
       },
 

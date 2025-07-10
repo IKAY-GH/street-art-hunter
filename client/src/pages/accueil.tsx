@@ -1,12 +1,14 @@
+import "./accueil.css";
+
 function accueil() {
-  function handleclick() {}
+  function handleClick() {}
   return (
-    <div className="container">
+    <main className="accueil-container">
       <h1>STREET ART HUNTER</h1>
-      <button className="btn-start" onClick={handleclick} type="button">
+      <button className="btn-start" onClick={handleClick} type="button">
         START
       </button>
-    </div>
+    </main>
   );
 }
 
