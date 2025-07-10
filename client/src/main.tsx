@@ -27,8 +27,7 @@ import Accueil from "./pages/accueil";
 // import Contact from "./pages/Contact";
 // import Administrateur from "./pages/administrateur";
 
-import Connexion from "./pages/inscription/connexion/connexion";
-import Inscription from "./pages/inscription/connexion/inscription";
+import Formulaire from "./pages/formulaire";
 
 /* ************************************************************************* */
 
@@ -69,22 +68,17 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/inscription",
-        element: <Inscription />,
-      },
-
-      {
         path: "/connexion",
-        element: <Connexion />,
+        element: <Formulaire />,
       },
 
       {
-        path: "/cgu",
+        path: "/Cgu",
         element: <CGU />,
       },
 
       {
-        path: "/mentions-Legales",
+        path: "/Mentions-Legales",
         element: <MentionsLegales />,
       },
 
