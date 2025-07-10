@@ -8,4 +8,4 @@ function administrateur() {
   );
 }
 
-export default administrateur;
+export default administrateur();

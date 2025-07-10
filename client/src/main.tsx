@@ -14,21 +14,22 @@ import Equipe from "./pages/Equipe";
 
 import MentionsLegales from "./pages/MentionsLegales";
 
+// import Accueil from "./pages/accueil";
 import Carte from "./pages/MapComponent";
+//Changement de nom de composé afin de contourner un problème de commit
 import Classement from "./pages/classement";
+// import Formulaire from "./pages/formulaire";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 import Gallerie from "./pages/gallerie";
 import Info from "./pages/info";
-
 // import About from "./pages/About";
-import Accueil from "./pages/accueil";
 
 // import Contact from "./pages/Contact";
-import Administrateur from "./pages/administrateur";
+// import Administrateur from "./pages/administrateur";
 
-import Connexion from "./pages/inscription/connexion/connexion";
-import Inscription from "./pages/inscription/connexion/inscription";
+// import Connexion from "./pages/connexion";
+// import Inscription from "./pages/inscription";
 
 /* ************************************************************************* */
 
@@ -39,14 +40,14 @@ const router = createBrowserRouter([
     // The root path
     element: <App />, // Renders the App component for the home page
     children: [
-      {
-        path: "/",
-        element: <Accueil />,
-      },
-      {
-        path: "/administrateur",
-        element: <Administrateur />,
-      },
+      // {
+      //   path: "/",
+      //   element: <Accueil />,
+      // },
+      // {
+      //   path: "/administrateur",
+      //   element: <Administrateur />,
+      // },
 
       {
         path: "/gallerie",
@@ -68,15 +69,15 @@ const router = createBrowserRouter([
         element: <Classement />,
       },
 
-      {
-        path: "/inscription",
-        element: <Inscription />,
-      },
+      // {
+      //   path: "/inscription",
+      //   element: <Inscription />,
+      // },
 
-      {
-        path: "/connexion",
-        element: <Connexion />,
-      },
+      // {
+      //   path: "/connexion",
+      //   element: <Connexion />,
+      // },
 
       {
         path: "/cgu",
