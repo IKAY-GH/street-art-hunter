@@ -1,15 +1,24 @@
-// import tabsData from "../data/tabs.tsx";
+// import { useState } from "react";
+import tabsData from "../data/tabsData.tsx";
+import "./Tabs.css";
 
-// export default function tabs() {
-//   return (
-//     <div>
-//       <div>
-//         {tabsData.map((obj, index) => (
-//           <button key={index}>
-//             {tabsData[index].tabTitle}
-//           </button>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
+function Tabs() {
+  // const [selectedTab, setSelectedTab] = useState(0);
+
+  return (
+    <div className="Tabs">
+      <div className="OneTab">
+        {tabsData.map((obj, index) => (
+          <button key={obj.id} type="button">
+            <div>
+              <img src={obj.icon} alt="" />
+              <span>{tabsData[index].tabTitle}</span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default Tabs;

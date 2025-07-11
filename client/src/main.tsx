@@ -25,7 +25,7 @@ import Info from "./pages/info";
 import Accueil from "./pages/accueil";
 
 // import Contact from "./pages/Contact";
-// import Administrateur from "./pages/administrateur";
+import Administrateur from "./pages/administrateur";
 
 import Formulaire from "./pages/formulaire";
 
@@ -42,10 +42,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Accueil />,
       },
-      // {
-      //   path: "/administrateur",
-      //   element: <Administrateur />,
-      // },
+      {
+        path: "/administrateur",
+        element: <Administrateur />,
+      },
 
       {
         path: "/gallerie",
