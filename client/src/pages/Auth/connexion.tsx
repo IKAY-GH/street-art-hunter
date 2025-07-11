@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { useState } from "react";
 
 import "./connexion.css";
 
@@ -19,10 +19,8 @@ const validationSchema = yup.object({
 type FormData = yup.InferType<typeof validationSchema>;
 
 function Connexion() {
-
-const [ isLoggedIn, setIsLoggedIn] = useState(false);
-const [ userEmail, setUserEmail] = useState("");
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
 
   const {
     register,
@@ -49,30 +47,36 @@ const [ userEmail, setUserEmail] = useState("");
       {isLoggedIn ? (
         <div className="welcom-message">
           <p>Bienvenue, {userEmail} !</p>
-          <button onClick={handleLogout}>Deconnection</button>
-        </div>
-      ) : (
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email">Email</label>
-        <input {...register("email")} type="email" id="email" required />
-        {errors.email && <p className="form-error">{errors.email.message}</p>}
-
-        <label htmlFor="password">Mot de passe</label>
-        <input
-          {...register("password")}
-          type="password"
-          id="password"
-          required
-        />
-        {errors.password && (
-          <p className="form-error">{errors.password.message}</p>
-        )}
-        <div>
-          <button id="btn-connexion" type="submit">
-            Connexion
+          <button
+            className="btn-deconnection"
+            type="button"
+            onClick={handleLogout}
+          >
+            Deconnection
           </button>
         </div>
-      </form>
+      ) : (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="email">Email</label>
+          <input {...register("email")} type="email" id="email" required />
+          {errors.email && <p className="form-error">{errors.email.message}</p>}
+
+          <label htmlFor="password">Mot de passe</label>
+          <input
+            {...register("password")}
+            type="password"
+            id="password"
+            required
+          />
+          {errors.password && (
+            <p className="form-error">{errors.password.message}</p>
+          )}
+          <div>
+            <button id="btn-connexion" type="submit">
+              Connexion
+            </button>
+          </div>
+        </form>
       )}
     </main>
   );
