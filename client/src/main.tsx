@@ -15,8 +15,11 @@ import Equipe from "./pages/Equipe";
 import Erreur from "./pages/Erreur";
 import Instructions from "./pages/Instructions";
 
-import Carte from "./pages/MapComponent";
+// import Carte from "./pages/MapComponent";
 import MentionsLegales from "./pages/MentionsLegales";
+
+// import Accueil from "./pages/accueil";
+//Changement de nom de composé afin de contourner un problème de commit
 import Classement from "./pages/classement";
 
 // Import additional components for new routes
@@ -30,8 +33,7 @@ import Accueil from "./pages/accueil";
 // import Contact from "./pages/Contact";
 import Administrateur from "./pages/administrateur";
 
-import Connexion from "./pages/inscription/connexion/connexion";
-import Inscription from "./pages/inscription/connexion/inscription";
+// import Formulaire from "./pages/formulaire";
 
 /* ************************************************************************* */
 
@@ -64,10 +66,10 @@ const router = createBrowserRouter([
         element: <Chasse />,
       },
 
-      {
-        path: "/carte",
-        element: <Carte />,
-      },
+      // {
+      //   path: "/carte",
+      //   element: <Carte />,
+      // },
 
       {
         path: "/infos",
@@ -79,23 +81,18 @@ const router = createBrowserRouter([
         element: <Classement />,
       },
 
-      {
-        path: "/inscription",
-        element: <Inscription />,
-      },
+      // {
+      //   path: "/connexion",
+      //   element: <Formulaire />,
+      // },
 
       {
-        path: "/connexion",
-        element: <Connexion />,
-      },
-
-      {
-        path: "/cgu",
+        path: "/Cgu",
         element: <CGU />,
       },
 
       {
-        path: "/mentions-Legales",
+        path: "/Mentions-Legales",
         element: <MentionsLegales />,
       },
 

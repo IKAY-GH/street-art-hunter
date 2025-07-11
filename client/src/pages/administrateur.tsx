@@ -1,11 +1,14 @@
-function administrateur() {
+import "./administrateur.css";
+import "../assets/styles/global.css";
+import Tabs from "../components/Tabs";
+
+export default function administrateur() {
   return (
-    <>
+    <main className="administrator-container">
+      <h2>Administrateur</h2>
       <div>
-        <h2>Administrateur</h2>
+        <Tabs />
       </div>
-    </>
+    </main>
   );
 }
-
-export default administrateur;
