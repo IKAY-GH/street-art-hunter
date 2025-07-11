@@ -66,6 +66,12 @@ function Navigation() {
         {menuOuvert && (
           <ul className="liens">
             <li>
+              <Link to={"/connexion"}>connexion</Link>
+            </li>
+            <li>
+              <Link to={"/inscription"}>inscription</Link>
+            </li>
+            <li>
               <Link
                 onClick={() => {
                   setFermeture(true);

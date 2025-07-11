@@ -1,6 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import { useState } from "react";
+
+import "./connexion.css";
 
 const validationSchema = yup.object({
   email: yup
@@ -16,6 +19,11 @@ const validationSchema = yup.object({
 type FormData = yup.InferType<typeof validationSchema>;
 
 function Connexion() {
+
+const [ isLoggedIn, setIsLoggedIn] = useState(false);
+const [ userEmail, setUserEmail] = useState("");
+
+
   const {
     register,
     handleSubmit,
@@ -24,13 +32,26 @@ function Connexion() {
   } = useForm<FormData>({
     resolver: yupResolver(validationSchema),
   });
+
   const onSubmit = (data: FormData) => {
-    alert(`Bienvenue ${data.email}`);
+    setIsLoggedIn(true);
+    setUserEmail(data.email);
     reset();
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUserEmail("");
   };
 
   return (
     <main className="connexion-container">
+      {isLoggedIn ? (
+        <div className="welcom-message">
+          <p>Bienvenue, {userEmail} !</p>
+          <button onClick={handleLogout}>Deconnection</button>
+        </div>
+      ) : (
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">Email</label>
         <input {...register("email")} type="email" id="email" required />
@@ -52,6 +73,7 @@ function Connexion() {
           </button>
         </div>
       </form>
+      )}
     </main>
   );
 }

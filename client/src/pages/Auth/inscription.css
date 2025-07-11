@@ -1,34 +1,55 @@
-.btn-form {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-.trait-vertical {
-  width: 2px;
-  height: 2px;
-  background-color: #000;
+.inscription-container {
+  max-width: 500px;
+  margin: auto 40%;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 form {
-  background-color: red;
-  width: 90vw;
-  height: auto;
   display: flex;
   flex-direction: column;
-  align-content: center;
-  align-items: center;
-  padding: 30px 10px;
 }
 
-input #pseudo,
-#nom,
-#prenom,
-#email,
-#password,
-#confirm_password {
-  margin: 10px 0;
-  width: 80%;
-  padding: 8px;
+label {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input {
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.form-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+#btn-valide {
+  margin-top: 20px;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#btn-valide:hover {
+  background-color: #0056b3;
+}
+
+@media screen and (max-width: 768px) {
+main {
+ width: 300px;
+
+}
 }

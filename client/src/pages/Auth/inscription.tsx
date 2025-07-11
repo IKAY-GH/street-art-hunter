@@ -36,7 +36,7 @@ const validationSchema = yup.object({
 
 type FormData = yup.InferType<typeof validationSchema>;
 
-function Formulaire() {
+function inscription() {
   const {
     register,
     handleSubmit,
@@ -165,4 +165,4 @@ function Formulaire() {
   );
 }
 
-export default Formulaire;
+export default inscription;
