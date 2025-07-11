@@ -1,22 +1,14 @@
 import { Outlet } from "react-router";
 
-import BoutonConnexion from "../src/components/boutonConnexion";
-import Footer from "./components/FooterComponent";
-import BoutonAccueil from "./components/boutonAccueil";
-import MenuBurger from "./components/menuBurger";
-
-import "./assets/styles/accueil.css";
-import "./assets/styles/boutonAccueil.css";
-import "./assets/styles/boutonConnexion.css";
-import "./assets/styles/formulaire.css";
-import "./assets/styles/FooterComponent.css";
+import "./assets/styles/global.css";
+import Footer from "./components/FooterComponent.tsx";
+import Navigation from "./components/navigation.tsx";
 
 function App() {
   return (
     <>
-      <MenuBurger />
-      <BoutonConnexion />
-      <BoutonAccueil />
+      <Navigation />
+      {/*<BoutonConnexion />*/}
       <Outlet />
       <Footer />
     </>

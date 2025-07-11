@@ -12,6 +12,8 @@ import App from "./App";
 import CGU from "./pages/Cgu";
 import Chasse from "./pages/Chasse";
 import Equipe from "./pages/Equipe";
+import Erreur from "./pages/Erreur";
+import Instructions from "./pages/Instructions";
 
 import Carte from "./pages/MapComponent";
 import MentionsLegales from "./pages/MentionsLegales";
@@ -28,7 +30,8 @@ import Accueil from "./pages/accueil";
 // import Contact from "./pages/Contact";
 import Administrateur from "./pages/administrateur";
 
-import Formulaire from "./pages/formulaire";
+import Connexion from "./pages/inscription/connexion/connexion";
+import Inscription from "./pages/inscription/connexion/inscription";
 
 /* ************************************************************************* */
 
@@ -53,7 +56,11 @@ const router = createBrowserRouter([
         element: <Gallerie />,
       },
       {
-        path: "/Chasse",
+        path: "/instructions",
+        element: <Instructions />,
+      },
+      {
+        path: "/chasse",
         element: <Chasse />,
       },
 
@@ -73,23 +80,32 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/connexion",
-        element: <Formulaire />,
+        path: "/inscription",
+        element: <Inscription />,
       },
 
       {
-        path: "/Cgu",
+        path: "/connexion",
+        element: <Connexion />,
+      },
+
+      {
+        path: "/cgu",
         element: <CGU />,
       },
 
       {
-        path: "/Mentions-Legales",
+        path: "/mentions-Legales",
         element: <MentionsLegales />,
       },
 
       {
         path: "/equipe",
         element: <Equipe />,
+      },
+      {
+        path: "/erreur",
+        element: <Erreur />,
       },
     ],
   },

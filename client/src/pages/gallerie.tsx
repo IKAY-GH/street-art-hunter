@@ -1,9 +1,9 @@
 function gallerie() {
   return (
     <>
-      <div>
+      <main className="gallerie-container">
         <h2>Gallerie</h2>
-      </div>
+      </main>
     </>
   );
 }
