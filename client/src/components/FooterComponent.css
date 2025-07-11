@@ -18,6 +18,7 @@
 
 .footer-links {
   display: flex;
+
   gap: 2rem;
   padding-right: 2rem; /* ✅ recule les liens de la bordure droite */
 }
