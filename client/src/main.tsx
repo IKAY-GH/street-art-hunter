@@ -10,12 +10,15 @@ import App from "./App";
 // Import the main pages
 
 import CGU from "./pages/Cgu";
+import Chasse from "./pages/Chasse";
 import Equipe from "./pages/Equipe";
-
-import MentionsLegales from "./pages/MentionsLegales";
+import Erreur from "./pages/Erreur";
+import Instructions from "./pages/Instructions";
 
 import Carte from "./pages/MapComponent";
+import MentionsLegales from "./pages/MentionsLegales";
 import Classement from "./pages/classement";
+
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 import Gallerie from "./pages/gallerie";
@@ -51,6 +54,14 @@ const router = createBrowserRouter([
         path: "/gallerie",
         element: <Gallerie />,
       },
+      {
+        path: "/instructions",
+        element: <Instructions />,
+      },
+      {
+        path: "/chasse",
+        element: <Chasse />,
+      },
 
       {
         path: "/carte",
@@ -85,6 +96,10 @@ const router = createBrowserRouter([
       {
         path: "/equipe",
         element: <Equipe />,
+      },
+      {
+        path: "/erreur",
+        element: <Erreur />,
       },
     ],
   },

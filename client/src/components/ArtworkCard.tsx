@@ -1,7 +1,6 @@
 // src/components/ArtworkCard.tsx
 
 import type { Artwork } from "../data/mockArtworks"; // Import du type Artwork défini dans le mock
-import "./ArtworkCard.css"; // Import du fichier CSS lié à ce composant
 
 // Définition du type des props attendues : ici, une œuvre de type Artwork
 type Props = {

@@ -3,7 +3,6 @@
 import type { Artwork } from "../data/mockArtworks"; // Type uniquement
 import { mockArtworks } from "../data/mockArtworks"; // Données simulées
 import ArtworkCard from "./ArtworkCard"; // Composant carte d’œuvre
-import "./ArtworkList.css"; // CSS associé
 
 type Props = {
   userLatitude: number;

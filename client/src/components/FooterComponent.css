@@ -24,11 +24,11 @@
 
 .footer-links a {
   color: white;
-  text-decoration: none; /* ❌ enlève le soulignement */
+  text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
   color: #ccc;
-  text-decoration: none; /* ❌ assure qu’il ne revient pas au hover */
+  text-decoration: none;
 }
