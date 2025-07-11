@@ -93,9 +93,19 @@ function Navigation() {
                   setFermeture(true);
                   setMenuOuvert(false);
                 }}
+                to="/instructions"
+              >
+                Instructions
+              </Link>
+              /
+              <Link
+                onClick={() => {
+                  setFermeture(true);
+                  setMenuOuvert(false);
+                }}
                 to="/infos"
               >
-                Instructions / informations
+                informations
               </Link>
             </li>
             <li>

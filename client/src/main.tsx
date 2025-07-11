@@ -12,6 +12,8 @@ import App from "./App";
 import CGU from "./pages/Cgu";
 import Chasse from "./pages/Chasse";
 import Equipe from "./pages/Equipe";
+import Erreur from "./pages/Erreur";
+import Instructions from "./pages/Instructions";
 
 import Carte from "./pages/MapComponent";
 import MentionsLegales from "./pages/MentionsLegales";
@@ -54,7 +56,11 @@ const router = createBrowserRouter([
         element: <Gallerie />,
       },
       {
-        path: "/Chasse",
+        path: "/instructions",
+        element: <Instructions />,
+      },
+      {
+        path: "/chasse",
         element: <Chasse />,
       },
 
@@ -96,6 +102,10 @@ const router = createBrowserRouter([
       {
         path: "/equipe",
         element: <Equipe />,
+      },
+      {
+        path: "/erreur",
+        element: <Erreur />,
       },
     ],
   },
