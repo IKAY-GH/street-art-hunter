@@ -1,15 +1,14 @@
-.profil {
-  background-color: var(--color-light);
-  padding: 1.5rem 1.5rem;
+.btn-form {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
-
-h2 {
-  font-size: 26px;
-  margin-bottom: 2rem;
-  color: var(--color-dark);
-  text-align: center;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.trait-vertical {
+  width: 2px;
+  height: 2px;
+  background-color: #000;
 }
 
 form {
