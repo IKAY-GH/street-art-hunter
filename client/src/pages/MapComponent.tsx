@@ -1,91 +1,75 @@
+import L from "leaflet";
 import { useState } from "react";
-import ArtworkList from "../components/ArtworkList";
-import LocationInput from "../components/LocationInput";
-import "../assets/styles/Carte.css";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import "../assets/MapComponent.css"; // Assure-toi que ce fichier CSS est bien là
 
-export default function Carte() {
-  const [userLatitude, setUserLatitude] = useState<number | null>(null);
-  const [userLongitude, setUserLongitude] = useState<number | null>(null);
+// Icône personnalisée pour le marqueur
+const defaultIcon = new L.Icon({
+  iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
+  shadowSize: [41, 41],
+});
 
-  const handlePosition = (lat: number, lng: number) => {
-    setUserLatitude(lat);
-    setUserLongitude(lng);
+export default function MapComponent() {
+  const [currentPosition, setCurrentPosition] = useState<
+    [number, number] | null
+  >(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleGeolocation = () => {
+    if (navigator.geolocation) {
+      setLoading(true);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setCurrentPosition([
+            position.coords.latitude,
+            position.coords.longitude,
+          ]);
+          setError(null);
+          setLoading(false);
+        },
+        () => {
+          setError("Impossible d'obtenir votre position.");
+          setLoading(false);
+        },
+      );
+    } else {
+      setError("La géolocalisation n'est pas supportée.");
+    }
   };
 
   return (
-    <main className="carte-container">
-      <h1 className="carte-title">Les œuvres à proximité</h1>
+    <div className="map-page">
+      <button
+        type="button"
+        onClick={handleGeolocation}
+        className="location-button"
+      >
+        📍 Me géolocaliser
+      </button>
 
-      {/* SECTION CENTRALE : CARTE + LISTE */}
-      <div className="carte-content">
-        {/* CARTE INTERACTIVE */}
-        <div className="map-wrapper">
-          <iframe
-            title="Carte Toulouse"
-            width="100%"
-            height="350"
-            frameBorder="0"
-            src="https://www.google.com/maps/embed?pb=..."
-            allowFullScreen
-          />
-        </div>
+      {loading && <p>Recherche de votre position...</p>}
+      {error && <p className="error-message">{error}</p>}
 
-        {/* LISTE DES ŒUVRES (EXEMPLE EN DUR) */}
-        <div className="artwork-list">
-          <div className="artwork-card">
-            <img
-              src="https://www.street-art-toulouse.com/wp-content/uploads/2020/12/100taur-creature-scaled.jpg"
-              alt="Street Art 100Taur"
-              className="artwork-image"
-            />
-            <div className="artwork-info">
-              <div className="artwork-title">Street Art 100Taur</div>
-              <div className="artwork-address">19-5 Rue des Anges</div>
-              <div className="artwork-rating">⭐ 4.2 (5)</div>
-              <a
-                className="artwork-maplink"
-                href="https://www.google.com/maps/place/19-5+Rue+des+Anges,+Toulouse/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Voir sur Google Maps
-              </a>
-            </div>
-          </div>
+      <MapContainer
+        center={currentPosition || [43.604, 1.444]} // Toulouse par défaut
+        zoom={13}
+        scrollWheelZoom={true}
+        style={{ height: "400px", width: "100%", marginTop: "1rem" }}
+      >
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-          <div className="artwork-card">
-            <img
-              src="https://www.ixiart.com/images/works/ixi-oeuvre.jpg"
-              alt="IXIart Gallery"
-              className="artwork-image"
-            />
-            <div className="artwork-info">
-              <div className="artwork-title">IXIart Gallery</div>
-              <div className="artwork-address">12 Port Saint-Sauveur</div>
-              <div className="artwork-rating">⭐ 4.8 (19)</div>
-              <a
-                className="artwork-maplink"
-                href="https://www.google.com/maps/place/12+Port+Saint-Sauveur,+Toulouse/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Voir sur Google Maps
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* GÉOLOCALISATION */}
-      <LocationInput onPositionFound={handlePosition} />
-
-      {/* LISTE DYNAMIQUE SI COORDONNÉES RÉELLES */}
-      {userLatitude !== null && userLongitude !== null && (
-        <ArtworkList
-          userLatitude={userLatitude}
-          userLongitude={userLongitude}
-        />
-      )}
-    </main>
+        {currentPosition && (
+          <Marker position={currentPosition} icon={defaultIcon}>
+            <Popup>Vous êtes ici 📍</Popup>
+          </Marker>
+        )}
+      </MapContainer>
+    </div>
   );
 }
