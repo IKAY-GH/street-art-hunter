@@ -4,19 +4,25 @@ import "./DesktopTabs.css";
 import Modal from "./Modal.tsx";
 
 function DesktopTabs() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [selectedTabid, setSelectedTabId] = useState<number | null>(null);
 
   return (
     <div className="desktopTabs">
       {tabsData.map((obj, index) => (
-        <button key={obj.id} type="button" onClick={() => setIsOpen(true)}>
+        <button
+          key={obj.id}
+          type="button"
+          onClick={() => setSelectedTabId(obj.id)}
+        >
           <div>
             <img src={obj.icon} alt="" />
             <span>{tabsData[index].tabTitle}</span>
           </div>
         </button>
       ))}
-      {isOpen && <Modal onClose={() => setIsOpen(false)} />}
+      {selectedTabid !== null && (
+        <Modal tabId={selectedTabid} onClose={() => setSelectedTabId(null)} />
+      )}
     </div>
   );
 }
