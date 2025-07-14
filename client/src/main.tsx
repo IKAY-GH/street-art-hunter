@@ -31,7 +31,7 @@ import Info from "./pages/info";
 import Accueil from "./pages/accueil";
 
 // import Contact from "./pages/Contact";
-import Administrateur from "./pages/administrateur.tsx";
+import Administrateur from "./pages/administrateur/administrateur.tsx";
 
 // import Formulaire from "./pages/formulaire";
 

@@ -1,5 +1,5 @@
 .administrator-container {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   padding: 100px 20px 80px; /* place pour navbar + footer */
   background-image: url("../assets/images/administratorBackground.png");
   background-size: 100%;
