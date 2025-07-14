@@ -1,4 +1,4 @@
-// import { Outlet } from "react-router";
+import { Outlet } from "react-router";
 import "./assets/styles/global.css";
 import Footer from "./components/FooterComponent.tsx";
 import BoutonAccueil from "./components/boutonAccueil";
@@ -9,7 +9,7 @@ function App() {
     <>
       <BoutonInscription />
       <Navigation />
-
+      <Outlet />
       <BoutonAccueil />
       <Footer />
     </>
