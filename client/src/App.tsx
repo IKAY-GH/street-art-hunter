@@ -1,4 +1,4 @@
-// import { Outlet } from "react-router";
+import { Outlet } from "react-router";
 import "./assets/styles/global.css";
 import { Outlet } from "react-router";
 import Footer from "./components/FooterComponent.tsx";
@@ -7,7 +7,6 @@ function App() {
   return (
     <>
       <Navigation />
-      {/*<BoutonConnexion />*/}
       <Outlet />
       <Footer />
     </>

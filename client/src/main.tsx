@@ -33,7 +33,7 @@ import Accueil from "./pages/accueil";
 import Connexion from "./pages/Auth/connexion.tsx";
 import Inscription from "./pages/Auth/inscription.tsx";
 // import Contact from "./pages/Contact";
-import Administrateur from "./pages/administrateur";
+import Administrateur from "./pages/administrateur.tsx";
 
 /* ************************************************************************* */
 
