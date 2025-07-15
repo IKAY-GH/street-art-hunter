@@ -32,10 +32,10 @@ import Info from "./pages/info";
 // import About from "./pages/About";
 import Accueil from "./pages/accueil";
 
+import Connexion from "./pages/Auth/connexion.tsx";
+import Inscription from "./pages/Auth/inscription.tsx";
 // import Contact from "./pages/Contact";
-import Administrateur from "./pages/administrateur";
-
-// import Formulaire from "./pages/formulaire";
+import Administrateur from "./pages/administrateur.tsx";
 
 /* ************************************************************************* */
 
@@ -74,6 +74,16 @@ const router = createBrowserRouter([
       },
 
       {
+        path: "/connexion",
+        element: <Connexion />,
+      },
+
+      {
+        path: "/inscription",
+        element: <Inscription />,
+      },
+
+      {
         path: "/infos",
         element: <Info />,
       },
@@ -82,11 +92,6 @@ const router = createBrowserRouter([
         path: "/classement",
         element: <Classement />,
       },
-
-      // {
-      //   path: "/connexion",
-      //   element: <Formulaire />,
-      // },
 
       {
         path: "/Cgu",

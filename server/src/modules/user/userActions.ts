@@ -13,6 +13,7 @@ const browse: RequestHandler = async (req, res, next) => {
   }
 };
 // Read: récupérer un utilisateur par ID
+
 const read: RequestHandler = async (req, res, next) => {
   try {
     const userId = Number(req.params.id);
@@ -27,6 +28,7 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 // Add: ajouter un nouvel utilisateur
+
 const add: RequestHandler = async (req, res, next) => {
   try {
     const {
@@ -38,17 +40,6 @@ const add: RequestHandler = async (req, res, next) => {
       zip_code,
       avatar_url,
     } = req.body;
-
-    // if (
-    //   !pseudo ||
-    //   !first_name ||
-    //   !last_name ||
-    //   !email ||
-    //   !password_hash
-    // ) {
-    //   res.status(400).json({ error: "Tous ces champs sont obligatoires." });
-    //   return;
-    // }
 
     const now = new Date();
 
