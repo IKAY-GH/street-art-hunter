@@ -1,23 +1,29 @@
 .equipe-page {
   padding: 2rem;
-  background-color: #f5f5f5;
-  min-height: 100vh; /* ← important */
-  padding-bottom: 6rem; /* pour ne pas que le footer recouvre les cartes */
+  background: #f9f9f9;
 }
 
 .dev-cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .dev-card {
-  background-color: white;
+  flex: 1 1 200px;
   border: 1px solid #ddd;
-  border-radius: 10px;
   padding: 1rem;
-  width: 220px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dev-card h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.dev-card a {
+  color: #0073e6;
+  text-decoration: none;
 }

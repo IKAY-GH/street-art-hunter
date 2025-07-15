@@ -94,8 +94,10 @@ function inscription() {
           id="pseudo"
           autoComplete="userName"
           required
+          aria-describedby="pseudo_help"
         />
         {errors.pseudo && <p className="form-error">{errors.pseudo.message}</p>}
+        <p id="pseudo_help">Votre pseudo doit faire 4 caractères min.</p>
 
         <label htmlFor="nom">Nom</label>
         <input

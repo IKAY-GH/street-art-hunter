@@ -10,12 +10,18 @@ import App from "./App";
 // Import the main pages
 
 import CGU from "./pages/Cgu";
+import Chasse from "./pages/Chasse";
 import Equipe from "./pages/Equipe";
+import Erreur from "./pages/Erreur";
+import Instructions from "./pages/Instructions";
 
+// import Carte from "./pages/MapComponent";
 import MentionsLegales from "./pages/MentionsLegales";
 
-import Carte from "./pages/MapComponent";
+// import Accueil from "./pages/accueil";
+//Changement de nom de composé afin de contourner un problème de commit
 import Classement from "./pages/classement";
+
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 import Gallerie from "./pages/gallerie";
@@ -24,11 +30,10 @@ import Info from "./pages/info";
 // import About from "./pages/About";
 import Accueil from "./pages/accueil";
 
+import Connexion from "./pages/Auth/connexion.tsx";
+import Inscription from "./pages/Auth/inscription.tsx";
 // import Contact from "./pages/Contact";
 import Administrateur from "./pages/administrateur";
-
-import Connexion from "./pages/Auth/connexion";
-import Inscription from "./pages/Auth/inscription";
 
 /* ************************************************************************* */
 
@@ -52,10 +57,23 @@ const router = createBrowserRouter([
         path: "/gallerie",
         element: <Gallerie />,
       },
+      {
+        path: "/instructions",
+        element: <Instructions />,
+      },
+      {
+        path: "/chasse",
+        element: <Chasse />,
+      },
 
       {
-        path: "/carte",
-        element: <Carte />,
+        path: "/connexion",
+        element: <Connexion />,
+      },
+
+      {
+        path: "/inscription",
+        element: <Inscription />,
       },
 
       {
@@ -69,28 +87,22 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/inscription",
-        element: <Inscription />,
-      },
-
-      {
-        path: "/connexion",
-        element: <Connexion />,
-      },
-
-      {
-        path: "/cgu",
+        path: "/Cgu",
         element: <CGU />,
       },
 
       {
-        path: "/mentions-Legales",
+        path: "/Mentions-Legales",
         element: <MentionsLegales />,
       },
 
       {
         path: "/equipe",
         element: <Equipe />,
+      },
+      {
+        path: "/erreur",
+        element: <Erreur />,
       },
     ],
   },
