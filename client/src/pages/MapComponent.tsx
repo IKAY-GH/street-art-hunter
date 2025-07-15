@@ -2,9 +2,11 @@ import L from "leaflet";
 import { useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import "../assets/MapComponent.css"; // Assure-toi que ce fichier CSS est bien là
+import ArtworkList from "../components/ArtworkList";
+import ChangeMapView from "../pages/ChangeMapView";
+import "./MapComponent.css";
 
-// Icône personnalisée pour le marqueur
+// Icône personnalisée
 const defaultIcon = new L.Icon({
   iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
   iconSize: [25, 41],
@@ -20,6 +22,7 @@ export default function MapComponent() {
   >(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [showNearbyArtworks, setShowNearbyArtworks] = useState(false);
 
   const handleGeolocation = () => {
     if (navigator.geolocation) {
@@ -43,33 +46,68 @@ export default function MapComponent() {
     }
   };
 
+  const handleShowNearby = () => {
+    if (currentPosition) {
+      setShowNearbyArtworks(true);
+    } else {
+      setError("Géolocalisez-vous d'abord.");
+    }
+  };
+
   return (
-    <div className="map-page">
-      <button
-        type="button"
-        onClick={handleGeolocation}
-        className="location-button"
-      >
-        📍 Me géolocaliser
-      </button>
+    <div className="map-layout">
+      <h1 className="map-title">Les oeuvres à proximité</h1>
 
-      {loading && <p>Recherche de votre position...</p>}
-      {error && <p className="error-message">{error}</p>}
+      <div className="map-content">
+        <div className="map-section">
+          <MapContainer
+            center={currentPosition || [43.604, 1.444]} // Toulouse
+            zoom={13}
+            scrollWheelZoom={true}
+            style={{ height: "350px", width: "100%" }}
+          >
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-      <MapContainer
-        center={currentPosition || [43.604, 1.444]} // Toulouse par défaut
-        zoom={13}
-        scrollWheelZoom={true}
-        style={{ height: "400px", width: "100%", marginTop: "1rem" }}
-      >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            {currentPosition && (
+              <>
+                <ChangeMapView position={currentPosition} />
+                <Marker position={currentPosition} icon={defaultIcon}>
+                  <Popup>Vous êtes ici 📍</Popup>
+                </Marker>
+              </>
+            )}
+          </MapContainer>
 
-        {currentPosition && (
-          <Marker position={currentPosition} icon={defaultIcon}>
-            <Popup>Vous êtes ici 📍</Popup>
-          </Marker>
+          <div className="map-buttons">
+            <button
+              type="button"
+              onClick={handleGeolocation}
+              className="geo-btn"
+            >
+              📍 Me géolocaliser
+            </button>
+            <button
+              type="button"
+              onClick={handleShowNearby}
+              className="nearby-btn"
+            >
+              🎯 oeuvres à proximité
+            </button>
+          </div>
+
+          {loading && <p>Recherche de votre position...</p>}
+          {error && <p className="error-message">{error}</p>}
+        </div>
+
+        {showNearbyArtworks && currentPosition && (
+          <div className="artwork-card-list">
+            <ArtworkList
+              userLatitude={currentPosition[0]}
+              userLongitude={currentPosition[1]}
+            />
+          </div>
         )}
-      </MapContainer>
+      </div>
     </div>
   );
 }

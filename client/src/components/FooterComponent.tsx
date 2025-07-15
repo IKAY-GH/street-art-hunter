@@ -1,18 +1,25 @@
+import "./FooterComponent.css";
 import { Link } from "react-router";
-import "../assets/styles/FooterComponent.css";
-export default function Footer() {
+
+function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="footer">
-      <p className="footer-left">
-        © {year} Street Art Hunter – Tous droits réservés
-      </p>
-      <nav className="footer-links">
-        <Link to="/mentions-legales">Mentions légales</Link>
-        <Link to="/cgu">CGU</Link>
-        <Link to="/equipe">L'équipe</Link>
-      </nav>
+      <p>© {year} Street Art Hunter – Tous droits réservés</p>
+      <ul className="footer-links">
+        <li>
+          <Link to="/mentions-legales">Mentions légales</Link>
+        </li>
+        <li>
+          <Link to="/cgu">CGU</Link>
+        </li>
+        <li>
+          <Link to="/equipe">L'équipe</Link>
+        </li>
+      </ul>
     </footer>
   );
 }
+
+export default Footer;

@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
+import "./assets/styles/global.css";
 
 /* ************************************************************************* */
 
@@ -12,9 +13,15 @@ import App from "./App";
 import CGU from "./pages/Cgu";
 import Chasse from "./pages/Chasse";
 import Equipe from "./pages/Equipe";
+import Erreur from "./pages/Erreur";
+import Instructions from "./pages/Instructions";
+import MapComponent from "./pages/MapComponent";
 
-import Carte from "./pages/MapComponent";
+// import Carte from "./pages/MapComponent";
 import MentionsLegales from "./pages/MentionsLegales";
+
+// import Accueil from "./pages/accueil";
+//Changement de nom de composé afin de contourner un problème de commit
 import Classement from "./pages/classement";
 
 // Import additional components for new routes
@@ -28,7 +35,7 @@ import Accueil from "./pages/accueil";
 // import Contact from "./pages/Contact";
 import Administrateur from "./pages/administrateur";
 
-import Formulaire from "./pages/formulaire";
+// import Formulaire from "./pages/formulaire";
 
 /* ************************************************************************* */
 
@@ -49,17 +56,21 @@ const router = createBrowserRouter([
       },
 
       {
+        path: "/Mapcomponent",
+        element: <MapComponent />,
+      },
+
+      {
         path: "/gallerie",
         element: <Gallerie />,
       },
       {
-        path: "/Chasse",
-        element: <Chasse />,
+        path: "/instructions",
+        element: <Instructions />,
       },
-
       {
-        path: "/carte",
-        element: <Carte />,
+        path: "/chasse",
+        element: <Chasse />,
       },
 
       {
@@ -72,10 +83,10 @@ const router = createBrowserRouter([
         element: <Classement />,
       },
 
-      {
-        path: "/connexion",
-        element: <Formulaire />,
-      },
+      // {
+      //   path: "/connexion",
+      //   element: <Formulaire />,
+      // },
 
       {
         path: "/Cgu",
@@ -90,6 +101,10 @@ const router = createBrowserRouter([
       {
         path: "/equipe",
         element: <Equipe />,
+      },
+      {
+        path: "/erreur",
+        element: <Erreur />,
       },
     ],
   },

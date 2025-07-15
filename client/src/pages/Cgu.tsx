@@ -1,4 +1,4 @@
-import "../assets/styles/Cgu.css";
+import "../components/Cgu.css";
 
 export default function CGU() {
   return (

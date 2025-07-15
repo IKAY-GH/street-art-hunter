@@ -1,9 +1,9 @@
 function Infos() {
   return (
     <>
-      <div>
-        <h2>Istructions / informations</h2>
-      </div>
+      <main className="infos-container">
+        <h2>Instructions / informations</h2>
+      </main>
     </>
   );
 }

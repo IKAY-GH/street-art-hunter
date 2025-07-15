@@ -1,36 +1,14 @@
-/* Variables CSS globales */
-:root {
-  --font-family: "retro-gaming", monospace;
-  --color-bg: #f0f0f0;
-  --color-text: #333;
-  --color-primary: rgb(0, 255, 187);
-  --color-primary-focus-shadow: rgba(0, 255, 187, 0.6);
-  --color-dark: #222;
-  --color-light: white;
-  --color-btn-hover: silver;
-
-  --border-radius: 10px;
-  --transition: 0.3s ease;
+.btn-form {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
-
-/* Styles globaux */
-
-body {
-  font-family: var(--font-family);
-}
-
-.profil {
-  background-color: var(--color-light);
-  padding: 1.5rem 1.5rem;
-}
-
-h2 {
-  font-size: 26px;
-  margin-bottom: 2rem;
-  color: var(--color-dark);
-  text-align: center;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.trait-vertical {
+  width: 2px;
+  height: 2px;
+  background-color: #000;
 }
 
 form {

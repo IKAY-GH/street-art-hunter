@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import "./Chasse.css";
 
-export default function CapturePhoto() {
+export default function Chasse() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [photo, setPhoto] = useState<string | null>(null);
@@ -10,9 +11,7 @@ export default function CapturePhoto() {
 
     const startCamera = async () => {
       try {
-        stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
-        });
+        stream = await navigator.mediaDevices.getUserMedia({ video: true });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
@@ -32,7 +31,19 @@ export default function CapturePhoto() {
     };
   }, []);
 
-  const capturePhoto = () => {
+  const savePhotoLocally = (photoData: string) => {
+    const existingPhotos = JSON.parse(
+      localStorage.getItem("userPhotos") || "[]",
+    );
+    existingPhotos.push({
+      photo: photoData,
+      date: new Date().toISOString(),
+      user: "user_3", // Remplace par l'utilisateur connecté plus tard
+    });
+    localStorage.setItem("userPhotos", JSON.stringify(existingPhotos));
+  };
+
+  const capturePhoto = (): void => {
     if (!videoRef.current || !canvasRef.current) return;
 
     const width = videoRef.current.videoWidth;
@@ -48,11 +59,12 @@ export default function CapturePhoto() {
       ctx.drawImage(videoRef.current, 0, 0, width, height);
       const imageData = canvasRef.current.toDataURL("image/png");
       setPhoto(imageData);
+      savePhotoLocally(imageData);
     }
   };
 
   return (
-    <div className="capture-container">
+    <div className="chasse-page">
       <video
         ref={videoRef}
         autoPlay
