@@ -2,43 +2,22 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
-/* ************************************************************************* */
-
-// Import the main app component
 import App from "./App";
-
-// Import the main pages
 
 import CGU from "./pages/Cgu";
 import Chasse from "./pages/Chasse";
 import Equipe from "./pages/Equipe";
 import Erreur from "./pages/Erreur";
 import Instructions from "./pages/Instructions";
-
 import MapComponent from "./pages/MapComponent";
 import MentionsLegales from "./pages/MentionsLegales";
-
-// import Accueil from "./pages/accueil";
-//Changement de nom de composé afin de contourner un problème de commit
+import Accueil from "./pages/accueil";
+import Administrateur from "./pages/administrateur/administrateur.tsx";
 import Classement from "./pages/classement";
-
-// Import additional components for new routes
-// Try creating these components in the "pages" folder
 import Gallerie from "./pages/gallerie";
 import Info from "./pages/info";
-
-// import About from "./pages/About";
-import Accueil from "./pages/accueil";
-
-// import Contact from "./pages/Contact";
-import Administrateur from "./pages/administrateur/administrateur.tsx";
-
 import Formulaire from "./pages/inscription/connexion/inscription.tsx";
 
-/* ************************************************************************* */
-
-// Create router configuration with routes
-// You can add more routes as you build out your app!
 const router = createBrowserRouter([
   {
     // The root path
@@ -106,8 +85,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-
-  // Try adding a new route! For example, "/about" with an About component
 ]);
 
 /* ************************************************************************* */
