@@ -2,8 +2,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
-/* ************************************************************************* */
-
 // Import the main app component
 import App from "./App";
 
@@ -30,12 +28,10 @@ import Info from "./pages/info";
 // import About from "./pages/About";
 import Accueil from "./pages/accueil";
 
+import Connexion from "./pages/Auth/connexion.tsx";
+import Inscription from "./pages/Auth/inscription.tsx";
 // import Contact from "./pages/Contact";
 import Administrateur from "./pages/administrateur/administrateur.tsx";
-
-import Formulaire from "./pages/inscription/connexion/inscription.tsx";
-
-/* ************************************************************************* */
 
 // Create router configuration with routes
 // You can add more routes as you build out your app!
@@ -67,11 +63,6 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/MapComponent",
-        element: <MapComponent />,
-      },
-
-      {
         path: "/infos",
         element: <Info />,
       },
@@ -79,11 +70,6 @@ const router = createBrowserRouter([
       {
         path: "/classement",
         element: <Classement />,
-      },
-
-      {
-        path: "/connexion",
-        element: <Formulaire />,
       },
 
       {
@@ -110,7 +96,6 @@ const router = createBrowserRouter([
   // Try adding a new route! For example, "/about" with an About component
 ]);
 
-/* ************************************************************************* */
 
 // Find the root element in the HTML document
 const rootElement = document.getElementById("root");
