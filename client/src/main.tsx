@@ -3,7 +3,8 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
 import App from "./App";
-
+import Connexion from "./pages/Auth/connexion.tsx";
+import Inscription from "./pages/Auth/inscription.tsx";
 import CGU from "./pages/Cgu";
 import Chasse from "./pages/Chasse";
 import Equipe from "./pages/Equipe";
@@ -16,12 +17,10 @@ import Administrateur from "./pages/administrateur/administrateur.tsx";
 import Classement from "./pages/classement";
 import Gallerie from "./pages/gallerie";
 import Info from "./pages/info";
-import Formulaire from "./pages/inscription/connexion/inscription.tsx";
 
 const router = createBrowserRouter([
   {
-    // The root path
-    element: <App />, // Renders the App component for the home page
+    element: <App />,
     children: [
       {
         path: "/",
@@ -49,6 +48,15 @@ const router = createBrowserRouter([
         path: "/MapComponent",
         element: <MapComponent />,
       },
+      {
+        path: "/connexion",
+        element: <Connexion />,
+      },
+
+      {
+        path: "/inscription",
+        element: <Inscription />,
+      },
 
       {
         path: "/infos",
@@ -58,11 +66,6 @@ const router = createBrowserRouter([
       {
         path: "/classement",
         element: <Classement />,
-      },
-
-      {
-        path: "/connexion",
-        element: <Formulaire />,
       },
 
       {
@@ -87,15 +90,11 @@ const router = createBrowserRouter([
   },
 ]);
 
-/* ************************************************************************* */
-
-// Find the root element in the HTML document
 const rootElement = document.getElementById("root");
 if (rootElement == null) {
   throw new Error(`Your HTML Document should contain a <div id="root"></div>`);
 }
 
-// Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
     <RouterProvider router={router} />

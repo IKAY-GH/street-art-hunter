@@ -8,7 +8,7 @@ const validationSchema = yup.object({
   pseudo: yup
     .string()
     .required("Il faut préciser votre pseudo")
-    .min(2, "Un vrai pseudo"),
+    .min(2, "Un minimum de 2 caractères est demandé"),
   first_name: yup
     .string()
     .required("Il faut préciser votre nom")
@@ -36,7 +36,7 @@ const validationSchema = yup.object({
 
 type FormData = yup.InferType<typeof validationSchema>;
 
-function Formulaire() {
+function inscription() {
   const {
     register,
     handleSubmit,
@@ -94,8 +94,10 @@ function Formulaire() {
           id="pseudo"
           autoComplete="userName"
           required
+          aria-describedby="pseudo_help"
         />
         {errors.pseudo && <p className="form-error">{errors.pseudo.message}</p>}
+        <p id="pseudo_help">Votre pseudo doit faire 4 caractères min.</p>
 
         <label htmlFor="nom">Nom</label>
         <input
@@ -165,4 +167,4 @@ function Formulaire() {
   );
 }
 
-export default Formulaire;
+export default inscription;
