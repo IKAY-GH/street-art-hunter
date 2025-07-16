@@ -1,0 +1,23 @@
+.modalBase {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 600px;
+  width: 80%;
+  padding: 20px;
+  background-color: aliceblue;
+  box-shadow: 0 2px 8px;
+}
+
+.modalContent {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.tabTitle {
+  color: black;
+}
+
+.modalButton {
+  background-color: orange;
+  box-shadow: 0 0 15px red, 0 0 5px red inset;
+}

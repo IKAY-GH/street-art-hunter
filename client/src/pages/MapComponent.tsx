@@ -3,7 +3,7 @@ import ArtworkList from "../components/ArtworkList";
 import LocationInput from "../components/LocationInput";
 import "./MapComponent.css";
 
-export default function Carte() {
+export default function MapComponent() {
   const [userLatitude, setUserLatitude] = useState<number | null>(null);
   const [userLongitude, setUserLongitude] = useState<number | null>(null);
 
