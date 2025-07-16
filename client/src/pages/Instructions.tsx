@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import "./Instructions.css";
 
 export default function Instructions() {
   const navigate = useNavigate();

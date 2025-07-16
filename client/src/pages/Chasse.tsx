@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import "./Chasse.css";
 
 export default function Chasse() {
   const videoRef = useRef<HTMLVideoElement | null>(null);

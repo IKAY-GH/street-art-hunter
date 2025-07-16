@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
-
+import "./assets/styles/global.css";
 import App from "./App";
 import Connexion from "./pages/Auth/connexion.tsx";
 import Inscription from "./pages/Auth/inscription.tsx";
@@ -29,6 +29,11 @@ const router = createBrowserRouter([
       {
         path: "/administrateur",
         element: <Administrateur />,
+      },
+
+      {
+        path: "/Mapcomponent",
+        element: <MapComponent />,
       },
 
       {

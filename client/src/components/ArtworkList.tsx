@@ -1,8 +1,6 @@
-// src/components/ArtworkList.tsx
-
-import type { Artwork } from "../data/mockArtworks"; // Type uniquement
-import { mockArtworks } from "../data/mockArtworks"; // Données simulées
-import ArtworkCard from "./ArtworkCard"; // Composant carte d’œuvre
+import type { Artwork } from "../data/mockArtworks";
+import { mockArtworks } from "../data/mockArtworks";
+import ArtworkCard from "./ArtworkCard";
 
 type Props = {
   userLatitude: number;
@@ -15,7 +13,7 @@ function getDistanceInKm(
   lat2: number,
   lon2: number,
 ): number {
-  const R = 6371; // Rayon Terre km
+  const R = 6371;
   const dLat = ((lat2 - lat1) * Math.PI) / 180;
   const dLon = ((lon2 - lon1) * Math.PI) / 180;
 
@@ -37,13 +35,12 @@ export default function ArtworkList({ userLatitude, userLongitude }: Props) {
       artwork.latitude,
       artwork.longitude,
     );
-    return distance <= 1;
+    return distance <= 30;
   });
 
   return (
     <div className="artwork-list">
-      {nearbyArtworks.length === 0 && <p>Aucune œuvre à proximité.</p>}
-
+      {nearbyArtworks.length === 0 && <p>Aucune oeuvre à proximité.</p>}
       {nearbyArtworks.map((artwork: Artwork) => (
         <ArtworkCard key={artwork.id} artwork={artwork} />
       ))}
