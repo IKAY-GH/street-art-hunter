@@ -4,7 +4,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import ArtworkList from "../components/ArtworkList";
 import ChangeMapView from "../pages/ChangeMapView";
-import "./MapComponent.css";
+import "../pages/MapComponent.css";
 
 // Icône personnalisée
 const defaultIcon = new L.Icon({
@@ -56,7 +56,7 @@ export default function MapComponent() {
 
   return (
     <div className="map-layout">
-      <h1 className="map-title">Les oeuvres à proximité</h1>
+      <h1 className="map-title">Les œuvres à proximité</h1>
 
       <div className="map-content">
         <div className="map-section">
@@ -91,7 +91,7 @@ export default function MapComponent() {
               onClick={handleShowNearby}
               className="nearby-btn"
             >
-              🎯 oeuvres à proximité
+              🎯 Œuvres à proximité
             </button>
           </div>
 

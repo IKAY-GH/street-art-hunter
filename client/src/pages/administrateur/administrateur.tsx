@@ -1,7 +1,7 @@
 import "./administrateur.css";
 // import "../assets/styles/global.css";
-import DesktopTabs from "../components/Tabs/DesktopTabs.tsx";
-import MobileTabs from "../components/Tabs/MobileTabs.tsx";
+import DesktopTabs from "../../components/Tabs/DesktopTabs.tsx";
+import MobileTabs from "../../components/Tabs/MobileTabs.tsx";
 
 export default function administrateur() {
   return (
