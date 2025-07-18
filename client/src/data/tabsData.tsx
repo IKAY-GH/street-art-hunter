@@ -9,31 +9,26 @@ const tabsData = [
     tabTitle: "Statistiques",
     id: 1,
     icon: statistics,
-    contain: [],
   },
   {
     tabTitle: "Utilisateurs",
     id: 2,
     icon: users,
-    contain: [],
   },
   {
     tabTitle: "Oeuvres/Artistes",
     id: 3,
     icon: art,
-    contain: [],
   },
   {
     tabTitle: "Chasse",
     id: 4,
     icon: hunt,
-    contain: [],
   },
   {
     tabTitle: "Signalement",
     id: 5,
     icon: reporting,
-    contain: [],
   },
 ];
 

@@ -1,6 +1,7 @@
 import "./Modal.css";
 import { createPortal } from "react-dom";
 import tabsData from "../../data/tabsData";
+import TabUserContain from "./TabsContain/TabUserContain";
 
 export default function Modal({
   tabId,
@@ -16,7 +17,7 @@ export default function Modal({
       {tab && (
         <>
           <div className="tabTitle">{tab.tabTitle}</div>
-          <div>Mettre les contenus dinamyques liés à chaque onglet</div>
+          <div className="tabContainArray"> {tab && <TabUserContain />} </div>
         </>
       )}
 

@@ -38,43 +38,11 @@ const read: RequestHandler = async (req, res, next) => {
 };
 
 // The A of BREAD - Add (Create) operation
-// Define the type for new artwork
-interface NewArtwork {
-  title: string;
-  artist_id: number;
-  image_url: string;
-  latitude: number;
-  longitude: number;
-  point: number;
-  created_at: Date;
-  updated_at: Date;
-}
-
 const add: RequestHandler = async (req, res, next) => {
   try {
-    // Validate required fields
-    const { title, artist_id, image_url, latitude, longitude, point } =
-      req.body;
-
-    const now = new Date();
-    const newArtwork: NewArtwork = {
-      title,
-      artist_id,
-      image_url,
-      latitude,
-      longitude,
-      point,
-      created_at: now,
-      updated_at: now,
-    };
-
-    // Create the artwork
-    const insertId = await artworkRepository.create(newArtwork);
-
-    // Respond with HTTP 201 (Created) and the ID of the newly inserted item
-    res.status(201).json({ insertId });
+    // À compléter plus tard
+    res.status(201).json({ message: "Not implemented yet" });
   } catch (err) {
-    // Pass any errors to the error-handling middleware
     next(err);
   }
 };

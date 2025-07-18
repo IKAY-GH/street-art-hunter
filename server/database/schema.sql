@@ -5,11 +5,12 @@ CREATE TABLE user (
     avatar_url VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    zip_code VARCHAR(10),
+    zip_code INT,
     last_name VARCHAR(100) NOT NULL,
     first_name VARCHAR(100) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
-    pseudo VARCHAR(20) NOT NULL
+    pseudo VARCHAR(20) NOT NULL,
+    is_admin TINYINT(1) NULL,
 );
 
 -- Table: artist
