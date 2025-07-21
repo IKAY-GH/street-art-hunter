@@ -1,6 +1,7 @@
 import "./Modal.css";
 import { createPortal } from "react-dom";
 import tabsData from "../../data/tabsData";
+import TabArtistContain from "./TabsContain/TabArtistContain";
 import TabUserContain from "./TabsContain/TabUserContain";
 
 export default function Modal({
@@ -17,7 +18,10 @@ export default function Modal({
       {tab && (
         <>
           <div className="tabTitle">{tab.tabTitle}</div>
-          <div className="tabContainArray"> {tab && <TabUserContain />} </div>
+          <div className="tabContainArray">
+            {tab.tabTitle === "Utilisateurs" && <TabUserContain />}
+            {tab.tabTitle === "Artistes" && <TabArtistContain />}
+          </div>
         </>
       )}
 
