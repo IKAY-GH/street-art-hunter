@@ -2,98 +2,78 @@ import databaseClient from "../../../database/client";
 
 import type { Result, Rows } from "../../../database/client";
 
-type Artwork = {
+type Artist = {
   id: number;
-  title: string;
-  image_url: string;
-  latitude: number;
-  longitude: number;
-  artist_id: number;
-  point: number;
+  name: string;
+  bio: string;
+  profile_image_url: string;
   created_at: Date;
-  updated_at: Date;
 };
 
-class artworkRepository {
+class ArtistRepository {
   // The C of CRUD - Create operation
 
-  async create(artwork: Omit<Artwork, "id">) {
+  async create(artist: Omit<Artist, "id">) {
     // Execute the SQL INSERT query to add a new item to the "item" table
     const [result] = await databaseClient.query<Result>(
-      "insert into artwork (title, artist_id, latitude, longitude, point, created_at, updated_at, image_url) values (?, ?, ?, ?, ?, ?, ?, ?)",
-      [
-        artwork.title,
-        artwork.artist_id,
-        artwork.latitude,
-        artwork.longitude,
-        artwork.created_at,
-        artwork.updated_at,
-        artwork.point,
-        artwork.image_url,
-      ],
+      "INSERT into artist ( name, bio, profile_image_url) values ( ?, ?, ?)",
+      [artist.name, artist.bio, artist.profile_image_url],
     );
 
-    // Return the ID of the newly inserted item
+    // Return the ID of the newly inserted artist
     return result.insertId;
   }
 
   // The Rs of CRUD - Read operations
 
   async read(id: number) {
-    // Execute the SQL SELECT query to retrieve a specific artwork by its ID
+    // Execute the SQL SELECT query to retrieve a specific item by its ID
     const [rows] = await databaseClient.query<Rows>(
-      "select * from artwork where id = ?",
+      "SELECT * FROM artist WHERE id = ?",
       [id],
     );
 
-    // Return the first row of the result, which represents the artwork
-    return rows[0] as Artwork;
+    // Return the first row of the result, which represents the artist
+    return (rows as Artist[])[0] ?? null;
   }
 
   async readAll() {
-    // Execute the SQL SELECT query to retrieve all artwork from the "item" table
-    const [rows] = await databaseClient.query<Rows>("select * from artwork");
+    // Execute the SQL SELECT query to retrieve all items from the "item" table
+    const [rows] = await databaseClient.query<Rows>("SELECT * FROM artist");
 
-    // Return the array of items
-    return rows as Artwork[];
+    // Return the array of Artist
+    return rows as Artist[];
   }
 
   // The U of CRUD - Update operation
-
-  async update(
-    id: number,
-    artwork: Partial<Omit<Artwork, "id" | "created_at" | "update_at">>,
-  ) {
-    await databaseClient.query(
-      "UPDATE ITEM SET title = ?, artist_id = ?, image_url = ?, latitude = ?, longitude = ?, point = ?, update_at =  NOW() WHERE id = ?",
-      [
-        artwork.title,
-        artwork.artist_id,
-        artwork.image_url,
-        artwork.latitude,
-        artwork.longitude,
-        artwork.point,
-        id,
-      ],
-    );
-  }
   // TODO: Implement the update operation to modify an existing item
 
-  // async update(item: Item) {
-  //   ...
-  // }
+  async update(artist: Artist, id: number) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE artist SET name = ?, bio = ?, profile_image_url = ?, created_at = NOW() WHERE id = ?",
+      [
+        artist.name ?? null,
+        artist.bio ?? null,
+        artist.profile_image_url ?? null,
+      ],
+    );
 
-  // The D of CRUD - Delete operation
-
-  async delete(id: number) {
-    await databaseClient.query("DELETE FROM artwork WHERE id = ?", [id]);
+    return result;
   }
 
+  // The D of CRUD - Delete operation
   // TODO: Implement the delete operation to remove an item by its ID
 
-  // async delete(id: number) {
-  //   ...
-  // }
+  async delete(id: number) {
+    await databaseClient.query("DELETE FROM artist WHERE id = ?", [id]);
+  }
 }
 
-export default new artworkRepository();
+export default new ArtistRepository();
+
+// The D of CRUD - Delete operation
+// TODO: Implement the delete operation to remove an item by its ID
+
+// async delete(id: number) {
+//   ...
+// }

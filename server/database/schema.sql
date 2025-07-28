@@ -20,7 +20,6 @@ CREATE TABLE artist (
     bio TEXT,
     profile_image_url VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    avatar_url VARCHAR(255)
 );
 
 -- Table: artwork

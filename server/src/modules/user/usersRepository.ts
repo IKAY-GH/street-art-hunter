@@ -55,7 +55,7 @@ class UsersRepository {
   async readByEmailWithPassword(email: string) {
     // Execute the SQL SELECT query to retrieve a specific user by its email
     const [rows] = await databaseClient.query<Rows>(
-      "select * from user where email = ?",
+      "SELECT * FROM user WHERE email = ?",
       [email],
     );
     // Return the first row of the result, which represents the user
