@@ -5,6 +5,7 @@ export default function Chasse() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [photo, setPhoto] = useState<string | null>(null);
+  const [uploadStatus, setUploadStatus] = useState<string | null>(null);
 
   useEffect(() => {
     let stream: MediaStream | null = null;
@@ -38,9 +39,34 @@ export default function Chasse() {
     existingPhotos.push({
       photo: photoData,
       date: new Date().toISOString(),
-      user: "user_3", // Remplace par l'utilisateur connecté plus tard
+      user: "user_3", // Remplacer par l'utilisateur connecté plus tard
     });
     localStorage.setItem("userPhotos", JSON.stringify(existingPhotos));
+  };
+
+  const sendPhotoToBackend = async (blob: Blob) => {
+    try {
+      const formData = new FormData();
+      formData.append("photo", blob, "capture.png");
+      formData.append("userId", "3"); // Remplacer par vrai userId connecté
+      formData.append("artworkId", "1"); // Remplacer par vrai artworkId capturé
+
+      const response = await fetch("http://localhost:3310/api/discovered", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`Erreur serveur: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      setUploadStatus("Photo envoyée avec succès !");
+      console.log("Réponse serveur :", data);
+    } catch (error) {
+      console.error("Erreur lors de l'envoi de la photo :", error);
+      setUploadStatus("Erreur lors de l'envoi de la photo.");
+    }
   };
 
   const capturePhoto = (): void => {
@@ -57,9 +83,13 @@ export default function Chasse() {
     const ctx = canvasRef.current.getContext("2d");
     if (ctx) {
       ctx.drawImage(videoRef.current, 0, 0, width, height);
-      const imageData = canvasRef.current.toDataURL("image/png");
-      setPhoto(imageData);
-      savePhotoLocally(imageData);
+      canvasRef.current.toBlob((blob) => {
+        if (blob) {
+          setPhoto(URL.createObjectURL(blob));
+          savePhotoLocally(URL.createObjectURL(blob));
+          sendPhotoToBackend(blob);
+        }
+      }, "image/png");
     }
   };
 
@@ -86,6 +116,8 @@ export default function Chasse() {
           <img src={photo} alt="oeuvre capturée" className="captured-image" />
         </div>
       )}
+
+      {uploadStatus && <p className="upload-status">{uploadStatus}</p>}
     </div>
   );
 }
