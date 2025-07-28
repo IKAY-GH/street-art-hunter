@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import artworkRepository from "./artworkRepositorty";
+import artworkRepository from "./artworkRepository";
 
 // Lire tous les artworks
 const browse = async (req: Request, res: Response): Promise<void> => {
