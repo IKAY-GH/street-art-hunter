@@ -8,13 +8,13 @@
 }
 
 .btn-start {
-  font-family: "RetroGaming", monospace;
-  border-radius: 9999px;
-  background-color: rgb(255, 128, 0);
+  font-family: var(--font-retro);
+  border-radius: 50px;
+  background-color: var(--color-secondary);
   padding: 20px 40px;
   border: none;
   cursor: pointer;
   display: inline-block;
   text-align: center;
-  font-size: 2rem;
+  font-size: var(--font-size-h1-mobile);
 }
