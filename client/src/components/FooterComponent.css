@@ -1,15 +1,17 @@
 .footer {
+  display: flex;
   position: fixed;
+
   bottom: 0;
   width: 100%;
-  background-color: #1d1d1d;
-  color: white;
+  background-color: var(--color-dark);
+  color: var(--color-light);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.9rem;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .footer-left {
@@ -23,12 +25,12 @@
 }
 
 .footer-links a {
-  color: white;
-  text-decoration: none; /* ❌ enlève le soulignement */
-  transition: color 0.2s ease;
+  color: var(--color-light);
+  text-decoration: none;
+  transition: color var(--transition);
 }
 
 .footer-links a:hover {
-  color: #ccc;
-  text-decoration: none; /* ❌ assure qu’il ne revient pas au hover */
+  color: var(--color-gray);
+  text-decoration: none;
 }

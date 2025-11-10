@@ -1,15 +1,42 @@
 :root {
+  /* Fonts */
   --font-family: "retro-gaming";
-  --color-bg: #f0f0f0;
-  --color-text: #333;
-  --color-primary: rgb(0, 255, 187);
-  --color-primary-focus-shadow: rgba(0, 255, 187, 0.6);
-  --color-dark: #222;
-  --color-light: white;
-  --color-btn-hover: silver;
+  --font-retro: "RetroGaming", monospace;
 
-  --border-radius: 10px;
+  /* Main Colors */
+  --color-primary: #40e0d0;
+  --color-secondary: #ff8000;
+  --color-light: aliceblue;
+  --color-dark: #1d1d1d;
+  --color-text: #333;
+  --color-link: #0066cc;
+  --color-error: red;
+  --color-success: #007bff;
+  --color-success-hover: #0056b3;
+  --color-gray: #ccc;
+  --color-gray-light: #f9f9f9;
+  --color-gray-border: #ddd;
+  --color-black: #000000;
+
+  /* Typography */
+  --font-size-h1-mobile: 2rem;
+  --font-size-h1-desktop: 10vh;
+  --font-size-h2: 1.5rem;
+  --font-size-base: 16px;
+  --font-size-small: 14px;
+  --font-size-large: 21px;
+
+  /* Layout */
+  --border-radius: 8px;
+  --border-radius-small: 6px;
+  --border-radius-large: 10px;
+  --border-radius-full: 50%;
+
+  /* Effects */
   --transition: 0.3s ease;
+  --shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 15px red, 0 0 5px red inset;
 }
 
 @font-face {
@@ -31,13 +58,48 @@ body {
 
 body {
   font-family: var(--font-family), monospace;
+  background: url("../images/1febdd3f-7c7e-487f-9b89-721115ed8eb5.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: var(--color-black);
+  background-position: 18%, 30%;
+  position: relative;
+  overflow: hidden;
 }
 
 button {
   padding: 0.4rem 1rem;
   background-color: transparent;
-  color: white;
+  color: var(--color-light);
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+h1 {
+  padding: .5rem;
+  font-family: var(--font-retro);
+  color: var(--color-primary);
+  text-align: center;
+  font-size: var(--font-size-h1-mobile); /* Mobile first - taille de base */
+  text-shadow: 0 0 6px rgba(28, 219, 197, 0.92), 0 0 30px
+    rgba(202, 228, 225, 0.34), 0 0 12px rgba(30, 132, 242, 0.52), 0 0 21px
+    rgba(30, 132, 242, 0.92), 0 0 34px rgba(30, 132, 242, 0.78), 0 0 54px
+    rgba(30, 132, 242, 0.92);
+}
+
+h2 {
+  font-family: var(--font-retro);
+  color: aliceblue;
+  font-size: var(--font-size-h2);
+  display: flex;
+  flex-direction: center;
+}
+
+/* Tablet et desktop */
+@media screen and (min-width: 769px) {
+  h1 {
+    max-width: 640px;
+    font-size: var(--font-size-h1-desktop);
+  }
 }

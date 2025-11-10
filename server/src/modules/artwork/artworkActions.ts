@@ -1,48 +1,49 @@
-import type { RequestHandler } from "express";
+import type { Request, Response } from "express";
 import artworkRepository from "./artworkRepository";
 
-const repository = new artworkRepository();
-
-const browse: RequestHandler = async (req, res, next) => {
+// Lire tous les artworks
+const browse = async (req: Request, res: Response): Promise<void> => {
   try {
-    const artworks = await repository.readAll();
-    res.json(artworks);
-  } catch (err) {
-    next(err);
+    const artworks = await artworkRepository.findAll();
+    res.status(200).json(artworks);
+  } catch (error) {
+    console.error("Erreur lors de la récupération des œuvres :", error);
+    res.status(500).json({ error: "Erreur serveur." });
   }
 };
 
-const read: RequestHandler = async (req, res, next) => {
+// Lire un seul artwork par ID
+const read = async (req: Request, res: Response): Promise<void> => {
   try {
-    const artworkId = Number(req.params.id);
-    const artwork = await repository.read(artworkId);
-    if (artwork == null) {
-      res.sendStatus(404);
-    } else {
-      res.json(artwork);
+    const id = Number(req.params.id);
+    const artwork = await artworkRepository.findById(id);
+
+    if (!artwork) {
+      res.status(404).json({ error: "Œuvre non trouvée." });
+      return;
     }
-  } catch (err) {
-    next(err);
+
+    res.status(200).json(artwork);
+  } catch (error) {
+    console.error("Erreur lors de la lecture de l’œuvre :", error);
+    res.status(500).json({ error: "Erreur serveur." });
   }
 };
 
-const add: RequestHandler = async (req, res, next) => {
+// Ajouter un nouvel artwork
+const add = async (req: Request, res: Response): Promise<void> => {
   try {
-    const newArtwork = {
-      id: req.body.id,
-      title: req.body.title,
-      latitude: req.body.latitude,
-      longitude: req.body.longitude,
-      artist_id: req.body.artist_id,
-      points: req.body.points,
-      created_at: req.body.created_at,
-      updated_at: req.body.updated_at,
-    };
-    const insertId = await repository.create(newArtwork);
-    res.status(201).json({ insertId });
-  } catch (err) {
-    next(err);
+    const newArtwork = req.body;
+    const createdArtwork = await artworkRepository.create(newArtwork);
+    res.status(201).json(createdArtwork);
+  } catch (error) {
+    console.error("Erreur lors de la création de l’œuvre :", error);
+    res.status(500).json({ error: "Erreur serveur." });
   }
 };
 
-export default { browse, read, add };
+export default {
+  browse,
+  read,
+  add,
+};

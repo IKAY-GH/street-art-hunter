@@ -1,80 +1,118 @@
-/* src/pages/Carte.css */
-.carte-container {
-  min-height: 100vh;
-  padding: 100px 20px 80px; /* place pour navbar + footer */
-  background-image: url("../assets/images/aae341cc-0264-4f21-a1c0-e449bb399e84.png"); /* mets le bon nom */
+.map-layout {
+  background-image: url("../assets/images/aae341cc-0264-4f21-a1c0-e449bb399e84.png");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* Titre */
+.map-title {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Organisation horizontale (desktop) ou verticale (mobile) */
+.map-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .map-content {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+/* Carte à droite */
+.map-section {
+  flex: 1;
+  min-width: 350px;
+}
+
+/* Liste des œuvres à gauche (en desktop) */
+.artwork-card-list {
+  flex: 1;
+}
+
+/* Boutons */
+.map-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.geo-btn,
+.nearby-btn {
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 12px;
+  background-color: #00d2b1;
   color: white;
-  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.geo-btn:hover,
+.nearby-btn:hover {
+  background-color: #00b29c;
+}
+
+/* Message d'erreur */
+.error-message {
+  color: red;
+  font-weight: bold;
   text-align: center;
 }
 
-.carte-title {
-  font-size: 2.5rem;
-  color: #f4f9fa; /* bleu cyan vif */
-  text-shadow: 2px 2px 4px black;
-  margin-bottom: 20px;
-}
-
-.carte-content {
-  display: grid;
-  grid-template-columns: 1fr; /* une seule colonne sur mobile */
-  gap: 1rem;
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.map-container {
-  margin: 0 auto 40px;
-  max-width: 800px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-}
-
-/* Composant List */
+/* === Cartes d’œuvres === */
 .artwork-list {
-  order: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  @media (min-width: 768px) {
-    order: 0; /* pour que la liste soit à gauche sur les écrans plus larges */
-  }
+  gap: 1.5rem;
 }
 
 .artwork-card {
-  background-color: rgba(255, 255, 255, 0.9); /* fond légèrement visible */
-  color: black;
-  border-radius: 12px;
-  padding: 15px;
-  max-width: 600px;
-  width: 100%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   display: flex;
-  align-items: center;
-  gap: 16px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.artwork-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
 }
 
 .artwork-info {
-  text-align: left;
+  padding: 1rem;
+  flex: 1;
 }
 
-.artwork-title {
-  font-weight: bold;
-  font-size: 1.1rem;
+.artwork-info h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #333;
 }
 
-.artwork-rating {
-  color: #f39c12;
-}
-
-.artwork-maplink {
+.map-link {
   display: inline-block;
-  color: #007bff;
+  margin-top: 0.5rem;
+  color: #00b29c;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.map-link:hover {
   text-decoration: underline;
-  margin-top: 6px;
 }
