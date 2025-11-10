@@ -1,0 +1,145 @@
+/* ===== MODAL CSS - MOBILE FIRST ===== */
+
+/* Modal principale - styles de base (mobile) */
+.modalBase {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100vw - 20px);
+  max-width: 95%;
+  max-height: 95vh;
+  padding: 15px;
+  background-color: aliceblue;
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  border: none;
+  z-index: 1001;
+  overflow-y: auto;
+}
+
+/* Titre de la modal */
+.tabTitle {
+  color: var(--color-black);
+  margin-bottom: 1rem;
+  font-size: var(--font-size-h2);
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Conteneur des tableaux - mobile first avec scroll horizontal */
+.tabContainArray {
+  margin: 1rem 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+/* Tableaux - largeur fixe pour mobile scroll */
+.tabContainArray table {
+  min-width: 700px;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  border: 1px solid var(--color-gray-border);
+  border-radius: var(--border-radius-small);
+  overflow: hidden;
+  background-color: white;
+}
+
+.tabContainArray table th,
+.tabContainArray table td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-gray-border);
+  border-right: 1px solid var(--color-gray-border);
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+/* Première colonne sans bordure à gauche */
+.tabContainArray table th:first-child,
+.tabContainArray table td:first-child {
+  border-left: 1px solid var(--color-gray-border);
+}
+
+/* Dernière colonne sans bordure à droite */
+.tabContainArray table th:last-child,
+.tabContainArray table td:last-child {
+  border-right: none;
+}
+
+.tabContainArray table th {
+  background-color: var(--color-gray-light);
+  font-weight: bold;
+  color: var(--color-text);
+  position: sticky;
+  top: 0;
+  border-top: 2px solid var(--color-gray-border);
+}
+
+.tabContainArray table tbody tr:hover {
+  background-color: var(--color-gray-light);
+}
+
+.tabContainArray table tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Bouton de fermeture */
+.modalButton {
+  background-color: orange;
+  box-shadow: var(--shadow-glow);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  transition: background-color var(--transition);
+  display: block;
+  margin: 1rem auto 0;
+}
+
+.modalButton:hover {
+  background-color: darkorange;
+}
+
+/* Scrollbar styling */
+
+.tabContainArray::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+}
+
+.tabContainArray::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+.tabContainArray::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+  border: 1px solid #f1f1f1;
+}
+
+.tabContainArray::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ===== DESKTOP (min-width: 769px) ===== */
+@media screen and (min-width: 769px) {
+  .modalBase {
+    width: calc(100vw - 40px);
+    max-width: 95vw;
+    padding: 20px;
+  }
+
+  .tabContainArray table {
+    min-width: 600px;
+    font-size: var(--font-size-small);
+  }
+
+  .tabContainArray table th,
+  .tabContainArray table td {
+    padding: 0.75rem;
+  }
+}

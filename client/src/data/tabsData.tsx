@@ -1,14 +1,14 @@
 import art from "../assets/icon/art.png";
 import hunt from "../assets/icon/hunt.png";
+import peintre from "../assets/icon/peintre.png";
 import reporting from "../assets/icon/reporting.png";
-import statistics from "../assets/icon/statistics.png";
 import users from "../assets/icon/users.png";
 
 const tabsData = [
   {
-    tabTitle: "Statistiques",
+    tabTitle: "Artistes",
     id: 1,
-    icon: statistics,
+    icon: peintre,
   },
   {
     tabTitle: "Utilisateurs",

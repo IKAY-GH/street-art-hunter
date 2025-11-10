@@ -1,42 +1,20 @@
 .accueil-container {
   height: 100vh;
   width: 100vw;
-  background-image: url("../assets/images/1febdd3f-7c7e-487f-9b89-721115ed8eb5.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-h1 {
-  padding: .5rem;
-  font-family: "RetroGaming", monospace;
-  color: #40e0d0;
-  font-size: 8vh;
-  text-align: center;
-}
-
 .btn-start {
-  font-family: "RetroGaming", monospace;
-  border-radius: 9999px;
-  background-color: rgb(255, 128, 0);
+  font-family: var(--font-retro);
+  border-radius: 50px;
+  background-color: var(--color-secondary);
   padding: 20px 40px;
   border: none;
   cursor: pointer;
   display: inline-block;
   text-align: center;
-  font-size: 2rem;
-}
-
-@media screen and (min-width: 769px) {
-  h1 {
-    max-width: 640px;
-    color: #40e0d0;
-    font-size: 8vh;
-    text-align: center;
-  }
+  font-size: var(--font-size-h1-mobile);
 }

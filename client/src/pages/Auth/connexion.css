@@ -1,0 +1,69 @@
+.connexion-container {
+  max-width: 400px;
+  margin: 15% 40%;
+  padding: 30px;
+  border: 1px solid var(--color-gray-border);
+  border-radius: var(--border-radius);
+  background-color: var(--color-gray-light);
+  box-shadow: var(--shadow);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn-deconnection {
+  color: var(--color-black);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid var(--color-gray);
+  border-radius: 5px;
+  margin-bottom: 15px;
+  transition: border-color var(--transition);
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: var(--color-success);
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form-error {
+  color: var(--color-error);
+  font-size: var(--font-size-small);
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+
+#btn-connexion {
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: var(--color-success);
+  color: var(--color-light);
+  border: none;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+#btn-connexion:hover {
+  background-color: var(--color-success-hover);
+}
+
+#btn-connexion:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}

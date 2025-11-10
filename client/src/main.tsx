@@ -1,21 +1,22 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
+import "./assets/styles/global.css";
 import App from "./App";
+import Connexion from "./pages/Auth/connexion.tsx";
+import Inscription from "./pages/Auth/inscription.tsx";
 import CGU from "./pages/Cgu";
 import Chasse from "./pages/Chasse";
 import Equipe from "./pages/Equipe";
 import Erreur from "./pages/Erreur";
 import Instructions from "./pages/Instructions";
-
+import MapComponent from "./pages/MapComponent";
 import MentionsLegales from "./pages/MentionsLegales";
-import Classement from "./pages/classement";
-
 import Accueil from "./pages/accueil";
+import Administrateur from "./pages/administrateur/administrateur.tsx";
+import Classement from "./pages/classement";
 import Gallerie from "./pages/gallerie";
 import Info from "./pages/info";
-
-import Administrateur from "./pages/administrateur";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
       },
 
       {
+        path: "/Mapcomponent",
+        element: <MapComponent />,
+      },
+
+      {
         path: "/gallerie",
         element: <Gallerie />,
       },
@@ -43,10 +49,19 @@ const router = createBrowserRouter([
         element: <Chasse />,
       },
 
-      // {
-      //   path: "/carte",
-      //   element: <Carte />,
-      // },
+      {
+        path: "/MapComponent",
+        element: <MapComponent />,
+      },
+      {
+        path: "/connexion",
+        element: <Connexion />,
+      },
+
+      {
+        path: "/inscription",
+        element: <Inscription />,
+      },
 
       {
         path: "/infos",
@@ -57,11 +72,6 @@ const router = createBrowserRouter([
         path: "/classement",
         element: <Classement />,
       },
-
-      // {
-      //   path: "/connexion",
-      //   element: <Formulaire />,
-      // },
 
       {
         path: "/cgu",

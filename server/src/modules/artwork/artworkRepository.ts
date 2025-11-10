@@ -1,73 +1,46 @@
-import type { Result, Rows } from "../../../database/client";
-
+import type { ResultSetHeader, RowDataPacket } from "mysql2";
 import databaseClient from "../../../database/client";
 
+// Définition locale du type Artwork
 type Artwork = {
   id: number;
   title: string;
-  latitude: string;
-  longitude: string;
-  artist_id: string;
-  points: number;
-  created_at: string;
-  updated_at: string;
+  description: string;
+  imageUrl: string;
+  artist_id: number;
 };
 
-class artworkRepository {
-  async create(artwork: Omit<Artwork, "id">): Promise<Result> {
-    const [result] = await databaseClient.query<Result>(
-      "INSERT INTO artwork (title, latitude, longitude, artist_id, points, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
-      [
-        artwork.title,
-        artwork.latitude,
-        artwork.longitude,
-        artwork.artist_id,
-        artwork.points,
-        artwork.created_at,
-        artwork.updated_at,
-      ],
-    );
-    return result;
-  }
+// Fonction pour récupérer toutes les œuvres
+const findAll = async (): Promise<Artwork[]> => {
+  const [rows] = await databaseClient.query<Artwork[] & RowDataPacket[]>(
+    "SELECT * FROM artwork",
+  );
+  return rows;
+};
 
-  async read(id: number) {
-    const [rows] = await databaseClient.query<Rows>(
-      "SELECT* FROM artist WHERE id = ?",
-      [id],
-    );
+// Fonction pour récupérer une œuvre par son id
+const findById = async (id: number): Promise<Artwork | null> => {
+  const [rows] = await databaseClient.query<Artwork[] & RowDataPacket[]>(
+    "SELECT * FROM artwork WHERE id = ?",
+    [id],
+  );
+  return rows.length > 0 ? rows[0] : null;
+};
 
-    return rows[0] as Artwork;
-  }
+// Fonction pour insérer une nouvelle œuvre
+const create = async (
+  artwork: Omit<Artwork, "id">,
+): Promise<ResultSetHeader> => {
+  const [result] = await databaseClient.query<ResultSetHeader>(
+    "INSERT INTO artwork (title, description, imageUrl, artist_id) VALUES (?, ?, ?, ?)",
+    [artwork.title, artwork.description, artwork.imageUrl, artwork.artist_id],
+  );
+  return result;
+};
 
-  async readAll() {
-    const [rows] = await databaseClient.query<Rows>("select * from artwork");
-    return rows as Artwork[];
-  }
-
-  async update(artwork: Artwork) {
-    const [result] = await databaseClient.query<Result>(
-      "UPDATE artwork SET title = ?, latitude = ?, longitude = ?, artist_id = ?, points = ?, created_at = ?, updated_at = ? WHERE id = ?",
-      [
-        artwork.title,
-        artwork.latitude,
-        artwork.longitude,
-        artwork.artist_id,
-        artwork.points,
-        artwork.created_at,
-        artwork.updated_at,
-        artwork.id,
-      ],
-    );
-    return result;
-  }
-
-  async delete(id: number) {
-    const [result] = await databaseClient.query<Result>(
-      "DELETE FROM artwork WHERE id = ?",
-      [id],
-    );
-    return result;
-  }
-}
-
-export default artworkRepository;
+// On exporte l'objet avec les fonctions disponibles
+export default {
+  findAll,
+  findById,
+  create,
+};

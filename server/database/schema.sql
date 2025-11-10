@@ -5,11 +5,12 @@ CREATE TABLE user (
     avatar_url VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    zip_code VARCHAR(10),
+    zip_code INT,
     last_name VARCHAR(100) NOT NULL,
     first_name VARCHAR(100) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
-    pseudo VARCHAR(20) NOT NULL
+    pseudo VARCHAR(20) NOT NULL,
+    is_admin TINYINT(1) NULL,
 );
 
 -- Table: artist
@@ -19,7 +20,6 @@ CREATE TABLE artist (
     bio TEXT,
     profile_image_url VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    avatar_url VARCHAR(255)
 );
 
 -- Table: artwork
@@ -37,15 +37,20 @@ CREATE TABLE artwork (
     FOREIGN KEY (artist_id) REFERENCES artist (id)
 );
 
--- Table: discovered_artwork
+
+
+-- Table: discovered_artworks
+
 CREATE TABLE discovered_artwork (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    artwork_id INT NOT NULL,
-    discovered_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (artwork_id) REFERENCES artwork (id),
-    UNIQUE KEY unique_discovery (user_id, artwork_id)
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,             
+  artwork_id INT NOT NULL, 
+  photo_url VARCHAR(255),          
+  discovered_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  
+  FOREIGN KEY (user_id) REFERENCES user(id),
+  FOREIGN KEY (artwork_id) REFERENCES artwork(id),
+  UNIQUE (user_id, artwork_id)     
 );
 
 -- Table: score
