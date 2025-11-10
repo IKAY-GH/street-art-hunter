@@ -1,5 +1,5 @@
 import express from "express";
-// import { upload } from "./middlewares/multer";
+import { upload } from "./middlewares/multer";
 import artistActions from "./modules/artist/artistActions";
 import artworkActions from "./modules/artwork/artworkActions";
 import discoveredActions from "./modules/discovered/discoveredActions";
@@ -14,7 +14,7 @@ const router = express.Router();
 
 // Define item-related routes
 
-// router.post("/api/discovered", upload.single("photo"), discoveredActions.add);
+router.post("/api/discovered", upload.single("photo"), discoveredActions.add);
 router.use("/discovered", discoveredRouter);
 
 router.get("/api/users", usersActions.browse);

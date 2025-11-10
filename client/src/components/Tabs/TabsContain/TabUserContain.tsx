@@ -40,7 +40,7 @@ export default function TabUser() {
           <th>Nom</th>
           <th>Prénom</th>
           <th>Pseudonyme</th>
-          <th>Utilisateur au statut administrateur</th>
+          <th>Statut administrateur</th>
         </tr>
       </thead>
       <tbody>

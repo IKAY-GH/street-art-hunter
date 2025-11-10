@@ -9,6 +9,7 @@ function Navigation() {
   const [fermeture, setFermeture] = useState(false);
   const menuRef = useRef<HTMLElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const fermetureAvecAnimation = () => {
@@ -63,6 +64,7 @@ function Navigation() {
     <>
       <nav className="menu-nav" ref={menuRef}>
         <BoutonAccueil />
+        {!isHomePage && <h1 className="navH1">STREET ART HUNTER</h1>}
         {menuOuvert && (
           <ul className="liens">
             <li>

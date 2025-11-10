@@ -1,9 +1,9 @@
 /* Style principal de la carte */
 .artwork-card {
   display: flex;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: var(--color-light);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
   margin: 1rem 0;
   overflow: hidden;
   max-width: 500px; /* Limite la largeur max */
@@ -15,8 +15,8 @@
   height: 100px;
   object-fit: cover;
   flex-shrink: 0; /* Empêche l'image de rétrécir */
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
 }
 
 /* Infos à droite */
@@ -30,7 +30,7 @@
 
 /* Lien vers la carte */
 .map-link {
-  color: #0066cc;
+  color: var(--color-link);
   text-decoration: none;
   margin-top: 0.5rem;
   font-weight: 500;

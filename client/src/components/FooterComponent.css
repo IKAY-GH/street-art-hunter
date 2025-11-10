@@ -4,8 +4,8 @@
 
   bottom: 0;
   width: 100%;
-  background-color: #1d1d1d;
-  color: white;
+  background-color: var(--color-dark);
+  color: var(--color-light);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -25,12 +25,12 @@
 }
 
 .footer-links a {
-  color: white;
+  color: var(--color-light);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color var(--transition);
 }
 
 .footer-links a:hover {
-  color: #ccc;
+  color: var(--color-gray);
   text-decoration: none;
 }
