@@ -48,13 +48,12 @@ const login: RequestHandler = async (req, res, next) => {
 
     const verified = await argon2.verify(
       users.password_hash,
-      req.body.password,
+      req.body.password
     );
 
     if (verified) {
-      // Respond with the user in JSON format (but without the hashed password)
       const { password_hash, ...userWithoutHashedPassword } = users;
-
+      // Respond with the user in JSON format (but without the hashed password)
       res.json(userWithoutHashedPassword);
     } else {
       res.sendStatus(422);
@@ -118,4 +117,4 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, hashPassword, login };
+export default { browse, read, add, hashPassword };

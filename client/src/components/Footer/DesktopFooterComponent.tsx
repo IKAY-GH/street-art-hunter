@@ -1,25 +1,25 @@
 import "./FooterComponent.css";
 import { Link } from "react-router";
 
-function Footer() {
+function DesktopFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="footer">
+    <footer className="desktop-footer">
       <p>© {year} Street Art Hunter – Tous droits réservés</p>
       <ul className="footer-links">
         <li>
-          <Link to="/mentions-legales">Mentions légales</Link>
+          <Link to="mentions-legales">Mentions légales</Link>
         </li>
         <li>
-          <Link to="/cgu">CGU</Link>
+          <Link to="cgu">CGU</Link>
         </li>
         <li>
-          <Link to="/equipe">L'équipe</Link>
+          <Link to="equipe">L'équipe</Link>
         </li>
       </ul>
     </footer>
   );
 }
 
-export default Footer;
+export default DesktopFooter;
