@@ -1,20 +1,12 @@
 .accueil-container {
+  background-image: url("../assets/images/homeBackground.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.btn-start {
-  font-family: var(--font-retro);
-  border-radius: 50px;
-  background-color: var(--color-secondary);
-  padding: 20px 40px;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-  font-size: var(--font-size-h1-mobile);
 }
