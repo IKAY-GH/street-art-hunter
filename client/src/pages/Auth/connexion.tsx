@@ -52,7 +52,7 @@ function Connexion() {
             type="button"
             onClick={handleLogout}
           >
-            Deconnection
+            Déconnection
           </button>
         </div>
       ) : (

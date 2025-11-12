@@ -29,7 +29,7 @@ const validationSchema = yup.object({
     .string()
     .oneOf(
       [yup.ref("password")],
-      "La confirmation du mot de passe est incorrecte",
+      "La confirmation du mot de passe est incorrecte"
     )
     .required("Confirmez votre mot de passe"),
 });
@@ -64,7 +64,7 @@ function inscription() {
             email: data.email,
             password: data.password,
           }),
-        },
+        }
       );
 
       const result = await response.json();
@@ -111,7 +111,7 @@ function inscription() {
           <p className="form-error">{errors.first_name.message}</p>
         )}
 
-        <label htmlFor="prenom">Prenom</label>
+        <label htmlFor="prenom">Prénom</label>
         <input
           {...register("last_name")}
           type="text"

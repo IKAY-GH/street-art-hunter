@@ -1,13 +1,13 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
-function BoutonAccueil() {
+function HomeButton() {
   const navigate = useNavigate();
 
   function handleclick() {
     navigate("/");
   }
   return (
-    <button onClick={handleclick} type="button">
+    <button onClick={handleclick} type="button" aria-label="Aller à l'accueil">
       <svg
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
@@ -21,4 +21,4 @@ function BoutonAccueil() {
   );
 }
 
-export default BoutonAccueil;
+export default HomeButton;
