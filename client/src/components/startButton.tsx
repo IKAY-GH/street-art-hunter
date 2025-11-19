@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./startButton.css";
 
 interface StartButtonProps {
   to: string;
@@ -8,7 +9,7 @@ interface StartButtonProps {
 
 function StartButton({ to, src, alt }: StartButtonProps) {
   return (
-    <Link to={to}>
+    <Link to={to} className="start-button-link">
       <img src={src} alt={alt} />
     </Link>
   );

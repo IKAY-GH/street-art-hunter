@@ -3,6 +3,7 @@ import type { RequestHandler } from "express";
 
 // Import access to data
 import usersRepository from "./usersRepository";
+import { generateToken } from "../../utils/jwt";
 
 // The B of BREAD - Browse (Read All) operation
 const browse: RequestHandler = async (req, res, next) => {
@@ -40,24 +41,40 @@ const read: RequestHandler = async (req, res, next) => {
 
 const login: RequestHandler = async (req, res, next) => {
   try {
-    const users = await usersRepository.readByEmailWithPassword(req.body.email);
-    if (users == null) {
-      res.sendStatus(422);
+    // 1. Chercher l'utilisateur par email
+    const user = await usersRepository.readByEmailWithPassword(req.body.email);
+
+    // 2. Si l'utilisateur n'existe pas
+    if (user == null) {
+      res.status(401).json({ message: "Email ou mot de passe incorrect" });
       return;
     }
 
-    const verified = await argon2.verify(
-      users.password_hash,
-      req.body.password
-    );
+    // 3. Vérifier le mot de passe avec argon2
+    const verified = await argon2.verify(user.password_hash, req.body.password);
 
-    if (verified) {
-      const { password_hash, ...userWithoutHashedPassword } = users;
-      // Respond with the user in JSON format (but without the hashed password)
-      res.json(userWithoutHashedPassword);
-    } else {
-      res.sendStatus(422);
+    // 4. Si le mot de passe est incorrect
+    if (!verified) {
+      res.status(401).json({ message: "Email ou mot de passe incorrect" });
+      return;
     }
+
+    // 5. Générer le token JWT avec le rôle
+    const token = generateToken({
+      userId: user.id,
+      email: user.email,
+      role: user.is_admin ? "admin" : "user",
+    });
+
+    // 6. Retourner le token et les infos user (sans le password)
+    const { password_hash, ...userWithoutPassword } = user;
+    res.json({
+      token,
+      user: {
+        ...userWithoutPassword,
+        role: user.is_admin ? "admin" : "user",
+      },
+    });
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
@@ -106,15 +123,30 @@ const add: RequestHandler = async (req, res, next) => {
       is_admin: req.body.is_admin ?? false,
     };
 
-    // Create the item
+    // Create the user in database
     const insertId = await usersRepository.create(newUsers);
 
-    // Respond with HTTP 201 (Created) and the ID of the newly inserted item
-    res.status(201).json({ insertId });
+    // Générer le token JWT pour connexion automatique après inscription
+    const token = generateToken({
+      userId: insertId,
+      email: newUsers.email,
+      role: newUsers.is_admin ? "admin" : "user",
+    });
+
+    // Respond with HTTP 201 (Created), le token et les infos user
+    res.status(201).json({
+      token,
+      user: {
+        id: insertId,
+        email: newUsers.email,
+        pseudo: newUsers.pseudo,
+        role: newUsers.is_admin ? "admin" : "user",
+      },
+    });
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
   }
 };
 
-export default { browse, read, add, hashPassword };
+export default { browse, read, add, hashPassword, login };

@@ -27,14 +27,9 @@
   height: auto;
 }
 
-@media screen and (min-width: 812px) {
+/* Tablet et desktop - cacher mobileTabs */
+@media screen and (min-width: 769px) {
   .mobileTabs {
     display: none;
   }
 }
-
-/* @media screen and (max-width: 812px) {
-  .footer {
-    display: none;
-  }
-} */

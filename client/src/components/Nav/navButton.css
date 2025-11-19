@@ -1,0 +1,47 @@
+/* navButton - Bouton de navigation réutilisable et accessible */
+/* Utilise les variables de global.css pour cohérence */
+
+.nav-button {
+  /* Mobile first - tailles de base */
+  padding: 12px 24px;
+  background-color: var(--color-secondary);
+  color: var(--color-light);
+  border: none;
+  border-radius: var(--border-radius-large);
+  cursor: pointer;
+  font-family: var(--font-retro);
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  box-shadow: 0 0 10px rgba(255, 128, 0, 0.5);
+}
+
+.nav-button:hover,
+.nav-button:focus-visible {
+  background-color: var(--hover-light-button);
+  box-shadow: var(--shadow-glow);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.nav-button:active {
+  transform: scale(0.98);
+}
+
+.nav-button:disabled,
+.nav-button[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Tablet et desktop */
+@media screen and (min-width: 769px) {
+  .nav-button {
+    padding: 15px 30px;
+    font-size: var(--font-size-h2);
+  }
+}

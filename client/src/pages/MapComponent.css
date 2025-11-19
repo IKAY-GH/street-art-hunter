@@ -1,17 +1,23 @@
+/* Import du layout unifié */
+@import "../assets/styles/page-layout.css";
+
+/* MapComponent - layout interactif pour carte */
 .map-layout {
   background-image: url("../assets/images/aae341cc-0264-4f21-a1c0-e449bb399e84.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
-  padding: 2rem;
+  padding: 80px 1rem 120px;
 }
 
 /* Titre */
 .map-title {
-  font-size: 1.8rem;
+  font-size: var(--font-size-h1-mobile);
   text-align: center;
   margin-bottom: 1rem;
+  color: var(--color-primary);
+  text-shadow: 0 0 10px rgba(64, 224, 208, 0.8);
 }
 
 /* Organisation horizontale (desktop) ou verticale (mobile) */
@@ -19,14 +25,6 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-}
-
-@media screen and (min-width: 768px) {
-  .map-content {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
 }
 
 /* Carte à droite */
@@ -53,27 +51,29 @@
 .nearby-btn {
   padding: 0.7rem 1.2rem;
   border: none;
-  border-radius: 12px;
-  background-color: #00d2b1;
-  color: white;
+  border-radius: var(--border-radius);
+  background-color: var(--color-primary);
+  color: var(--color-dark);
   font-weight: bold;
+  font-family: var(--font-retro);
   cursor: pointer;
-  transition: background 0.3s;
+  transition: var(--transition);
 }
 
 .geo-btn:hover,
 .nearby-btn:hover {
-  background-color: #00b29c;
+  background-color: var(--color-secondary);
+  color: var(--color-light);
 }
 
 /* Message d'erreur */
 .error-message {
-  color: red;
+  color: var(--color-secondary);
   font-weight: bold;
   text-align: center;
 }
 
-/* === Cartes d’œuvres === */
+/* === Cartes d'œuvres === */
 .artwork-list {
   display: flex;
   flex-direction: column;
@@ -82,10 +82,16 @@
 
 .artwork-card {
   display: flex;
-  background-color: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow);
   overflow: hidden;
+  transition: var(--transition);
+}
+
+.artwork-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(64, 224, 208, 0.3);
 }
 
 .artwork-image {
@@ -102,17 +108,32 @@
 .artwork-info h3 {
   margin-top: 0;
   font-size: 1.2rem;
-  color: #333;
+  color: var(--color-dark);
 }
 
 .map-link {
   display: inline-block;
   margin-top: 0.5rem;
-  color: #00b29c;
+  color: var(--color-primary);
   font-weight: bold;
   text-decoration: none;
+  transition: var(--transition);
 }
 
 .map-link:hover {
   text-decoration: underline;
+  color: var(--color-secondary);
+}
+
+/* Tablet et desktop */
+@media screen and (min-width: 769px) {
+  .map-title {
+    font-size: var(--font-size-h1-desktop);
+  }
+
+  .map-content {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
 }

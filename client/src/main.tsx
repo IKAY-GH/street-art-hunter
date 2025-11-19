@@ -4,6 +4,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import "./assets/styles/global.css";
 import App from "./App";
+import AdminRoute from "./components/AdminRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Connexion from "./pages/Auth/connexion.tsx";
 import Inscription from "./pages/Auth/inscription.tsx";
 import CGU from "./pages/Cgu";
@@ -17,7 +19,6 @@ import Accueil from "./pages/accueil";
 import Administrateur from "./pages/administrateur/administrateur.tsx";
 import Classement from "./pages/classement";
 import Gallerie from "./pages/gallerie";
-import Info from "./pages/info";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/administrateur",
-        element: <Administrateur />,
+        element: (
+          <AdminRoute>
+            <Administrateur />
+          </AdminRoute>
+        ),
       },
 
       {
@@ -39,7 +44,11 @@ const router = createBrowserRouter([
 
       {
         path: "/gallerie",
-        element: <Gallerie />,
+        element: (
+          <ProtectedRoute>
+            <Gallerie />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/instructions",
@@ -47,7 +56,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/chasse",
-        element: <Chasse />,
+        element: (
+          <ProtectedRoute>
+            <Chasse />
+          </ProtectedRoute>
+        ),
       },
 
       {
@@ -62,11 +75,6 @@ const router = createBrowserRouter([
       {
         path: "/inscription",
         element: <Inscription />,
-      },
-
-      {
-        path: "/infos",
-        element: <Info />,
       },
 
       {

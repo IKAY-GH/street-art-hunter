@@ -1,29 +1,66 @@
-.equipe-page {
-  padding: 2rem;
-  background: var(--color-gray-light);
-}
+/* Import du layout unifié */
+@import "../assets/styles/page-layout.css";
 
+/* Grille de cards d'équipe */
 .dev-cards {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile: 1 colonne */
   gap: 1rem;
-  margin-top: 1rem;
+  width: 100%;
 }
 
 .dev-card {
-  flex: 1 1 200px;
-  border: 1px solid var(--color-gray-border);
-  padding: 1rem;
-  border-radius: var(--border-radius);
   background-color: var(--color-light);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
   box-shadow: var(--shadow);
+  transition: var(--transition);
+  border: 1px solid var(--color-gray-border);
+}
+
+.dev-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(64, 224, 208, 0.3);
 }
 
 .dev-card h3 {
   margin: 0 0 0.5rem 0;
+  color: var(--color-dark);
+  font-size: var(--font-size-h2);
+}
+
+.dev-card p {
+  margin: 0 0 1rem 0;
+  color: var(--color-text);
 }
 
 .dev-card a {
-  color: var(--color-link);
+  color: var(--color-secondary);
   text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.dev-card a:hover {
+  color: var(--hover-light-button);
+  text-decoration: underline;
+}
+
+/* Tablet: 2 colonnes */
+@media screen and (min-width: 769px) {
+  .dev-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Desktop: 3 colonnes */
+@media screen and (min-width: 1024px) {
+  .dev-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .equipe-content {
+    max-width: 1200px !important;
+  }
 }

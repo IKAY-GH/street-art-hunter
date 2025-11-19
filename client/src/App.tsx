@@ -2,7 +2,7 @@ import "./assets/styles/global.css";
 import { Outlet } from "react-router";
 import DesktopFooter from "./components/Footer/DesktopFooterComponent.tsx";
 import MobileFooter from "./components/Footer/mobileFooterComponent.tsx";
-import Navigation from "./components/navigation.tsx";
+import Navigation from "./components/Nav/Navigation.tsx";
 
 function App() {
   return (
