@@ -5,6 +5,8 @@ import artworkActions from "./modules/artwork/artworkActions";
 import discoveredActions from "./modules/discovered/discoveredActions";
 import discoveredRouter from "./modules/discovered/discoveredRouter";
 import usersActions from "./modules/user/usersActions";
+import authMiddleware from "./middlewares/authMiddleware";
+import adminOnly from "./middlewares/adminOnly";
 
 const router = express.Router();
 
@@ -14,16 +16,20 @@ const router = express.Router();
 
 // Define item-related routes
 
-router.post("/api/discovered", upload.single("photo"), discoveredActions.add);
-router.use("/discovered", discoveredRouter);
-
 router.get("/api/users", usersActions.browse);
 router.get("/api/users/:id", usersActions.read);
 router.post(
   "/api/users/inscription",
   usersActions.hashPassword,
-  usersActions.add,
+  usersActions.add
 );
+router.post("/api/users/login", usersActions.login);
+router.get("admin/dashboard", authMiddleware.auth, adminOnly, (req, res) => {
+  res.json({ message: "Bienvenue administrateur" });
+});
+
+router.post("/api/discovered", upload.single("photo"), discoveredActions.add);
+router.use("/discovered", discoveredRouter);
 
 router.get("/api/artist", artistActions.browse);
 router.get("/api/artist/:id", artistActions.read);

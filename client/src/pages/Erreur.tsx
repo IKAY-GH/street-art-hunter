@@ -4,7 +4,9 @@ export default function Erreur() {
   return (
     <div className="erreur-page">
       <h1>404</h1>
-      <p>Oups ! Cette page est introuvable.</p>
+      <p>
+        Oups ! Cette page est introuvable ou votre accés n'y est pas autorisé
+      </p>
       <Link to="/" className="erreur-button">
         ⬅️ Retour à l'accueil
       </Link>

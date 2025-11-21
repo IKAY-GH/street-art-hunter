@@ -1,5 +1,6 @@
 import argon2 from "argon2";
 import type { RequestHandler } from "express";
+import { generateToken } from "../../utils/jwt";
 
 // Import access to data
 import usersRepository from "./usersRepository";
@@ -52,9 +53,18 @@ const login: RequestHandler = async (req, res, next) => {
     );
 
     if (verified) {
-      const { password_hash, ...userWithoutHashedPassword } = users;
-      // Respond with the user in JSON format (but without the hashed password)
-      res.json(userWithoutHashedPassword);
+      // Générer un token JWT
+      const token = generateToken(users);
+      // Retourner le token
+      res.json({
+        token,
+        user: {
+          id: users.id,
+          email: users.email,
+          pseudo: users.pseudo,
+          role: users.is_admin ? "admin" : "user",
+        },
+      });
     } else {
       res.sendStatus(422);
     }
@@ -117,4 +127,4 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, hashPassword };
+export default { browse, read, add, hashPassword, login };

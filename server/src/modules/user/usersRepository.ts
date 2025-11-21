@@ -2,7 +2,7 @@ import databaseClient from "../../../database/client";
 
 import type { Result, Rows } from "../../../database/client";
 
-type User = {
+export type User = {
   id: number;
   email: string;
   avatar_url: string | null;
@@ -13,7 +13,7 @@ type User = {
   first_name: string;
   password_hash: string;
   pseudo: string;
-  is_admin: boolean;
+  is_admin: number;
 };
 
 class UsersRepository {
@@ -32,7 +32,7 @@ class UsersRepository {
         user.password_hash,
         user.pseudo,
         user.is_admin,
-      ],
+      ]
     );
 
     // Return the ID of the newly inserted user
@@ -45,7 +45,7 @@ class UsersRepository {
     // Execute the SQL SELECT query to retrieve a specific user by its ID
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM user WHERE id = ?",
-      [id],
+      [id]
     );
 
     // Return the first row of the result, which represents the user
@@ -56,7 +56,7 @@ class UsersRepository {
     // Execute the SQL SELECT query to retrieve a specific user by its email
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM user WHERE email = ?",
-      [email],
+      [email]
     );
     // Return the first row of the result, which represents the user
     return rows[0] as User;
@@ -65,7 +65,7 @@ class UsersRepository {
   async readAll() {
     // Execute the SQL SELECT query to retrieve all users from the "user" table
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT email, avatar_url, created_at, updated_at, zip_code, last_name, first_name, password_hash, pseudo, is_admin FROM user",
+      "SELECT email, avatar_url, created_at, updated_at, zip_code, last_name, first_name, password_hash, pseudo, is_admin FROM user"
     );
 
     // Return the array of users
@@ -91,7 +91,7 @@ class UsersRepository {
         user.pseudo ?? null,
         user.is_admin ?? false,
         id,
-      ],
+      ]
     );
     return result;
   }

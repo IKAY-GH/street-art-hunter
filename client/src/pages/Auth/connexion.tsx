@@ -1,9 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useAuth } from "../../context/AuthContext";
+import { jwtDecode } from "jwt-decode";
 import * as yup from "yup";
+import type { JwtPayload } from "../../../../server/src/utils/jwt";
 
 import "./connexion.css";
+import "../../assets/styles/global.css";
 
 const validationSchema = yup.object({
   email: yup
@@ -19,65 +22,98 @@ const validationSchema = yup.object({
 type FormData = yup.InferType<typeof validationSchema>;
 
 function Connexion() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userEmail, setUserEmail] = useState("");
+  const { setIsAuthenticated, setRole } = useAuth();
 
   const {
     register,
     handleSubmit,
-    reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = (data: FormData) => {
-    setIsLoggedIn(true);
-    setUserEmail(data.email);
-    reset();
-  };
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/users/login`,
+        {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({
+            email: data.email,
+            password: data.password,
+          }),
+        }
+      );
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setUserEmail("");
+      if (!response.ok) {
+        alert("Email ou mot de passe incorrect");
+        return;
+      }
+
+      const result = await response.json();
+      const token = result.token;
+      const user = result.user;
+
+      sessionStorage.setItem("jwt", token);
+      sessionStorage.setItem("user", JSON.stringify(user));
+
+      const decoded = jwtDecode<JwtPayload>(token);
+
+      setIsAuthenticated(true);
+      setRole(decoded.role);
+
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Erreur réseau", error);
+      alert("Problème de connexion au serveur");
+    }
   };
 
   return (
     <main className="connexion-container">
-      {isLoggedIn ? (
-        <div className="welcom-message">
-          <p>Bienvenue, {userEmail} !</p>
-          <button
-            className="btn-deconnection"
-            type="button"
-            onClick={handleLogout}
-          >
-            Déconnection
+      <form onSubmit={handleSubmit(onSubmit)} aria-labelledby="connexion-title">
+        <h2 id="connexion-title">Connexion</h2>
+
+        {/* Email */}
+        <label htmlFor="email">Email</label>
+        <input
+          {...register("email")}
+          type="email"
+          id="email"
+          required
+          aria-invalid={!!errors.email}
+          aria-describedby={errors.email ? "email-error" : undefined}
+        />
+        {errors.email && (
+          <p id="email-error" className="form-error">
+            {errors.email.message}
+          </p>
+        )}
+
+        {/* Password */}
+        <label htmlFor="password">Mot de passe</label>
+        <input
+          {...register("password")}
+          type="password"
+          id="password"
+          required
+          aria-invalid={!!errors.password}
+          aria-describedby={errors.password ? "password-error" : undefined}
+        />
+        {errors.password && (
+          <p id="password-error" className="form-error">
+            {errors.password.message}
+          </p>
+        )}
+
+        {/* Button */}
+        <div>
+          <button id="btn-connexion" type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Connexion..." : "Connexion"}
           </button>
         </div>
-      ) : (
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="email">Email</label>
-          <input {...register("email")} type="email" id="email" required />
-          {errors.email && <p className="form-error">{errors.email.message}</p>}
-
-          <label htmlFor="password">Mot de passe</label>
-          <input
-            {...register("password")}
-            type="password"
-            id="password"
-            required
-          />
-          {errors.password && (
-            <p className="form-error">{errors.password.message}</p>
-          )}
-          <div>
-            <button id="btn-connexion" type="submit">
-              Connexion
-            </button>
-          </div>
-        </form>
-      )}
+      </form>
     </main>
   );
 }

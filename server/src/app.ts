@@ -10,7 +10,14 @@ const app = express();
 // ... (le reste inchangé)
 
 if (process.env.CLIENT_URL != null) {
-  app.use(cors({ origin: [process.env.CLIENT_URL] }));
+  app.use(
+    cors({
+      origin: process.env.CLIENT_URL,
+      credentials: true,
+    })
+  );
+} else {
+  app.use(cors());
 }
 
 app.use(express.json());

@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import "./assets/styles/global.css";
 import App from "./App";
+import { AuthProvider } from "./context/AuthContext.tsx";
 import Connexion from "./pages/Auth/connexion.tsx";
 import Inscription from "./pages/Auth/inscription.tsx";
 import CGU from "./pages/Cgu";
@@ -14,6 +15,7 @@ import Instructions from "./pages/Instructions";
 import MapComponent from "./pages/MapComponent";
 import MentionsLegales from "./pages/MentionsLegales";
 import Accueil from "./pages/accueil";
+import AdminRoute from "./routes/adminRoute.tsx";
 import Administrateur from "./pages/administrateur/administrateur.tsx";
 import Classement from "./pages/classement";
 import Gallerie from "./pages/gallerie";
@@ -29,7 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/administrateur",
-        element: <Administrateur />,
+        element: (
+          <AdminRoute>
+            <Administrateur />
+          </AdminRoute>
+        ),
       },
 
       {
@@ -48,11 +54,6 @@ const router = createBrowserRouter([
       {
         path: "/chasse",
         element: <Chasse />,
-      },
-
-      {
-        path: "/MapComponent",
-        element: <MapComponent />,
       },
       {
         path: "/connexion",
@@ -103,7 +104,9 @@ if (rootElement == null) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );
 
