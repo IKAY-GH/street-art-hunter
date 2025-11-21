@@ -1,11 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { jwtDecode } from "jwt-decode";
 import * as yup from "yup";
-import authService from "../../services/authService";
+import type { JwtPayload } from "../../../../server/src/utils/jwt";
 
-import "../../assets/styles/page-layout.css";
+import "./connexion.css";
+import "../../assets/styles/global.css";
 
 const validationSchema = yup.object({
   email: yup
@@ -21,170 +22,99 @@ const validationSchema = yup.object({
 type FormData = yup.InferType<typeof validationSchema>;
 
 function Connexion() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userEmail, setUserEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const navigate = useNavigate();
-
-  // Vérifier si l'utilisateur est déjà connecté au chargement de la page
-  useEffect(() => {
-    if (authService.isAuthenticated()) {
-      const currentUser = authService.getCurrentUser();
-      if (currentUser) {
-        setIsLoggedIn(true);
-        setUserEmail(currentUser.email);
-      }
-    }
-  }, []);
+  const { setIsAuthenticated, setRole } = useAuth();
 
   const {
     register,
     handleSubmit,
-    reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: yupResolver(validationSchema),
   });
 
   const onSubmit = async (data: FormData) => {
-    setIsLoading(true);
-    setErrorMessage(null);
-
     try {
-      // Appel API pour vérifier email/password dans la BDD
-      const response = await authService.login({
-        email: data.email,
-        password: data.password,
-      });
-
-      // Connexion réussie !
-      setIsLoggedIn(true);
-      setUserEmail(response.user.email);
-      reset();
-    } catch (error) {
-      console.error("Erreur lors de la connexion:", error);
-      setErrorMessage(
-        error instanceof Error
-          ? error.message
-          : "Email ou mot de passe incorrect"
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/users/login`,
+        {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({
+            email: data.email,
+            password: data.password,
+          }),
+        }
       );
-    } finally {
-      setIsLoading(false);
+
+      if (!response.ok) {
+        alert("Email ou mot de passe incorrect");
+        return;
+      }
+
+      const result = await response.json();
+      const token = result.token;
+      const user = result.user;
+
+      sessionStorage.setItem("jwt", token);
+      sessionStorage.setItem("user", JSON.stringify(user));
+
+      const decoded = jwtDecode<JwtPayload>(token);
+
+      setIsAuthenticated(true);
+      setRole(decoded.role);
+
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Erreur réseau", error);
+      alert("Problème de connexion au serveur");
     }
   };
 
-  const handleLogout = () => {
-    authService.logout();
-    setIsLoggedIn(false);
-    setUserEmail("");
-  };
-
   return (
-    <div className="page-wrapper">
-      <div className="page-content connexion-content">
-        {isLoggedIn ? (
-          <div className="welcom-message">
-            <h1 className="page-title">Déjà connecté</h1>
-            <p className="page-text">
-              Vous êtes déjà connecté en tant que <strong>{userEmail}</strong>
-            </p>
-            <p className="page-text" style={{ marginTop: "1rem" }}>
-              Vous pouvez continuer votre navigation ou vous déconnecter.
-            </p>
-            <div
-              style={{
-                display: "flex",
-                gap: "1rem",
-                marginTop: "1.5rem",
-                justifyContent: "center",
-                flexWrap: "wrap",
-              }}
-            >
-              <button
-                className="form-button"
-                type="button"
-                onClick={() => navigate("/")}
-              >
-                Retour à l'accueil
-              </button>
-              <button
-                className="form-button"
-                type="button"
-                onClick={handleLogout}
-                style={{ backgroundColor: "#ff8000" }}
-              >
-                Se déconnecter
-              </button>
-            </div>
-          </div>
-        ) : (
-          <>
-            <h1 className="page-title">Connexion</h1>
+    <main className="connexion-container">
+      <form onSubmit={handleSubmit(onSubmit)} aria-labelledby="connexion-title">
+        <h2 id="connexion-title">Connexion</h2>
 
-            {errorMessage && (
-              <div
-                style={{
-                  backgroundColor: "rgba(255, 0, 0, 0.1)",
-                  border: "1px solid var(--color-error)",
-                  color: "var(--color-error)",
-                  padding: "1rem",
-                  borderRadius: "var(--border-radius)",
-                  marginBottom: "1rem",
-                  textAlign: "center",
-                }}
-              >
-                {errorMessage}
-              </div>
-            )}
-
-            <form className="page-form" onSubmit={handleSubmit(onSubmit)}>
-              <div className="form-group">
-                <label className="form-label" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  {...register("email")}
-                  className="form-input"
-                  type="email"
-                  id="email"
-                  disabled={isLoading}
-                  required
-                />
-                {errors.email && (
-                  <p className="form-error">{errors.email.message}</p>
-                )}
-              </div>
-
-              <div className="form-group">
-                <label className="form-label" htmlFor="password">
-                  Mot de passe
-                </label>
-                <input
-                  {...register("password")}
-                  className="form-input"
-                  type="password"
-                  id="password"
-                  disabled={isLoading}
-                  required
-                />
-                {errors.password && (
-                  <p className="form-error">{errors.password.message}</p>
-                )}
-              </div>
-
-              <button
-                className="form-button"
-                type="submit"
-                disabled={isLoading}
-              >
-                {isLoading ? "Connexion en cours..." : "Connexion"}
-              </button>
-            </form>
-          </>
+        {/* Email */}
+        <label htmlFor="email">Email</label>
+        <input
+          {...register("email")}
+          type="email"
+          id="email"
+          required
+          aria-invalid={!!errors.email}
+          aria-describedby={errors.email ? "email-error" : undefined}
+        />
+        {errors.email && (
+          <p id="email-error" className="form-error">
+            {errors.email.message}
+          </p>
         )}
-      </div>
-    </div>
+
+        {/* Password */}
+        <label htmlFor="password">Mot de passe</label>
+        <input
+          {...register("password")}
+          type="password"
+          id="password"
+          required
+          aria-invalid={!!errors.password}
+          aria-describedby={errors.password ? "password-error" : undefined}
+        />
+        {errors.password && (
+          <p id="password-error" className="form-error">
+            {errors.password.message}
+          </p>
+        )}
+
+        {/* Button */}
+        <div>
+          <button id="btn-connexion" type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Connexion..." : "Connexion"}
+          </button>
+        </div>
+      </form>
+    </main>
   );
 }
 

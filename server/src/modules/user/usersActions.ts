@@ -1,5 +1,6 @@
 import argon2 from "argon2";
 import type { RequestHandler } from "express";
+import { generateToken } from "../../utils/jwt";
 
 // Import access to data
 import usersRepository from "./usersRepository";
@@ -53,10 +54,21 @@ const login: RequestHandler = async (req, res, next) => {
     // 3. Vérifier le mot de passe avec argon2
     const verified = await argon2.verify(user.password_hash, req.body.password);
 
-    // 4. Si le mot de passe est incorrect
-    if (!verified) {
-      res.status(401).json({ message: "Email ou mot de passe incorrect" });
-      return;
+    if (verified) {
+      // Générer un token JWT
+      const token = generateToken(users);
+      // Retourner le token
+      res.json({
+        token,
+        user: {
+          id: users.id,
+          email: users.email,
+          pseudo: users.pseudo,
+          role: users.is_admin ? "admin" : "user",
+        },
+      });
+    } else {
+      res.sendStatus(422);
     }
 
     // 5. Générer le token JWT avec le rôle

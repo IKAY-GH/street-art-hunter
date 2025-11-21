@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext.tsx";
 import HomeButton from "./HomeButton.tsx";
+import UserProfile from "../userProfile.tsx";
 import "./navigation.css";
 
 function Navigation() {
@@ -8,7 +10,7 @@ function Navigation() {
   const menuRef = useRef<HTMLElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
   const isHomePage = location.pathname === "/";
-
+  const { role, isAuthenticated } = useAuth();
   const closeMenu = () => setOpenMenu(false);
 
   useEffect(() => {
@@ -52,6 +54,7 @@ function Navigation() {
         {!isHomePage && <h1 className="navH1">STREET ART HUNTER</h1>}
         {openMenu && (
           <ul id="main-menu" className="liens">
+            <UserProfile />
             <li>
               <Link
                 className="nav-button"
@@ -94,15 +97,13 @@ function Navigation() {
                 Classement
               </Link>
             </li>
-            <li>
-              <Link
-                className="nav-button"
-                onClick={closeMenu}
-                to="/administrateur"
-              >
-                Administrateur
-              </Link>
-            </li>
+            {isAuthenticated && role === "admin" && (
+              <li>
+                <Link onClick={closeMenu} to="/administrateur">
+                  Administrateur
+                </Link>
+              </li>
+            )}
           </ul>
         )}
         <button
