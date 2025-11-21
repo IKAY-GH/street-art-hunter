@@ -19,7 +19,6 @@ import AdminRoute from "./routes/adminRoute.tsx";
 import Administrateur from "./pages/administrateur/administrateur.tsx";
 import Classement from "./pages/classement";
 import Gallerie from "./pages/gallerie";
-import Info from "./pages/info";
 
 const router = createBrowserRouter([
   {
@@ -45,7 +44,11 @@ const router = createBrowserRouter([
 
       {
         path: "/gallerie",
-        element: <Gallerie />,
+        element: (
+          <ProtectedRoute>
+            <Gallerie />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/instructions",
@@ -53,7 +56,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/chasse",
-        element: <Chasse />,
+        element: (
+          <ProtectedRoute>
+            <Chasse />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/connexion",
@@ -63,11 +70,6 @@ const router = createBrowserRouter([
       {
         path: "/inscription",
         element: <Inscription />,
-      },
-
-      {
-        path: "/infos",
-        element: <Info />,
       },
 
       {

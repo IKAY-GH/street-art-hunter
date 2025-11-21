@@ -56,36 +56,44 @@ function Navigation() {
           <ul id="main-menu" className="liens">
             <UserProfile />
             <li>
-              <Link onClick={closeMenu} to={"/connexion"}>
+              <Link
+                className="nav-button"
+                onClick={closeMenu}
+                to={"/connexion"}
+              >
                 Connexion
               </Link>
             </li>
             <li>
-              <Link onClick={closeMenu} to={"/inscription"}>
+              <Link
+                className="nav-button"
+                onClick={closeMenu}
+                to={"/inscription"}
+              >
                 Inscription
               </Link>
             </li>
             <li>
-              <Link onClick={closeMenu} to="/gallerie">
+              <Link className="nav-button" onClick={closeMenu} to="/gallerie">
                 Galleries
               </Link>
             </li>
             <li>
-              <Link onClick={closeMenu} to="/carte">
+              <Link className="nav-button" onClick={closeMenu} to="/carte">
                 Cartes
               </Link>
             </li>
             <li>
-              <Link onClick={closeMenu} to="/instructions">
+              <Link
+                className="nav-button"
+                onClick={closeMenu}
+                to="/instructions"
+              >
                 Instructions
-              </Link>
-              /
-              <Link onClick={closeMenu} to="/infos">
-                Informations
               </Link>
             </li>
             <li>
-              <Link onClick={closeMenu} to="/classement">
+              <Link className="nav-button" onClick={closeMenu} to="/classement">
                 Classement
               </Link>
             </li>

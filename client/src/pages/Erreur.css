@@ -4,35 +4,83 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: black;
-  color: #40e0d0;
-  font-family: "RetroGaming", monospace;
+  padding: 80px 20px 120px;
+}
+
+.erreur-content {
+  background-color: rgba(29, 29, 29, 0.95); /* Fond sombre semi-transparent */
+  border-radius: var(--border-radius-large);
+  padding: 2rem 1.5rem; /* Mobile first */
+  max-width: 90%;
+  width: 100%;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
   text-align: center;
-  padding: 20px;
 }
 
 .erreur-page h1 {
-  font-size: 10rem;
-  margin-bottom: 20px;
+  font-size: 4rem; /* Mobile first - réduit pour mobile */
+  margin: 0;
+  color: var(--color-primary);
+  text-shadow: 0 0 10px rgba(64, 224, 208, 0.8);
+  font-family: var(--font-retro);
 }
 
 .erreur-page p {
-  font-size: 2rem;
-  margin-bottom: 40px;
+  font-size: 1.2rem; /* Mobile first */
+  margin: 0;
+  max-width: 90%;
+  color: var(--color-light);
 }
 
 .erreur-button {
-  font-size: 1.5rem;
-  padding: 15px 30px;
-  background-color: #ff8000;
-  color: white;
+  font-size: 1.2rem; /* Mobile first */
+  padding: 12px 24px;
+  background-color: var(--color-secondary);
+  color: var(--color-light);
   border: none;
-  border-radius: 12px;
+  border-radius: var(--border-radius-large);
   text-decoration: none;
-  box-shadow: 0 0 10px red, 0 0 5px red inset;
+  box-shadow: 0 0 10px rgba(255, 128, 0, 0.5);
+  transition: var(--transition);
+  cursor: pointer;
+  font-family: var(--font-retro);
+  display: inline-block;
 }
 
 .erreur-button:hover {
-  background-color: orange;
-  box-shadow: 0 0 15px red, 0 0 7px red inset;
+  background-color: var(--hover-light-button);
+  box-shadow: var(--shadow-glow);
+  transform: scale(1.05);
+}
+
+/* Tablet et desktop */
+@media screen and (min-width: 769px) {
+  .erreur-content {
+    padding: 3rem 2.5rem;
+    max-width: 85%;
+  }
+
+  .erreur-page h1 {
+    font-size: 10rem;
+  }
+
+  .erreur-page p {
+    font-size: 2rem;
+  }
+
+  .erreur-button {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1024px) {
+  .erreur-content {
+    max-width: 700px;
+  }
 }

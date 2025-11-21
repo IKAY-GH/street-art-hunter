@@ -1,10 +1,6 @@
 .capture-page {
   min-height: 100vh;
   width: 100%;
-  background-image: url("../images/1febdd3f-7c7e-487f-9b89-721115ed8eb5.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,12 +8,26 @@
   padding: 80px 20px 120px;
 }
 
+.capture-content {
+  background-color: rgba(29, 29, 29, 0.95); /* Fond sombre semi-transparent */
+  border-radius: var(--border-radius-large);
+  padding: 2rem 1.5rem; /* Mobile first */
+  max-width: 90%;
+  width: 100%;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
 .capture-page h1 {
   font-family: var(--font-retro);
   color: var(--color-primary);
-  font-size: var(--font-size-h1-mobile); /* Mobile first - taille de base */
+  font-size: var(--font-size-h1-mobile); /* Mobile first */
   text-align: center;
-  margin-bottom: 20px;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(64, 224, 208, 0.8);
 }
 
 .capture-page .video-container {
@@ -27,7 +37,6 @@
   border-radius: var(--border-radius-large);
   overflow: hidden;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  margin-bottom: 20px;
 }
 
 .capture-page video {
@@ -38,7 +47,7 @@
 
 .capture-page .capture-button {
   border-radius: var(--border-radius-full);
-  width: 60px; /* Mobile first - taille de base */
+  width: 60px; /* Mobile first */
   height: 60px;
   border: none;
   background-color: var(--color-secondary);
@@ -47,24 +56,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: var(--transition);
 }
 
 .capture-page .capture-button:hover {
-  background-color: orange;
+  background-color: var(--hover-light-button);
   box-shadow: var(--shadow-glow);
+  transform: scale(1.05);
 }
 
 .capture-page .captured-image {
-  margin-top: 20px;
   max-width: 100%;
   border-radius: var(--border-radius-large);
   box-shadow: var(--shadow);
 }
 
-/* RESPONSIVE - Mobile first */
-
 /* Tablet et desktop */
 @media screen and (min-width: 769px) {
+  .capture-content {
+    padding: 3rem 2.5rem;
+    max-width: 85%;
+  }
+
   .capture-page h1 {
     font-size: var(--font-size-h1-desktop);
   }
@@ -72,5 +85,12 @@
   .capture-page .capture-button {
     width: 80px;
     height: 80px;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1024px) {
+  .capture-content {
+    max-width: 700px;
   }
 }

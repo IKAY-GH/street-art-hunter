@@ -1,0 +1,42 @@
+/* StartButton - Bouton d'accueil responsive et centré */
+
+.start-button-link {
+  display: inline-block;
+  transition: transform var(--transition);
+  cursor: pointer;
+}
+
+.start-button-link:hover {
+  transform: scale(1.05);
+}
+
+.start-button-link:active {
+  transform: scale(0.98);
+}
+
+.start-button-link img {
+  /* Mobile first - taille réduite */
+  width: 200px;
+  max-width: 80vw; /* Ne jamais dépasser 80% de la largeur de l'écran */
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(255, 128, 0, 0.5));
+}
+
+.start-button-link:hover img {
+  filter: drop-shadow(0 0 15px rgba(255, 128, 0, 0.8));
+}
+
+/* Tablet */
+@media screen and (min-width: 769px) {
+  .start-button-link img {
+    width: 280px;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1024px) {
+  .start-button-link img {
+    width: 350px;
+  }
+}

@@ -1,6 +1,10 @@
+/* Import du layout unifié */
+@import "../../assets/styles/page-layout.css";
+
+/* Spécifique Administrateur - background spécifique */
 .administrator-container {
   min-height: 100vh;
-  padding: 100px 20px 80px;
+  padding: 80px 20px 120px;
   background-image: url("../../assets/images/administratorBackground.png");
   background-size: cover;
   background-position: center;
@@ -13,7 +17,19 @@
 
 .administrator-container h2 {
   font-family: var(--font-retro);
-  color: var(--color-light);
-  font-size: var(--font-size-h2);
+  color: var(--color-primary);
+  font-size: clamp(1.5rem, 5vw, 2rem);
   text-align: center;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 10px rgba(64, 224, 208, 0.8);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Tablet et desktop */
+@media screen and (min-width: 769px) {
+  .administrator-container h2 {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
 }

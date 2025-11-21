@@ -1,16 +1,46 @@
 .menu-nav {
+  display: flex;
   position: fixed;
+  top: 0;
   left: 0;
   right: 0;
   background-color: var(--color-dark);
   width: 100%;
   height: 60px;
   box-shadow: var(--shadow);
-  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 0 1rem; /* Mobile first - padding réduit */
   z-index: 999;
+}
+
+/* Boutons avec icônes (HomeButton et floating-btn) */
+.menu-nav button {
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-light); /* Blanc par défaut */
+  transition: var(--transition);
+}
+
+.menu-nav button:hover {
+  color: var(--color-gray); /* Même hover que footer */
+}
+
+.menu-nav button:focus-visible {
+  outline: 2px solid var(--color-light);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.menu-nav button svg {
+  display: block;
+  width: 2em;
+  height: 2em;
 }
 
 .navH1 {
@@ -23,25 +53,70 @@
 
 ul.liens {
   position: fixed;
-  left: 0;
-  right: 200px;
-  top: 0;
-  bottom: 0;
+  top: 60px; /* Commence après la barre de navigation */
+  bottom: 60px; /* S'arrête avant le footer mobile */
+  right: 0; /* Aligné à droite */
+  left: auto; /* Pas de contrainte à gauche */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem;
+  align-items: flex-end; /* Boutons alignés à droite */
+  justify-content: flex-start; /* Commence en haut, sous le burger */
+  padding: 1rem; /* Mobile first - padding réduit */
+  text-align: right;
+  gap: 1rem; /* Mobile first - gap réduit pour mobile */
+  background-color: var(--color-dark);
   list-style: none;
-  text-align: center;
-  gap: 60px;
-  background-color: var(--color-light);
-  font-size: var(--font-size-large);
+  margin: 0;
+  z-index: 998; /* En dessous de la nav */
+  overflow-y: auto; /* Scroll si nécessaire */
+  min-width: 200px; /* Largeur minimale sur mobile */
+  max-width: 90vw; /* Ne pas dépasser 90% de l'écran */
+}
+
+ul.liens li {
+  width: 100%; /* Toutes les largeurs identiques */
+}
+
+ul.liens a {
+  display: block; /* Pour que width fonctionne */
+  width: 100%; /* Prend toute la largeur du li */
+  padding: 0.75rem 1.5rem; /* Mobile first */
+  color: var(--color-light); /* Texte en blanc */
+  text-decoration: none; /* Pas de soulignement */
+  transition: var(--transition);
+  background-color: var(--color-secondary);
+  border-radius: var(--border-radius-large);
+  font-family: var(--font-retro);
+  font-size: 1rem; /* Mobile first */
+  box-shadow: 0 0 10px rgba(255, 128, 0, 0.5);
+  white-space: nowrap; /* Empêche le texte de se couper */
+  text-align: center; /* Centre le texte dans le bouton */
+  box-sizing: border-box; /* Inclut padding dans width */
+}
+
+ul.liens a:hover {
+  background-color: var(--hover-light-button);
+  box-shadow: var(--shadow-glow);
 }
 
 /* Tablet et desktop */
 @media screen and (min-width: 769px) {
+  .menu-nav {
+    padding: 0 2rem;
+  }
+
   .navH1 {
     font-size: 1.8rem;
+  }
+
+  ul.liens {
+    padding: 2rem;
+    gap: 1.5rem;
+    min-width: 250px;
+  }
+
+  ul.liens a {
+    padding: 1rem 2rem;
+    font-size: var(--font-size-h2);
   }
 }

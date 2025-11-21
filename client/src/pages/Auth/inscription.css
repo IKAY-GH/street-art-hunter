@@ -1,55 +1,7 @@
-.inscription-container {
-  max-width: 300px; /* Mobile first - taille de base */
-  margin: auto 40%;
-  padding: 30px;
-  background-color: var(--color-light);
-  border-radius: var(--border-radius-large);
-  box-shadow: var(--shadow-light);
-}
+/* Import du layout unifié */
+@import "../../assets/styles/page-layout.css";
 
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  margin-top: 15px;
-  font-weight: bold;
-}
-
-input {
-  margin-top: 5px;
-  padding: 10px;
-  border: 1px solid var(--color-gray);
-  border-radius: var(--border-radius-small);
-  font-size: var(--font-size-base);
-}
-
-.form-error {
-  color: var(--color-error);
-  font-size: var(--font-size-small);
-  margin-top: 5px;
-}
-
-#btn-valide {
-  margin-top: 20px;
-  padding: 12px;
-  font-size: var(--font-size-base);
-  background-color: var(--color-success);
-  color: var(--color-light);
-  border: none;
-  border-radius: var(--border-radius-small);
-  cursor: pointer;
-  transition: background-color var(--transition);
-}
-
-#btn-valide:hover {
-  background-color: var(--color-success-hover);
-}
-
-/* Tablet et desktop */
-@media screen and (min-width: 769px) {
-  .inscription-container {
-    max-width: 500px;
-  }
+/* Spécifique à la page d'inscription - ajustement largeur */
+.inscription-content {
+  max-width: 500px !important;
 }

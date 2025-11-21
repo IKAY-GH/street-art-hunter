@@ -1,5 +1,6 @@
 import express from "express";
 import { upload } from "./middlewares/multer";
+import { authenticate, isAdmin } from "./middlewares/auth";
 import artistActions from "./modules/artist/artistActions";
 import artworkActions from "./modules/artwork/artworkActions";
 import discoveredActions from "./modules/discovered/discoveredActions";
@@ -14,7 +15,7 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
-// Define item-related routes
+// ========== ROUTES PUBLIQUES (pas de token requis) ==========
 
 router.get("/api/users", usersActions.browse);
 router.get("/api/users/:id", usersActions.read);
@@ -31,12 +32,10 @@ router.get("admin/dashboard", authMiddleware.auth, adminOnly, (req, res) => {
 router.post("/api/discovered", upload.single("photo"), discoveredActions.add);
 router.use("/discovered", discoveredRouter);
 
-router.get("/api/artist", artistActions.browse);
-router.get("/api/artist/:id", artistActions.read);
-router.post("/api/artist", artistActions.add);
+// Gestion des artworks - Admin uniquement
+router.post("/api/artworks", authenticate, isAdmin, artworkActions.add);
 
-router.get("/api/artworks", artworkActions.browse);
-router.get("/api/artworks/:id", artworkActions.read);
-router.post("/api/artworks", artworkActions.add);
+// Gestion des artists - Admin uniquement
+router.post("/api/artist", authenticate, isAdmin, artistActions.add);
 
 export default router;

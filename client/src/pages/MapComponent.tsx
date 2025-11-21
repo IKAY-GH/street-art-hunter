@@ -4,7 +4,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import ArtworkList from "../components/ArtworkList";
 import ChangeMapView from "../pages/ChangeMapView";
-import "../pages/MapComponent.css";
+import "../assets/styles/page-layout.css";
 
 // Icône personnalisée
 const defaultIcon = new L.Icon({
@@ -39,7 +39,7 @@ export default function MapComponent() {
         () => {
           setError("Impossible d'obtenir votre position.");
           setLoading(false);
-        },
+        }
       );
     } else {
       setError("La géolocalisation n'est pas supportée.");

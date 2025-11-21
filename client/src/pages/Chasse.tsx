@@ -34,7 +34,7 @@ export default function Chasse() {
 
   const savePhotoLocally = (photoData: string) => {
     const existingPhotos = JSON.parse(
-      localStorage.getItem("userPhotos") || "[]",
+      localStorage.getItem("userPhotos") || "[]"
     );
     existingPhotos.push({
       photo: photoData,
@@ -94,30 +94,40 @@ export default function Chasse() {
   };
 
   return (
-    <div className="chasse-page">
-      <video
-        ref={videoRef}
-        autoPlay
-        playsInline
-        tabIndex={-1}
-        className="video-preview"
-      >
-        <track kind="captions" />
-      </video>
-
-      <button type="button" onClick={capturePhoto} className="capture-button">
-        Prendre une photo
-      </button>
-
-      <canvas ref={canvasRef} style={{ display: "none" }} />
-
-      {photo && (
-        <div className="photo-preview">
-          <img src={photo} alt="oeuvre capturée" className="captured-image" />
+    <div className="capture-page">
+      <div className="capture-content">
+        <h1>Capture une œuvre !</h1>
+        <div className="video-container">
+          <video
+            ref={videoRef}
+            autoPlay
+            playsInline
+            tabIndex={-1}
+            className="video-preview"
+          >
+            <track kind="captions" />
+          </video>
         </div>
-      )}
 
-      {uploadStatus && <p className="upload-status">{uploadStatus}</p>}
+        <button
+          type="button"
+          onClick={capturePhoto}
+          className="capture-button"
+          aria-label="Prendre une photo"
+        >
+          📸
+        </button>
+
+        <canvas ref={canvasRef} style={{ display: "none" }} />
+
+        {photo && (
+          <div className="photo-preview">
+            <img src={photo} alt="oeuvre capturée" className="captured-image" />
+          </div>
+        )}
+
+        {uploadStatus && <p className="upload-status">{uploadStatus}</p>}
+      </div>
     </div>
   );
 }

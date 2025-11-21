@@ -128,7 +128,7 @@
 }
 
 /* Mobile first - caché par défaut sur mobile */
-@media screen and (max-width: 812px) {
+@media screen and (max-width: 768px) {
   .desktopTabs {
     display: none;
   }
