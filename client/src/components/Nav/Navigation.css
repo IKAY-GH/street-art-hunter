@@ -39,8 +39,8 @@
 
 .menu-nav button svg {
   display: block;
-  width: 2em;
-  height: 2em;
+  width: 2.5em; /* Agrandi de 2em à 2.5em */
+  height: 2.5em;
 }
 
 .navH1 {
@@ -103,6 +103,12 @@ ul.liens a:hover {
 @media screen and (min-width: 769px) {
   .menu-nav {
     padding: 0 2rem;
+    height: 80px; /* Plus de hauteur sur desktop, similaire au footer */
+  }
+
+  .menu-nav button svg {
+    width: 3em; /* Encore plus grand sur desktop */
+    height: 3em;
   }
 
   .navH1 {

@@ -1,96 +1,83 @@
-.capture-page {
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 80px 20px 120px;
-}
+/* Styles spécifiques pour la page Chasse */
 
-.capture-content {
-  background-color: rgba(29, 29, 29, 0.95); /* Fond sombre semi-transparent */
-  border-radius: var(--border-radius-large);
-  padding: 2rem 1.5rem; /* Mobile first */
-  max-width: 90%;
-  width: 100%;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.capture-page h1 {
-  font-family: var(--font-retro);
-  color: var(--color-primary);
-  font-size: var(--font-size-h1-mobile); /* Mobile first */
-  text-align: center;
-  margin: 0;
-  text-shadow: 0 0 10px rgba(64, 224, 208, 0.8);
-}
-
-.capture-page .video-container {
+/* Conteneur vidéo */
+.video-container {
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 600px; /* Mobile first */
   border-radius: var(--border-radius-large);
   overflow: hidden;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow);
+  margin: 0 auto;
 }
 
-.capture-page video {
+.video-preview {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.capture-page .capture-button {
+/* Bouton de capture */
+.capture-button {
   border-radius: var(--border-radius-full);
-  width: 60px; /* Mobile first */
-  height: 60px;
+  width: 70px; /* Mobile first - plus grand pour accessibilité */
+  height: 70px;
   border: none;
   background-color: var(--color-secondary);
   cursor: pointer;
-  box-shadow: var(--shadow);
+  box-shadow: 0 0 10px rgba(255, 128, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: var(--transition);
+  font-size: 2rem; /* Icône plus grande */
+  margin: 0 auto;
 }
 
-.capture-page .capture-button:hover {
+.capture-button:hover {
   background-color: var(--hover-light-button);
   box-shadow: var(--shadow-glow);
   transform: scale(1.05);
 }
 
-.capture-page .captured-image {
-  max-width: 100%;
+/* Prévisualisation de la photo */
+.photo-preview {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.captured-image {
+  width: 100%;
   border-radius: var(--border-radius-large);
   box-shadow: var(--shadow);
+  display: block;
 }
 
 /* Tablet et desktop */
 @media screen and (min-width: 769px) {
-  .capture-content {
-    padding: 3rem 2.5rem;
-    max-width: 85%;
+  .video-container {
+    max-width: 700px;
   }
 
-  .capture-page h1 {
-    font-size: var(--font-size-h1-desktop);
+  .capture-button {
+    width: 90px;
+    height: 90px;
+    font-size: 2.5rem;
   }
 
-  .capture-page .capture-button {
-    width: 80px;
-    height: 80px;
+  .photo-preview {
+    max-width: 700px;
   }
 }
 
-/* Desktop */
+/* Desktop large */
 @media screen and (min-width: 1024px) {
-  .capture-content {
-    max-width: 700px;
+  .video-container {
+    max-width: 800px;
+  }
+
+  .photo-preview {
+    max-width: 800px;
   }
 }

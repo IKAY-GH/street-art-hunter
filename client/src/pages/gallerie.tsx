@@ -1,10 +1,15 @@
+import "../assets/styles/page-layout.css";
+
 function gallerie() {
   return (
-    <>
-      <main className="gallerie-container">
-        <h2>Gallerie</h2>
-      </main>
-    </>
+    <div className="page-wrapper">
+      <div className="page-content">
+        <h1 className="page-title">Galerie</h1>
+        <p className="page-text">
+          Explorez les oeuvres de street art découvertes.
+        </p>
+      </div>
+    </div>
   );
 }
 

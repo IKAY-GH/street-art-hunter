@@ -1,6 +1,6 @@
 :root {
   /* Fonts */
-  --font-family: "retro-gaming";
+  --font-family: "Segoe UI", Arial, sans-serif;
   --font-retro: "RetroGaming", monospace;
 
   /* Main Colors */
@@ -17,14 +17,16 @@
   --color-gray-light: #f9f9f9;
   --color-gray-border: #ddd;
   --color-black: #000000;
+  --color-white: #ffffff;
+  --color-danger: #ff4444;
 
   /* Typography */
   --font-size-h1-mobile: 2rem;
   --font-size-h1-desktop: 10vh;
   --font-size-h2: 1.5rem;
-  --font-size-base: 16px;
-  --font-size-small: 14px;
-  --font-size-large: 21px;
+  --font-size-base: 22px;
+  --font-size-small: 20px;
+  --font-size-large: 26px;
 
   /* Layout */
   --border-radius: 8px;
@@ -55,17 +57,21 @@ html,
 body {
   height: 100%;
   width: 100%;
+  overflow-x: hidden; /* Empêche le scroll horizontal */
+  overflow-y: auto; /* Permet le scroll vertical */
 }
 
 body {
-  font-family: var(--font-family), monospace;
-  background: url("../images/1febdd3f-7c7e-487f-9b89-721115ed8eb5.png");
+  font-family: var(--font-family);
+  background-image: url("../images/homeBackground.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-color: var(--color-black);
-  background-position: 18%, 30%;
+  background-position: 23% center; /* Mobile first - même position que l'accueil */
+  background-attachment: fixed; /* Background fixe lors du scroll */
   position: relative;
-  overflow: hidden;
+  font-size: 22px;
+  line-height: 1.6;
 }
 
 button {
@@ -75,21 +81,6 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
-
-.nav-button {
-  background-color: var(--color-secondary);
-  border: none;
-  padding: 15px 30px;
-  font-family: var(--font-retro);
-  font-size: var(--font-size-h2);
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 0 10px #ff8000;
-}
-.nav-button:hover {
-  background-color: var(--hover-light-button);
-  box-shadow: var(--shadow-glow);
 }
 
 h1 {
@@ -114,6 +105,10 @@ h2 {
 
 /* Tablet et desktop */
 @media screen and (min-width: 769px) {
+  body {
+    background-position: center center; /* Recentrer sur desktop */
+  }
+
   h1 {
     max-width: 640px;
     font-size: var(--font-size-h1-desktop);

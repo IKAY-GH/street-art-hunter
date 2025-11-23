@@ -38,17 +38,13 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/Mapcomponent",
+        path: "/carte",
         element: <MapComponent />,
       },
 
       {
         path: "/gallerie",
-        element: (
-          <ProtectedRoute>
-            <Gallerie />
-          </ProtectedRoute>
-        ),
+        element: <Gallerie />,
       },
       {
         path: "/instructions",
@@ -56,11 +52,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/chasse",
-        element: (
-          <ProtectedRoute>
-            <Chasse />
-          </ProtectedRoute>
-        ),
+        element: <Chasse />,
       },
       {
         path: "/connexion",

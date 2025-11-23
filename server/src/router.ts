@@ -1,12 +1,11 @@
 import express from "express";
 import { upload } from "./middlewares/multer";
-import { authenticate, isAdmin } from "./middlewares/auth";
+import authMiddleware from "./middlewares/authMiddleware";
 import artistActions from "./modules/artist/artistActions";
 import artworkActions from "./modules/artwork/artworkActions";
 import discoveredActions from "./modules/discovered/discoveredActions";
 import discoveredRouter from "./modules/discovered/discoveredRouter";
 import usersActions from "./modules/user/usersActions";
-import authMiddleware from "./middlewares/authMiddleware";
 import adminOnly from "./middlewares/adminOnly";
 
 const router = express.Router();
@@ -33,9 +32,19 @@ router.post("/api/discovered", upload.single("photo"), discoveredActions.add);
 router.use("/discovered", discoveredRouter);
 
 // Gestion des artworks - Admin uniquement
-router.post("/api/artworks", authenticate, isAdmin, artworkActions.add);
+router.post(
+  "/api/artworks",
+  authMiddleware.auth,
+  authMiddleware.isAdmin,
+  artworkActions.add
+);
 
 // Gestion des artists - Admin uniquement
-router.post("/api/artist", authenticate, isAdmin, artistActions.add);
+router.post(
+  "/api/artist",
+  authMiddleware.auth,
+  authMiddleware.isAdmin,
+  artistActions.add
+);
 
 export default router;

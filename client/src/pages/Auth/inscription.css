@@ -1,7 +1,0 @@
-/* Import du layout unifié */
-@import "../../assets/styles/page-layout.css";
-
-/* Spécifique à la page d'inscription - ajustement largeur */
-.inscription-content {
-  max-width: 500px !important;
-}

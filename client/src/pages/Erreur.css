@@ -1,86 +1,17 @@
-.erreur-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 80px 20px 120px;
-}
+/* Styles spécifiques page Erreur 404 */
 
-.erreur-content {
-  background-color: rgba(29, 29, 29, 0.95); /* Fond sombre semi-transparent */
-  border-radius: var(--border-radius-large);
-  padding: 2rem 1.5rem; /* Mobile first */
-  max-width: 90%;
-  width: 100%;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  text-align: center;
-}
-
-.erreur-page h1 {
-  font-size: 4rem; /* Mobile first - réduit pour mobile */
+/* Titre 404 géant */
+.erreur-title {
+  font-size: 4rem;
   margin: 0;
   color: var(--color-primary);
   text-shadow: 0 0 10px rgba(64, 224, 208, 0.8);
   font-family: var(--font-retro);
 }
 
-.erreur-page p {
-  font-size: 1.2rem; /* Mobile first */
-  margin: 0;
-  max-width: 90%;
-  color: var(--color-light);
-}
-
-.erreur-button {
-  font-size: 1.2rem; /* Mobile first */
-  padding: 12px 24px;
-  background-color: var(--color-secondary);
-  color: var(--color-light);
-  border: none;
-  border-radius: var(--border-radius-large);
-  text-decoration: none;
-  box-shadow: 0 0 10px rgba(255, 128, 0, 0.5);
-  transition: var(--transition);
-  cursor: pointer;
-  font-family: var(--font-retro);
-  display: inline-block;
-}
-
-.erreur-button:hover {
-  background-color: var(--hover-light-button);
-  box-shadow: var(--shadow-glow);
-  transform: scale(1.05);
-}
-
 /* Tablet et desktop */
 @media screen and (min-width: 769px) {
-  .erreur-content {
-    padding: 3rem 2.5rem;
-    max-width: 85%;
-  }
-
-  .erreur-page h1 {
+  .erreur-title {
     font-size: 10rem;
-  }
-
-  .erreur-page p {
-    font-size: 2rem;
-  }
-
-  .erreur-button {
-    font-size: 1.5rem;
-    padding: 15px 30px;
-  }
-}
-
-/* Desktop */
-@media screen and (min-width: 1024px) {
-  .erreur-content {
-    max-width: 700px;
   }
 }

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import "../assets/styles/page-layout.css";
 import "./Chasse.css";
 
 export default function Chasse() {
@@ -94,9 +95,9 @@ export default function Chasse() {
   };
 
   return (
-    <div className="capture-page">
-      <div className="capture-content">
-        <h1>Capture une œuvre !</h1>
+    <div className="page-wrapper">
+      <div className="page-content">
+        <h1 className="page-title">Capture une œuvre !</h1>
         <div className="video-container">
           <video
             ref={videoRef}
@@ -126,7 +127,7 @@ export default function Chasse() {
           </div>
         )}
 
-        {uploadStatus && <p className="upload-status">{uploadStatus}</p>}
+        {uploadStatus && <p className="page-text">{uploadStatus}</p>}
       </div>
     </div>
   );

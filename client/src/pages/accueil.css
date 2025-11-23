@@ -1,25 +1,15 @@
+/* Background géré dans global.css */
 .accueil-container {
-  background-image: url("../assets/images/homeBackground.png");
-  background-size: cover;
-  background-position: 23% center; /* Mobile first - décalé vers la gauche */
-  background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem; /* Espace entre le titre et le bouton */
+  gap: 2rem;
   padding: 20px;
 }
 
 .accueil-container h1 {
-  margin-bottom: 1rem; /* Espace supplémentaire sous le titre */
-}
-
-/* Tablet et desktop - recentrer l'image */
-@media screen and (min-width: 769px) {
-  .accueil-container {
-    background-position: center center;
-  }
+  margin-bottom: 1rem;
 }

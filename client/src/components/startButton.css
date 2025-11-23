@@ -1,4 +1,4 @@
-/* StartButton - Bouton d'accueil responsive et centré */
+/* StartButton - Bouton d'accueil responsive avec variables CSS */
 
 .start-button-link {
   display: inline-block;
@@ -15,9 +15,8 @@
 }
 
 .start-button-link img {
-  /* Mobile first - taille réduite */
   width: 200px;
-  max-width: 80vw; /* Ne jamais dépasser 80% de la largeur de l'écran */
+  max-width: 80vw;
   height: auto;
   display: block;
   filter: drop-shadow(0 0 10px rgba(255, 128, 0, 0.5));

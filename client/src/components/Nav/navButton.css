@@ -10,7 +10,6 @@
   border-radius: var(--border-radius-large);
   cursor: pointer;
   font-family: var(--font-retro);
-  font-size: 1.2rem;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -42,6 +41,5 @@
 @media screen and (min-width: 769px) {
   .nav-button {
     padding: 15px 30px;
-    font-size: var(--font-size-h2);
   }
 }

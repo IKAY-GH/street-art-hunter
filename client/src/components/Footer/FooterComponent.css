@@ -11,7 +11,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.9rem;
   z-index: 100;
 }
 
@@ -40,7 +39,6 @@
   color: var(--color-light);
   text-decoration: none;
   transition: color var(--transition);
-  font-size: 0.85rem; /* Mobile first */
 }
 
 .footer-links a:hover {
@@ -57,11 +55,12 @@
     display: flex;
   }
 
-  .footer-links {
-    gap: 2rem;
+  .desktop-footer,
+  .mobile-footer {
+    padding: 1.5rem 2rem; /* Plus de hauteur sur desktop */
   }
 
-  .footer-links a {
-    font-size: 0.9rem;
+  .footer-links {
+    gap: 2rem;
   }
 }

@@ -5,8 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import * as yup from "yup";
 import type { JwtPayload } from "../../../../server/src/utils/jwt";
 
-import "./connexion.css";
-import "../../assets/styles/global.css";
+import "../../assets/styles/page-layout.css";
 
 const validationSchema = yup.object({
   email: yup
@@ -71,50 +70,64 @@ function Connexion() {
   };
 
   return (
-    <main className="connexion-container">
-      <form onSubmit={handleSubmit(onSubmit)} aria-labelledby="connexion-title">
-        <h2 id="connexion-title">Connexion</h2>
+    <div className="page-wrapper">
+      <div className="page-content connexion-content">
+        <h1 className="page-title">Connexion</h1>
 
-        {/* Email */}
-        <label htmlFor="email">Email</label>
-        <input
-          {...register("email")}
-          type="email"
-          id="email"
-          required
-          aria-invalid={!!errors.email}
-          aria-describedby={errors.email ? "email-error" : undefined}
-        />
-        {errors.email && (
-          <p id="email-error" className="form-error">
-            {errors.email.message}
-          </p>
-        )}
+        <form className="page-form" onSubmit={handleSubmit(onSubmit)}>
+          {/* Email */}
+          <div className="form-group">
+            <label className="form-label" htmlFor="email">
+              Email
+            </label>
+            <input
+              {...register("email")}
+              className="form-input"
+              type="email"
+              id="email"
+              required
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-error" : undefined}
+            />
+            {errors.email && (
+              <p id="email-error" className="form-error">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
 
-        {/* Password */}
-        <label htmlFor="password">Mot de passe</label>
-        <input
-          {...register("password")}
-          type="password"
-          id="password"
-          required
-          aria-invalid={!!errors.password}
-          aria-describedby={errors.password ? "password-error" : undefined}
-        />
-        {errors.password && (
-          <p id="password-error" className="form-error">
-            {errors.password.message}
-          </p>
-        )}
+          {/* Password */}
+          <div className="form-group">
+            <label className="form-label" htmlFor="password">
+              Mot de passe
+            </label>
+            <input
+              {...register("password")}
+              className="form-input"
+              type="password"
+              id="password"
+              required
+              aria-invalid={!!errors.password}
+              aria-describedby={errors.password ? "password-error" : undefined}
+            />
+            {errors.password && (
+              <p id="password-error" className="form-error">
+                {errors.password.message}
+              </p>
+            )}
+          </div>
 
-        {/* Button */}
-        <div>
-          <button id="btn-connexion" type="submit" disabled={isSubmitting}>
+          {/* Button */}
+          <button
+            className="form-button"
+            type="submit"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? "Connexion..." : "Connexion"}
           </button>
-        </div>
-      </form>
-    </main>
+        </form>
+      </div>
+    </div>
   );
 }
 

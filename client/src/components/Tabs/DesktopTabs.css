@@ -1,5 +1,6 @@
+/* Cacher par défaut sur mobile (mobile-first) */
 .desktopTabs {
-  display: flex;
+  display: none;
   flex-direction: row;
   gap: 2rem;
   border: 2px solid var(--color-light);
@@ -144,5 +145,12 @@
   .data-table th,
   .data-table td {
     padding: 0.5rem;
+  }
+}
+
+/* Afficher desktop tabs à partir de 769px */
+@media screen and (min-width: 1030px) {
+  .desktopTabs {
+    display: flex;
   }
 }

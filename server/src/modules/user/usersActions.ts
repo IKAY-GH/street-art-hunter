@@ -4,7 +4,6 @@ import { generateToken } from "../../utils/jwt";
 
 // Import access to data
 import usersRepository from "./usersRepository";
-import { generateToken } from "../../utils/jwt";
 
 // The B of BREAD - Browse (Read All) operation
 const browse: RequestHandler = async (req, res, next) => {
@@ -54,36 +53,21 @@ const login: RequestHandler = async (req, res, next) => {
     // 3. Vérifier le mot de passe avec argon2
     const verified = await argon2.verify(user.password_hash, req.body.password);
 
-    if (verified) {
-      // Générer un token JWT
-      const token = generateToken(users);
-      // Retourner le token
-      res.json({
-        token,
-        user: {
-          id: users.id,
-          email: users.email,
-          pseudo: users.pseudo,
-          role: users.is_admin ? "admin" : "user",
-        },
-      });
-    } else {
-      res.sendStatus(422);
+    if (!verified) {
+      res.status(422).json({ message: "Email ou mot de passe incorrect" });
+      return;
     }
 
-    // 5. Générer le token JWT avec le rôle
-    const token = generateToken({
-      userId: user.id,
-      email: user.email,
-      role: user.is_admin ? "admin" : "user",
-    });
+    // 4. Générer le token JWT
+    const token = generateToken(user);
 
-    // 6. Retourner le token et les infos user (sans le password)
-    const { password_hash, ...userWithoutPassword } = user;
+    // 5. Retourner le token et les infos user (sans le password)
     res.json({
       token,
       user: {
-        ...userWithoutPassword,
+        id: user.id,
+        email: user.email,
+        pseudo: user.pseudo,
         role: user.is_admin ? "admin" : "user",
       },
     });
@@ -140,9 +124,9 @@ const add: RequestHandler = async (req, res, next) => {
 
     // Générer le token JWT pour connexion automatique après inscription
     const token = generateToken({
-      userId: insertId,
+      id: insertId,
       email: newUsers.email,
-      role: newUsers.is_admin ? "admin" : "user",
+      is_admin: newUsers.is_admin,
     });
 
     // Respond with HTTP 201 (Created), le token et les infos user
