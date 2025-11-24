@@ -18,6 +18,11 @@ const validationSchema = yup.object({
     .string()
     .required("Il faut préciser votre email")
     .email("l'email n'est pas valide"),
+  zip_code: yup
+    .number()
+    .required("Il faut préciser votre code postal")
+    .positive("Le code postal doit être un nombre positif")
+    .integer("Le code postal doit être un nombre entier"),
   password: yup
     .string()
     .required("Il faut préciser votre password")
@@ -61,6 +66,7 @@ function Inscription() {
         last_name: data.last_name,
         email: data.email,
         password: data.password,
+        zip_code: data.zip_code,
       };
 
       // Appel à l'API via authService
@@ -216,7 +222,23 @@ function Inscription() {
               <p className="form-error">{errors.email.message}</p>
             )}
           </div>
-
+          <div className="form-group">
+            <label className="form-label" htmlFor="zip_code">
+              Code Postal
+            </label>
+            <input
+              {...register("zip_code", { valueAsNumber: true })}
+              className="form-input"
+              type="number"
+              id="zip_code"
+              autoComplete="postal-code"
+              disabled={isLoading}
+              required
+            />
+            {errors.zip_code && (
+              <p className="form-error">{errors.zip_code.message}</p>
+            )}
+          </div>
           <div className="form-group">
             <label className="form-label" htmlFor="password">
               Mot de passe

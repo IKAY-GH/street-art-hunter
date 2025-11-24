@@ -19,6 +19,8 @@ import AdminRoute from "./routes/adminRoute.tsx";
 import Administrateur from "./pages/administrateur/administrateur.tsx";
 import Classement from "./pages/classement";
 import Gallerie from "./pages/gallerie";
+import Profil from "./pages/Profil";
+import ProtectedRoute from "./routes/ProtectedRoute.tsx";
 
 const router = createBrowserRouter([
   {
@@ -86,6 +88,14 @@ const router = createBrowserRouter([
       {
         path: "/erreur",
         element: <Erreur />,
+      },
+      {
+        path: "/Profil",
+        element: (
+          <ProtectedRoute>
+            <Profil />,
+          </ProtectedRoute>
+        ),
       },
     ],
   },

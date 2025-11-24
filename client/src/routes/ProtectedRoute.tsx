@@ -1,8 +1,9 @@
 import { Navigate } from "react-router-dom";
-import authService from "../services/authService";
+import { useAuth } from "../context/AuthContext";
+import type { ReactNode } from "react";
 
 interface ProtectedRouteProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 /**
@@ -10,9 +11,9 @@ interface ProtectedRouteProps {
  * Redirige vers /connexion si l'utilisateur n'est pas authentifié
  */
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  if (!authService.isAuthenticated()) {
+  const { isAuthenticated } = useAuth();
+  if (!isAuthenticated) {
     return <Navigate to="/connexion" replace />;
   }
-
   return <>{children}</>;
 }

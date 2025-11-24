@@ -17,5 +17,5 @@ export async function login(email: string, password: string) {
   setIsAuthenticated(true);
   setRole(decoded.role);
 
-  localStorage.setItem("jwt", token);
+  sessionStorage.setItem("jwt", token);
 }

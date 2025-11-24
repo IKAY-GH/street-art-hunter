@@ -5,8 +5,8 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3310";
 async function callAPI(endpoint: string, options: RequestInit = {}) {
   const url = `${API_URL}${endpoint}`;
 
-  // Récupérer le token du localStorage
-  const token = localStorage.getItem("token");
+  // Récupérer le token du sessionStorage
+  const token = sessionStorage.getItem("jwt");
 
   try {
     const response = await fetch(url, {
@@ -22,8 +22,8 @@ async function callAPI(endpoint: string, options: RequestInit = {}) {
     if (!response.ok) {
       // Si 401 (non autorisé), déconnecter l'utilisateur
       if (response.status === 401) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
+        sessionStorage.removeItem("jwt");
+        sessionStorage.removeItem("user");
         window.location.href = "/connexion";
       }
 

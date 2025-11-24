@@ -1,14 +1,14 @@
 import { api } from "./api";
 
 // Types
-export interface RegisterData {
+export type RegisterData = {
   pseudo: string;
   first_name: string;
   last_name: string;
   email: string;
   password: string;
-  zip_code?: number;
-}
+  zip_code: number;
+};
 
 export interface LoginData {
   email: string;
@@ -33,7 +33,7 @@ const authService = {
 
     // Stocker le token et les infos user dans sessionStorage
     // La session expire à la fermeture du navigateur
-    sessionStorage.setItem("token", response.token);
+    sessionStorage.setItem("jwt", response.token);
     sessionStorage.setItem("user", JSON.stringify(response.user));
 
     return response;
@@ -45,7 +45,7 @@ const authService = {
 
     // Stocker le token et les infos user dans sessionStorage
     // La session expire à la fermeture du navigateur
-    sessionStorage.setItem("token", response.token);
+    sessionStorage.setItem("jwt", response.token);
     sessionStorage.setItem("user", JSON.stringify(response.user));
 
     return response;
@@ -53,19 +53,19 @@ const authService = {
 
   // Déconnexion
   logout(): void {
-    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("jwt");
     sessionStorage.removeItem("user");
     window.location.href = "/connexion";
   },
 
   // Vérifier si l'utilisateur est connecté
   isAuthenticated(): boolean {
-    return !!sessionStorage.getItem("token");
+    return !!sessionStorage.getItem("jwt");
   },
 
   // Récupérer le token
   getToken(): string | null {
-    return sessionStorage.getItem("token");
+    return sessionStorage.getItem("jwt");
   },
 
   // Récupérer l'utilisateur connecté

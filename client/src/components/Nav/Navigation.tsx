@@ -99,8 +99,19 @@ function Navigation() {
             </li>
             {isAuthenticated && role === "admin" && (
               <li>
-                <Link onClick={closeMenu} to="/administrateur">
+                <Link
+                  className="nav-button"
+                  onClick={closeMenu}
+                  to="/administrateur"
+                >
                   Administrateur
+                </Link>
+              </li>
+            )}
+            {isAuthenticated && (
+              <li>
+                <Link className="nav-button" onClick={closeMenu} to="/Profil">
+                  Mon profil
                 </Link>
               </li>
             )}

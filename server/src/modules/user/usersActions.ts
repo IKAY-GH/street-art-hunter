@@ -4,6 +4,7 @@ import { generateToken } from "../../utils/jwt";
 
 // Import access to data
 import usersRepository from "./usersRepository";
+import type { User } from "./usersRepository";
 
 // The B of BREAD - Browse (Read All) operation
 const browse: RequestHandler = async (req, res, next) => {
@@ -145,4 +146,52 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, hashPassword, login };
+// The E of BREAD - Edit (Update) operation
+const edit: RequestHandler = async (req, res, next) => {
+  try {
+    const userId = Number(req.params.id);
+
+    // Récupérer l'utilisateur existant
+    const existingUser = await usersRepository.read(userId);
+
+    if (!existingUser || existingUser.length === 0) {
+      res.sendStatus(404);
+      return;
+    }
+
+    const user = existingUser[0];
+
+    // Sécurité : un user ne peut modifier que son propre profil (sauf admin)
+    if (req.user?.id !== userId && req.user?.role !== "admin") {
+      res.status(403).json({ message: "Non autorisé" });
+      return;
+    }
+
+    // Préparer les données à mettre à jour (seulement les champs fournis)
+    const updatedUser: User = {
+      ...user,
+      email: req.body.email ?? user.email,
+      avatar_url: req.body.avatar_url ?? user.avatar_url,
+      zip_code: req.body.zip_code ?? user.zip_code,
+      first_name: req.body.first_name ?? user.first_name,
+      last_name: req.body.last_name ?? user.last_name,
+      pseudo: req.body.pseudo ?? user.pseudo,
+      password_hash: user.password_hash, // Ne jamais modifier le password ici
+      is_admin: user.is_admin, // Ne jamais modifier is_admin via cette route
+    };
+
+    // Update the user in database
+    await usersRepository.update(updatedUser, userId);
+
+    // Récupérer l'utilisateur mis à jour
+    const updated = await usersRepository.read(userId);
+
+    // Respond with the updated user
+    res.json(updated[0]);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+export default { browse, read, add, hashPassword, login, edit };

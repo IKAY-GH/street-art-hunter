@@ -24,6 +24,7 @@ router.post(
   usersActions.add
 );
 router.post("/api/users/login", usersActions.login);
+router.put("/api/users/:id", authMiddleware.auth, usersActions.edit);
 router.get("admin/dashboard", authMiddleware.auth, adminOnly, (req, res) => {
   res.json({ message: "Bienvenue administrateur" });
 });

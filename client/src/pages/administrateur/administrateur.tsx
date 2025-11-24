@@ -5,12 +5,12 @@ import MobileTabs from "../../components/Tabs/MobileTabs.tsx";
 
 export default function administrateur() {
   return (
-    <main className="administrator-container">
+    <div className="administrator-container">
       <div className="page-content">
         <h2 className="page-title">Administrateur</h2>
         <MobileTabs />
         <DesktopTabs />
       </div>
-    </main>
+    </div>
   );
 }
