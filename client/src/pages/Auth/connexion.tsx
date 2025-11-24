@@ -118,11 +118,7 @@ function Connexion() {
           </div>
 
           {/* Button */}
-          <button
-            className="form-button"
-            type="submit"
-            disabled={isSubmitting}
-          >
+          <button className="button" type="submit" disabled={isSubmitting}>
             {isSubmitting ? "Connexion..." : "Connexion"}
           </button>
         </form>

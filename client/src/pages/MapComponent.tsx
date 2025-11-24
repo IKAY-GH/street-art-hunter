@@ -60,58 +60,52 @@ export default function MapComponent() {
       <div className="page-content">
         <h1 className="page-title">Les œuvres à proximité</h1>
 
-        <div className="map-content">
-          <div className="map-section">
-            <MapContainer
-              center={currentPosition || [43.604, 1.444]} // Toulouse
-              zoom={13}
-              scrollWheelZoom={true}
-              style={{ width: "100%" }}
-            >
-              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <div className="map-section">
+          <MapContainer
+            center={currentPosition || [43.604, 1.444]} // Toulouse
+            zoom={13}
+            scrollWheelZoom={true}
+            style={{ width: "100%", height: "100%" }}
+          >
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-              {currentPosition && (
-                <>
-                  <ChangeMapView position={currentPosition} />
-                  <Marker position={currentPosition} icon={defaultIcon}>
-                    <Popup>Vous êtes ici 📍</Popup>
-                  </Marker>
-                </>
-              )}
-            </MapContainer>
-
-            <div className="map-buttons">
-              <button
-                type="button"
-                onClick={handleGeolocation}
-                className="form-button"
-              >
-                📍 Me géolocaliser
-              </button>
-              <button
-                type="button"
-                onClick={handleShowNearby}
-                className="form-button"
-              >
-                🎯 Œuvres à proximité
-              </button>
-            </div>
-
-            {loading && (
-              <p className="page-text">Recherche de votre position...</p>
+            {currentPosition && (
+              <>
+                <ChangeMapView position={currentPosition} />
+                <Marker position={currentPosition} icon={defaultIcon}>
+                  <Popup>Vous êtes ici 📍</Popup>
+                </Marker>
+              </>
             )}
-            {error && <p className="error-message">{error}</p>}
+          </MapContainer>
+
+          <div className="map-buttons">
+            <button
+              type="button"
+              onClick={handleGeolocation}
+              className="button"
+            >
+              📍 Me géolocaliser
+            </button>
+            <button type="button" onClick={handleShowNearby} className="button">
+              🎯 Œuvres à proximité
+            </button>
           </div>
 
-          {showNearbyArtworks && currentPosition && (
-            <div className="artwork-card-list">
-              <ArtworkList
-                userLatitude={currentPosition[0]}
-                userLongitude={currentPosition[1]}
-              />
-            </div>
+          {loading && (
+            <p className="page-text">Recherche de votre position...</p>
           )}
+          {error && <p className="error-message">{error}</p>}
         </div>
+
+        {showNearbyArtworks && currentPosition && (
+          <div className="artwork-card-list">
+            <ArtworkList
+              userLatitude={currentPosition[0]}
+              userLongitude={currentPosition[1]}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

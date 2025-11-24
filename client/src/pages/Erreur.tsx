@@ -10,7 +10,7 @@ export default function Erreur() {
         <p className="page-text">
           Oups ! Cette page est introuvable ou votre accés n'y est pas autorisé
         </p>
-        <Link to="/" className="form-button">
+        <Link to="/" className="button">
           ⬅️ Retour à l'accueil
         </Link>
       </div>

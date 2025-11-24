@@ -6,9 +6,7 @@ export default function Instructions() {
     <div className="page-wrapper">
       <div className="page-content">
         <h1 className="page-title">Instructions de la Chasse au Street Art</h1>
-        <h2 className="page-subtitle">
-          Bienvenue dans la chasse au Street Art ! Voici comment jouer :
-        </h2>
+        <h2>Bienvenue dans la chasse au Street Art ! Voici comment jouer :</h2>
         <ul className="page-list">
           <li>
             📸 Explore la ville et utilise ton appareil photo pour capturer des
@@ -28,7 +26,7 @@ export default function Instructions() {
         <Link
           to="/chasse"
           aria-Label="Bouton commencer la chasse"
-          className="form-button"
+          className="button"
         >
           Commencer la chasse
         </Link>

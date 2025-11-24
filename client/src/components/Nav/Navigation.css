@@ -3,14 +3,13 @@
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  background-color: var(--color-dark);
   width: 100%;
+  background-color: var(--color-dark);
   height: 60px;
   box-shadow: var(--shadow);
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem; /* Mobile first - padding réduit */
+  padding: 1rem 2rem;
   z-index: 999;
 }
 
@@ -22,7 +21,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   color: var(--color-light); /* Blanc par défaut */
   transition: var(--transition);
 }

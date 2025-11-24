@@ -206,8 +206,6 @@ export default function Profil() {
 
         {/* Section Identité */}
         <div className="page-section">
-          <h2 className="page-subtitle">Identité</h2>
-
           {isEditing !== "identity" ? (
             <>
               <p className="page-text">Pseudo : {userData.pseudo}</p>
@@ -217,7 +215,7 @@ export default function Profil() {
               <p className="page-text">Code postal : {userData.zip_code}</p>
 
               <button
-                className="form-button"
+                className="button"
                 onClick={() => setIsEditing("identity")}
               >
                 Modifier
@@ -300,12 +298,12 @@ export default function Profil() {
                 />
               </div>
 
-              <button type="submit" className="form-button">
+              <button type="submit" className="button">
                 Enregistrer
               </button>
               <button
                 type="button"
-                className="form-button"
+                className="button"
                 onClick={() => setIsEditing(null)}
               >
                 Annuler

@@ -1,0 +1,43 @@
+.dev-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+
+.dev-card {
+  background-color: var(--color-light);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border: 1px solid var(--color-gray-border);
+}
+
+.dev-card h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-dark);
+}
+
+.dev-card p {
+  margin: 0 0 1rem 0;
+  color: var(--color-dark);
+}
+
+.dev-card a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.dev-card a:hover {
+  color: var(--hover-light-button);
+  text-decoration: underline;
+}
+@media screen and (min-width: 1024px) {
+  .dev-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}

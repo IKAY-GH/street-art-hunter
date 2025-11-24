@@ -3,10 +3,12 @@
   display: flex;
   background-color: var(--color-light);
   border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
   margin: 1rem 0;
   overflow: hidden;
   max-width: 500px; /* Limite la largeur max */
+  padding: 1rem;
+  width: 100%;
+  align-items: center;
 }
 
 /* Image à gauche */
@@ -28,6 +30,15 @@
   flex-grow: 1; /* Prend le reste de la largeur */
 }
 
+.artwork-info h3 {
+  margin-top: 0;
+  color: var(--color-dark);
+}
+.artwork-title {
+  font-weight: bold;
+  color: var(--color-dark);
+  margin-bottom: 0.25rem;
+}
 /* Lien vers la carte */
 .map-link {
   color: var(--color-link);

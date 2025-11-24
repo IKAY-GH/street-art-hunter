@@ -74,15 +74,6 @@ body {
   line-height: 1.6;
 }
 
-button {
-  padding: 0.4rem 1rem;
-  background-color: transparent;
-  color: var(--color-light);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 h1 {
   padding: 0.5rem;
   font-family: var(--font-retro);
@@ -97,10 +88,64 @@ h1 {
 
 h2 {
   font-family: var(--font-retro);
-  color: aliceblue;
+  color: var(--color-primary);
   font-size: var(--font-size-h2);
   display: flex;
   flex-direction: center;
+  margin: 1.5rem 0 0.75rem 0;
+}
+
+button,
+.button {
+  padding: 1rem 2rem;
+  background-color: var(--color-secondary);
+  color: var(--color-light);
+  border: none;
+  border-radius: var(--border-radius-large);
+  cursor: pointer;
+  font-family: var(--font-retro);
+  transition: var(--transition);
+  box-shadow: 0 0 10px rgba(255, 128, 0, 0.5);
+  font-size: 1.375rem; /* 22px - texte plus gros */
+  text-align: center;
+  display: inline-block;
+  text-decoration: none; /* Pour les liens stylés en bouton */
+  width: fit-content;
+  margin: 0 auto; /* Centre le bouton si besoin */
+}
+
+button:hover,
+.button:hover {
+  background-color: var(--hover-light-button);
+  box-shadow: var(--shadow-glow);
+  transform: scale(1.02);
+}
+
+button:disabled,
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.success-message {
+  background-color: rgba(0, 255, 0, 0.1);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.error-message {
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid var(--color-error);
+  color: var(--color-error);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 /* Tablet et desktop */

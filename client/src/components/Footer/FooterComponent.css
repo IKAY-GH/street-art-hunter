@@ -1,6 +1,7 @@
 /* Footer commun - styles de base */
 .desktop-footer,
 .mobile-footer {
+  display: flex;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -8,7 +9,6 @@
   background-color: var(--color-dark);
   color: var(--color-light);
   padding: 1rem 2rem;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 100;

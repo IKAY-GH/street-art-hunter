@@ -1,9 +1,10 @@
-import "../assets/styles/page-layout.css";
+import "../../assets/styles/page-layout.css";
+import "../../assets/styles/footer-pages.css";
 
 export default function CGU() {
   return (
-    <div className="page-wrapper-with-bg">
-      <div className="page-content cgu-content">
+    <div className="page-wrapper">
+      <div className="page-content">
         <h1 className="page-title">Conditions Générales d'Utilisation</h1>
 
         <section className="page-section">

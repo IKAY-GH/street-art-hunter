@@ -111,40 +111,14 @@ function Inscription() {
   };
   return (
     <div className="page-wrapper">
-      <div className="page-content inscription-content">
+      <div className="page-content">
         <h1 className="page-title">Inscription</h1>
 
         {successMessage && (
-          <div
-            style={{
-              backgroundColor: "rgba(0, 255, 0, 0.1)",
-              border: "1px solid var(--color-primary)",
-              color: "var(--color-primary)",
-              padding: "1rem",
-              borderRadius: "var(--border-radius)",
-              marginBottom: "1rem",
-              textAlign: "center",
-            }}
-          >
-            {successMessage}
-          </div>
+          <div className="success-message">{successMessage}</div>
         )}
 
-        {errorMessage && (
-          <div
-            style={{
-              backgroundColor: "rgba(255, 0, 0, 0.1)",
-              border: "1px solid var(--color-error)",
-              color: "var(--color-error)",
-              padding: "1rem",
-              borderRadius: "var(--border-radius)",
-              marginBottom: "1rem",
-              textAlign: "center",
-            }}
-          >
-            ⚠️ {errorMessage}
-          </div>
-        )}
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
 
         <form className="page-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
@@ -275,7 +249,7 @@ function Inscription() {
             )}
           </div>
 
-          <button className="form-button" type="submit" disabled={isLoading}>
+          <button className="button" type="submit" disabled={isLoading}>
             {isLoading ? "Inscription en cours..." : "Inscription"}
           </button>
         </form>

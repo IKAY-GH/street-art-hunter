@@ -14,7 +14,7 @@ export default function ArtworkCard({ artwork }: Props) {
         className="artwork-image"
       />
       <div className="artwork-info">
-        <h3>{artwork.title}</h3>
+        <h3 className="artwork-title">{artwork.title}</h3>
         <p>
           <strong>{artwork.artist}</strong> · {artwork.address}
         </p>

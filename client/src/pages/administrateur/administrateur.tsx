@@ -1,6 +1,6 @@
 import "../../assets/styles/page-layout.css";
+import "./administrateur.css";
 import DesktopTabs from "../../components/Tabs/DesktopTabs";
-
 import MobileTabs from "../../components/Tabs/MobileTabs.tsx";
 
 export default function administrateur() {
