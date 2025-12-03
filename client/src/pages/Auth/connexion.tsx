@@ -75,7 +75,6 @@ function Connexion() {
         <h1 className="page-title">Connexion</h1>
 
         <form className="page-form" onSubmit={handleSubmit(onSubmit)}>
-          {/* Email */}
           <div className="form-group">
             <label className="form-label" htmlFor="email">
               Email
@@ -96,7 +95,6 @@ function Connexion() {
             )}
           </div>
 
-          {/* Password */}
           <div className="form-group">
             <label className="form-label" htmlFor="password">
               Mot de passe
@@ -117,7 +115,6 @@ function Connexion() {
             )}
           </div>
 
-          {/* Button */}
           <button className="button" type="submit" disabled={isSubmitting}>
             {isSubmitting ? "Connexion..." : "Connexion"}
           </button>

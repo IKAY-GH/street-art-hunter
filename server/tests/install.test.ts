@@ -1,6 +1,6 @@
 // Load environment variables from .env file
 import "dotenv/config";
-
+console.log("JWT_SECRET:", process.env.JWT_SECRET);
 import fs from "node:fs";
 
 import databaseClient from "../database/client";
@@ -39,7 +39,7 @@ describe("Installation", () => {
   // Test: Check if the database migration scripts have been executed
   test("You have executed the db:migrate scripts", async () => {
     // Query the 'item' table to check if any data has been inserted
-    const [rows] = await databaseClient.query<Rows>("select * from item");
+    const [rows] = await databaseClient.query<Rows>("select * from artist");
 
     // Expecting rows to be returned, indicating successful migration
     expect(rows.length).toBeGreaterThanOrEqual(0);

@@ -1,11 +1,9 @@
 :root {
-  /* Fonts */
-  --font-family: "Segoe UI", Arial, sans-serif;
+  --font-family: "Helvetica", Arial, sans-serif;
   --font-retro: "RetroGaming", monospace;
 
-  /* Main Colors */
   --color-primary: #40e0d0;
-  --color-secondary: #ff8000;
+  --color-secondary: #ff8000f0;
   --color-light: aliceblue;
   --color-dark: #1d1d1d;
   --color-text: #333;
@@ -18,9 +16,7 @@
   --color-gray-border: #ddd;
   --color-black: #000000;
   --color-white: #ffffff;
-  --color-danger: #ff4444;
 
-  /* Typography */
   --font-size-h1-mobile: 2rem;
   --font-size-h1-desktop: 10vh;
   --font-size-h2: 1.5rem;
@@ -28,13 +24,11 @@
   --font-size-small: 20px;
   --font-size-large: 26px;
 
-  /* Layout */
   --border-radius: 8px;
   --border-radius-small: 6px;
   --border-radius-large: 10px;
   --border-radius-full: 50%;
 
-  /* Effects */
   --transition: 0.3s ease;
   --shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -46,7 +40,10 @@
   font-family: "RetroGaming";
   src: url("../font-family/RetroGamingFont.ttf") format("truetype");
 }
-
+@font-face {
+  font-family: "Helvetica";
+  src: url("../font-family/Helvetica.ttf") format("truetype");
+}
 * {
   margin: 0;
   padding: 0;
@@ -57,8 +54,8 @@ html,
 body {
   height: 100%;
   width: 100%;
-  overflow-x: hidden; /* Empêche le scroll horizontal */
-  overflow-y: auto; /* Permet le scroll vertical */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -67,8 +64,8 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-color: var(--color-black);
-  background-position: 23% center; /* Mobile first - même position que l'accueil */
-  background-attachment: fixed; /* Background fixe lors du scroll */
+  background-position: 23% center;
+  background-attachment: fixed;
   position: relative;
   font-size: 22px;
   line-height: 1.6;
@@ -79,7 +76,7 @@ h1 {
   font-family: var(--font-retro);
   color: var(--color-primary);
   text-align: center;
-  font-size: var(--font-size-h1-mobile); /* Mobile first - taille de base */
+  font-size: var(--font-size-h1-mobile);
   text-shadow: 0 0 6px rgba(28, 219, 197, 0.92),
     0 0 30px rgba(202, 228, 225, 0.34), 0 0 12px rgba(30, 132, 242, 0.52),
     0 0 21px rgba(30, 132, 242, 0.92), 0 0 34px rgba(30, 132, 242, 0.78),
@@ -106,12 +103,12 @@ button,
   font-family: var(--font-retro);
   transition: var(--transition);
   box-shadow: 0 0 10px rgba(255, 128, 0, 0.5);
-  font-size: 1.375rem; /* 22px - texte plus gros */
+  font-size: 1.375rem;
   text-align: center;
   display: inline-block;
-  text-decoration: none; /* Pour les liens stylés en bouton */
+  text-decoration: none;
   width: fit-content;
-  margin: 0 auto; /* Centre le bouton si besoin */
+  margin: 0 auto;
 }
 
 button:hover,
@@ -148,10 +145,9 @@ button:disabled,
   text-align: center;
 }
 
-/* Tablet et desktop */
 @media screen and (min-width: 769px) {
   body {
-    background-position: center center; /* Recentrer sur desktop */
+    background-position: center center;
   }
 
   h1 {

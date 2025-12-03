@@ -1,6 +1,3 @@
-/* Styles spécifiques page Erreur 404 */
-
-/* Titre 404 géant */
 .erreur-title {
   font-size: 4rem;
   margin: 0;
@@ -9,7 +6,6 @@
   font-family: var(--font-retro);
 }
 
-/* Tablet et desktop */
 @media screen and (min-width: 769px) {
   .erreur-title {
     font-size: 10rem;

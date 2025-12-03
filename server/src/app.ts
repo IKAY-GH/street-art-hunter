@@ -5,10 +5,6 @@ import express from "express";
 
 const app = express();
 
-/* ************************************************************************* */
-
-// ... (le reste inchangé)
-
 if (process.env.CLIENT_URL != null) {
   app.use(
     cors({
@@ -34,17 +30,11 @@ app.use(router);
 import discoveredRouter from "./modules/discovered/discoveredRouter";
 app.use("/api/discovered", discoveredRouter);
 
-// ... (le reste inchangé)
-
-// Serve server resources
-
-// ** Ajout pour servir le dossier uploads en statique **
 const uploadsPath = path.join(__dirname, "../../uploads");
 if (fs.existsSync(uploadsPath)) {
   app.use("/uploads", express.static(uploadsPath));
 }
 
-// Serve client resources
 const clientBuildPath = path.join(__dirname, "../../client/dist");
 
 if (fs.existsSync(clientBuildPath)) {
@@ -55,8 +45,6 @@ if (fs.existsSync(clientBuildPath)) {
   });
 }
 
-/* ************************************************************************* */
-
 import type { ErrorRequestHandler } from "express";
 
 const logErrors: ErrorRequestHandler = (err, req, res, next) => {
@@ -66,7 +54,5 @@ const logErrors: ErrorRequestHandler = (err, req, res, next) => {
 };
 
 app.use(logErrors);
-
-/* ************************************************************************* */
 
 export default app;

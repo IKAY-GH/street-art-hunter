@@ -1,18 +1,6 @@
 import { useEffect, useState } from "react";
 import type { User } from "../../../../../server/src/modules/user/usersRepository";
 
-// type User = {
-//   id: number;
-//   email: string;
-//   created_at?: Date;
-//   updated_at?: Date;
-//   zip_code: number;
-//   last_name: string;
-//   first_name: string;
-//   pseudo: string;
-//   is_admin: boolean;
-// };
-
 export default function TabUser() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);

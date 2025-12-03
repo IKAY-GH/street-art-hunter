@@ -1,5 +1,3 @@
-/* StartButton - Bouton d'accueil responsive avec variables CSS */
-
 .start-button-link {
   display: inline-block;
   transition: transform var(--transition);
@@ -26,14 +24,12 @@
   filter: drop-shadow(0 0 15px rgba(255, 128, 0, 0.8));
 }
 
-/* Tablet */
 @media screen and (min-width: 769px) {
   .start-button-link img {
     width: 280px;
   }
 }
 
-/* Desktop */
 @media screen and (min-width: 1024px) {
   .start-button-link img {
     width: 350px;

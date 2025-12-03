@@ -1,8 +1,4 @@
-/* navButton - Bouton de navigation réutilisable et accessible */
-/* Utilise les variables de global.css pour cohérence */
-
 .nav-button {
-  /* Mobile first - tailles de base */
   padding: 12px 24px;
   background-color: var(--color-secondary);
   color: var(--color-light);
@@ -37,7 +33,6 @@
   box-shadow: none;
 }
 
-/* Tablet et desktop */
 @media screen and (min-width: 769px) {
   .nav-button {
     padding: 15px 30px;

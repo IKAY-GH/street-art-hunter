@@ -1,120 +1,98 @@
--- Table: user
-CREATE TABLE user (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    avatar_url VARCHAR(255),
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    zip_code INT,
-    last_name VARCHAR(100) NOT NULL,
-    first_name VARCHAR(100) NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
-    pseudo VARCHAR(20) NOT NULL,
-    is_admin TINYINT(1) NULL
-);
+-- MySQL dump 10.13  Distrib 8.0.44, for Win64 (x86_64)
+--
+-- Host: localhost    Database: schema_sah_v1
+-- ------------------------------------------------------
+-- Server version	8.0.43
+-- Table structure for table `artist`
+--
 
--- Table: artist
-CREATE TABLE artist (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    bio TEXT,
-    profile_image_url VARCHAR(255),
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+DROP TABLE IF EXISTS `artist`;
 
--- Table: artwork
-CREATE TABLE artwork (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(100),
-    description TEXT,
-    image_url VARCHAR(255),
-    latitude DECIMAL(9, 6) NOT NULL,
-    longitude DECIMAL(9, 6) NOT NULL,
-    artist_id INT,
-    points INT DEFAULT 10,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (artist_id) REFERENCES artist (id)
-);
+CREATE TABLE `artist` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `bio` text,
+  `profile_image_url` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Table structure for table `artwork`
+--
 
+DROP TABLE IF EXISTS `artwork`;
 
--- Table: discovered_artworks
+CREATE TABLE `artwork` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
+  `description` text,
+  `image_url` varchar(255) DEFAULT NULL,
+  `latitude` decimal(9,6) NOT NULL,
+  `longitude` decimal(9,6) NOT NULL,
+  `artist_id` int DEFAULT NULL,
+  `points` int DEFAULT '10',
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `artist_id` (`artist_id`),
+  CONSTRAINT `artwork_ibfk_1` FOREIGN KEY (`artist_id`) REFERENCES `artist` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE discovered_artwork (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NOT NULL,             
-  artwork_id INT NOT NULL, 
-  photo_url VARCHAR(255),          
-  discovered_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  
-  FOREIGN KEY (user_id) REFERENCES user(id),
-  FOREIGN KEY (artwork_id) REFERENCES artwork(id),
-  UNIQUE (user_id, artwork_id)     
-);
+--
+-- Table structure for table `discovered_artwork`
+--
 
--- Table: score
-CREATE TABLE score (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    total_points INT DEFAULT 0,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES user (id)
-);
+DROP TABLE IF EXISTS `discovered_artwork`;
 
--- -- Quelques données de test
--- INSERT INTO user (email, last_name, first_name, password_hash, zip_code)
--- VALUES ('test@example.com', 'Durand', 'Alice', 'hashedpassword123', '75001');
--- Quelques données de test
-INSERT INTO
-    user (
-        pseudo,
-        email,
-        last_name,
-        first_name,
-        password_hash,
-        zip_code
-    )
-VALUES (
-        'Dodolasaumure',
-        'test@example.com',
-        'Durand',
-        'Alice',
-        'hashedpassword123',
-        '75001'
-    );
+CREATE TABLE `discovered_artwork` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `artwork_id` int NOT NULL,
+  `photo_url` varchar(255) DEFAULT NULL,
+  `discovered_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`artwork_id`),
+  KEY `artwork_id` (`artwork_id`),
+  CONSTRAINT `discovered_artwork_ibfk_2` FOREIGN KEY (`artwork_id`) REFERENCES `artwork` (`id`),
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- INSERT INTO artist (name, bio)
--- VALUES ('Banksy', 'Artiste anonyme connu pour ses œuvres engagées.');
-INSERT INTO
-    artist (name, bio)
-VALUES (
-        'Banksy',
-        'Artiste anonyme connu pour ses œuvres engagées.'
-    );
+--
+-- Table structure for table `score`
+--
 
--- INSERT INTO artwork (title, description, image_url, latitude, longitude, artist_id)
--- VALUES ('Street Art Example', 'Un graffiti dans le centre-ville.', 'https://example.com/art.jpg', 48.8566, 2.3522, 1);
-INSERT INTO
-    artwork (
-        title,
-        description,
-        image_url,
-        latitude,
-        longitude,
-        artist_id
-    )
-VALUES (
-        'Street Art Example',
-        'Un graffiti dans le centre-ville.',
-        'https://example.com/art.jpg',
-        48.8566,
-        2.3522,
-        1
-    );
+DROP TABLE IF EXISTS `score`;
 
--- INSERT INTO discovered_artwork (user_id, artwork_id)
--- VALUES (1, 1);
-INSERT INTO discovered_artwork (user_id, artwork_id) VALUES (1, 1);
+CREATE TABLE `score` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `total_points` int DEFAULT '0',
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO score (user_id, total_points) VALUES (1, 10);
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) NOT NULL,
+  `avatar_url` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `zip_code` int DEFAULT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `pseudo` varchar(20) NOT NULL,
+  `is_admin` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+

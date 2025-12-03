@@ -1,26 +1,21 @@
-// Configuration de base
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3310";
 
-// Fonction générique pour appeler l'API
 async function callAPI(endpoint: string, options: RequestInit = {}) {
   const url = `${API_URL}${endpoint}`;
 
-  // Récupérer le token du sessionStorage
   const token = sessionStorage.getItem("jwt");
 
   try {
     const response = await fetch(url, {
       headers: {
         "Content-Type": "application/json",
-        ...(token && { Authorization: `Bearer ${token}` }), // Ajouter le token si présent
+        ...(token && { Authorization: `Bearer ${token}` }),
         ...options.headers,
       },
       ...options,
     });
 
-    // Si la réponse n'est pas OK, lancer une erreur
     if (!response.ok) {
-      // Si 401 (non autorisé), déconnecter l'utilisateur
       if (response.status === 401) {
         sessionStorage.removeItem("jwt");
         sessionStorage.removeItem("user");
@@ -31,7 +26,6 @@ async function callAPI(endpoint: string, options: RequestInit = {}) {
       throw new Error(errorData.message || `Erreur ${response.status}`);
     }
 
-    // Retourner les données JSON
     return await response.json();
   } catch (error) {
     console.error("Erreur API:", error);
@@ -39,14 +33,11 @@ async function callAPI(endpoint: string, options: RequestInit = {}) {
   }
 }
 
-// Fonctions simplifiées pour chaque méthode HTTP
 export const api = {
-  // GET - Récupérer des données
   get: (endpoint: string) => {
     return callAPI(endpoint, { method: "GET" });
   },
 
-  // POST - Envoyer des données
   post: (endpoint: string, data: any) => {
     return callAPI(endpoint, {
       method: "POST",
@@ -54,7 +45,6 @@ export const api = {
     });
   },
 
-  // PUT - Mettre à jour
   put: (endpoint: string, data: any) => {
     return callAPI(endpoint, {
       method: "PUT",
@@ -62,7 +52,6 @@ export const api = {
     });
   },
 
-  // DELETE - Supprimer
   delete: (endpoint: string) => {
     return callAPI(endpoint, { method: "DELETE" });
   },

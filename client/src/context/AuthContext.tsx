@@ -26,7 +26,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [role, setRole] = useState<"user" | "admin" | null>(null);
 
-  // Au montage du composant, vérifier si un token existe dans sessionStorage
   useEffect(() => {
     console.log("🔍 AuthContext useEffect déclenché");
     const token = sessionStorage.getItem("jwt");
@@ -37,7 +36,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
         const decoded = jwtDecode<JwtPayload>(token);
         console.log("✅ Token décodé:", decoded);
 
-        // Vérifier si le token n'est pas expiré
         if (decoded.exp && decoded.exp * 1000 > Date.now()) {
           console.log("✅ Token valide, mise à jour de l'état");
           setIsAuthenticated(true);
@@ -45,19 +43,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
           console.log("✅ État après mise à jour - isAuth devrait être true");
         } else {
           console.log("❌ Token expiré");
-          // Token expiré, le supprimer
+
           sessionStorage.removeItem("jwt");
         }
       } catch (error) {
         console.log("❌ Erreur décodage token:", error);
-        // Token invalide, le supprimer
+
         sessionStorage.removeItem("jwt");
       }
     }
   }, [setIsAuthenticated, setRole]);
-  
+
   const logout = () => {
-    // Supprimer TOUTES les données de session
     sessionStorage.removeItem("jwt");
     sessionStorage.removeItem("user");
     setIsAuthenticated(false);

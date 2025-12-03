@@ -29,6 +29,6 @@ export default function Modal({
         Fermer
       </button>
     </dialog>,
-    document.body,
+    document.body
   );
 }

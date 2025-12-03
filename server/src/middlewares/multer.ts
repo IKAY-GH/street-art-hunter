@@ -4,7 +4,6 @@ import multer from "multer";
 
 const uploadDir = path.join(__dirname, "../../public/uploads");
 
-// Créer le dossier s'il n'existe pas (important)
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }

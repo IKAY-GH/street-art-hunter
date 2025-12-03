@@ -26,6 +26,7 @@ export default function ArtworkCard({ artwork }: Props) {
           target="_blank"
           rel="noopener noreferrer"
           className="map-link"
+          aria-label={`Voir ${artwork.title} sur Google Maps (nouvelle fenêtre)`}
         >
           Voir sur Google Maps
         </a>

@@ -4,9 +4,9 @@
   background-color: var(--color-dark);
   position: fixed;
   left: 0;
-  bottom: 60px; /* Juste au-dessus du footer (hauteur footer ≈ 60px) */
+  bottom: 60px;
   width: 100vw;
-  z-index: 99; /* Juste en dessous du footer pour ne pas le couvrir */
+  z-index: 99;
   justify-content: space-around;
   align-items: center;
   padding: 0.75rem 0;
@@ -33,10 +33,9 @@
   width: 2rem;
   height: auto;
   transition: var(--transition);
-  filter: invert(1); /* Change noir → blanc */
+  filter: invert(1);
 }
 
-/* Tablet et desktop - cacher mobileTabs */
 @media screen and (min-width: 1030px) {
   .mobileTabs {
     display: none;

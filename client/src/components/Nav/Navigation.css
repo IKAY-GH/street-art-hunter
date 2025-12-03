@@ -9,11 +9,10 @@
   box-shadow: var(--shadow);
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0 2rem;
   z-index: 999;
 }
 
-/* Boutons avec icônes (HomeButton et floating-btn) */
 .menu-nav button {
   background: transparent;
   border: none;
@@ -21,13 +20,22 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  color: var(--color-light); /* Blanc par défaut */
+  justify-content: center;
+  color: var(--color-light);
   transition: var(--transition);
+  flex-shrink: 0;
+  height: 60px;
 }
 
+.menu-nav button:first-of-type {
+  margin-left: -0.5rem;
+}
+
+.menu-nav button:last-of-type {
+  margin-right: -0.5rem;
+}
 .menu-nav button:hover {
-  color: var(--color-gray); /* Même hover que footer */
+  color: var(--color-gray);
 }
 
 .menu-nav button:focus-visible {
@@ -38,59 +46,66 @@
 
 .menu-nav button svg {
   display: block;
-  width: 2.5em; /* Agrandi de 2em à 2.5em */
+  width: 2.5em;
   height: 2.5em;
 }
 
 .navH1 {
   font-family: var(--font-retro);
   color: var(--color-primary);
-  font-size: 1rem; /* Mobile first - taille de base */
+  font-size: 1rem;
   margin: 0;
   text-shadow: 0 0 10px rgba(64, 224, 208, 0.8);
+  flex-grow: 1;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.nav-spacer {
+  flex-grow: 1;
 }
 
 ul.liens {
   position: fixed;
-  top: 60px; /* Commence après la barre de navigation */
-  bottom: 60px; /* S'arrête avant le footer mobile */
-  right: 0; /* Aligné à droite */
-  left: auto; /* Pas de contrainte à gauche */
+  top: 60px;
+  bottom: 60px;
+  right: 0;
+  left: auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Boutons alignés à droite */
-  justify-content: flex-start; /* Commence en haut, sous le burger */
-  padding: 1rem; /* Mobile first - padding réduit */
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 1rem;
   text-align: right;
-  gap: 1rem; /* Mobile first - gap réduit pour mobile */
+  gap: 1rem;
   background-color: var(--color-dark);
   list-style: none;
   margin: 0;
-  z-index: 998; /* En dessous de la nav */
-  overflow-y: auto; /* Scroll si nécessaire */
-  min-width: 200px; /* Largeur minimale sur mobile */
-  max-width: 90vw; /* Ne pas dépasser 90% de l'écran */
+  z-index: 998;
+  overflow-y: auto;
+  min-width: 200px;
+  max-width: 90vw;
 }
 
 ul.liens li {
-  width: 100%; /* Toutes les largeurs identiques */
+  width: 100%;
 }
 
 ul.liens a {
-  display: block; /* Pour que width fonctionne */
-  width: 100%; /* Prend toute la largeur du li */
-  padding: 0.75rem 1.5rem; /* Mobile first */
-  color: var(--color-light); /* Texte en blanc */
-  text-decoration: none; /* Pas de soulignement */
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  color: var(--color-light);
+  text-decoration: none;
   transition: var(--transition);
   background-color: var(--color-secondary);
   border-radius: var(--border-radius-large);
   font-family: var(--font-retro);
-  font-size: 1rem; /* Mobile first */
+  font-size: 1rem;
   box-shadow: 0 0 10px rgba(255, 128, 0, 0.5);
-  white-space: nowrap; /* Empêche le texte de se couper */
-  text-align: center; /* Centre le texte dans le bouton */
-  box-sizing: border-box; /* Inclut padding dans width */
+  white-space: nowrap;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 ul.liens a:hover {
@@ -98,15 +113,18 @@ ul.liens a:hover {
   box-shadow: var(--shadow-glow);
 }
 
-/* Tablet et desktop */
 @media screen and (min-width: 769px) {
   .menu-nav {
     padding: 0 2rem;
-    height: 80px; /* Plus de hauteur sur desktop, similaire au footer */
+    height: 80px;
   }
 
+  .menu-nav button {
+    padding: 0.75rem;
+    height: 80px;
+  }
   .menu-nav button svg {
-    width: 3em; /* Encore plus grand sur desktop */
+    width: 3em;
     height: 3em;
   }
 

@@ -7,7 +7,6 @@ import ChangeMapView from "../pages/ChangeMapView";
 import "../assets/styles/page-layout.css";
 import "./MapComponent.css";
 
-// Icône personnalisée
 const defaultIcon = new L.Icon({
   iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
   iconSize: [25, 41],
@@ -61,23 +60,25 @@ export default function MapComponent() {
         <h1 className="page-title">Les œuvres à proximité</h1>
 
         <div className="map-section">
-          <MapContainer
-            center={currentPosition || [43.604, 1.444]} // Toulouse
-            zoom={13}
-            scrollWheelZoom={true}
-            style={{ width: "100%", height: "100%" }}
-          >
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <div className="map-container">
+            <MapContainer
+              center={currentPosition || [43.604, 1.444]}
+              zoom={13}
+              scrollWheelZoom={true}
+              style={{ width: "100%", height: "100%" }}
+            >
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-            {currentPosition && (
-              <>
-                <ChangeMapView position={currentPosition} />
-                <Marker position={currentPosition} icon={defaultIcon}>
-                  <Popup>Vous êtes ici 📍</Popup>
-                </Marker>
-              </>
-            )}
-          </MapContainer>
+              {currentPosition && (
+                <>
+                  <ChangeMapView position={currentPosition} />
+                  <Marker position={currentPosition} icon={defaultIcon}>
+                    <Popup>Vous êtes ici 📍</Popup>
+                  </Marker>
+                </>
+              )}
+            </MapContainer>
+          </div>
 
           <div className="map-buttons">
             <button

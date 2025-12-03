@@ -9,7 +9,6 @@ if (!JWT_SECRET) {
 export function generateToken(
   user: User | Pick<User, "id" | "email" | "is_admin">
 ) {
-  // Gérer is_admin comme number (0, 1) ou boolean (false, true) ou null
   const role = user.is_admin ? "admin" : "user";
 
   return jwt.sign(

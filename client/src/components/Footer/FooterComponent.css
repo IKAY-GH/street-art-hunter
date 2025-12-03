@@ -1,4 +1,3 @@
-/* Footer commun - styles de base */
 .desktop-footer,
 .mobile-footer {
   display: flex;
@@ -14,7 +13,6 @@
   z-index: 100;
 }
 
-/* Mobile first - afficher SEULEMENT mobile-footer par défaut */
 .desktop-footer {
   display: none;
 }
@@ -29,7 +27,7 @@
 
 .footer-links {
   display: flex;
-  gap: 1rem; /* Mobile first - gap réduit */
+  gap: 1rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -45,7 +43,6 @@
   color: var(--color-gray);
 }
 
-/* Tablet et desktop - cacher mobile-footer, afficher desktop-footer */
 @media screen and (min-width: 769px) {
   .mobile-footer {
     display: none;
@@ -57,7 +54,7 @@
 
   .desktop-footer,
   .mobile-footer {
-    padding: 1.5rem 2rem; /* Plus de hauteur sur desktop */
+    padding: 1.5rem 2rem;
   }
 
   .footer-links {

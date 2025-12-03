@@ -10,12 +10,6 @@ import adminOnly from "./middlewares/adminOnly";
 
 const router = express.Router();
 
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
-
-// ========== ROUTES PUBLIQUES (pas de token requis) ==========
-
 router.get("/api/users", usersActions.browse);
 router.get("/api/users/:id", usersActions.read);
 router.post(
@@ -32,7 +26,6 @@ router.get("admin/dashboard", authMiddleware.auth, adminOnly, (req, res) => {
 router.post("/api/discovered", upload.single("photo"), discoveredActions.add);
 router.use("/discovered", discoveredRouter);
 
-// Gestion des artworks - Admin uniquement
 router.post(
   "/api/artworks",
   authMiddleware.auth,
@@ -40,12 +33,16 @@ router.post(
   artworkActions.add
 );
 
-// Gestion des artists - Admin uniquement
 router.post(
   "/api/artist",
   authMiddleware.auth,
   authMiddleware.isAdmin,
   artistActions.add
 );
+
+router.get("/api/artist", artistActions.browse);
+router.get("/api/artist/:id", artistActions.read);
+router.put("/api/artist/:id", artistActions.add);
+router.delete("/api/artist/:id", artistActions.deleteArtist);
 
 export default router;

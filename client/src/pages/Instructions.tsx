@@ -1,7 +1,21 @@
 import { Link } from "react-router-dom";
 import "../assets/styles/page-layout.css";
+import { useAuth } from "../context/AuthContext";
+import React, { useState } from "react";
 
 export default function Instructions() {
+  const { isAuthenticated } = useAuth();
+  const [error, setError] = useState<string | null>(null);
+
+  const handleStartClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!isAuthenticated) {
+      e.preventDefault();
+      setError("Veuillez vous inscrire pour continuer");
+    } else {
+      setError("");
+    }
+  };
+
   return (
     <div className="page-wrapper">
       <div className="page-content">
@@ -25,11 +39,13 @@ export default function Instructions() {
         </ul>
         <Link
           to="/chasse"
-          aria-Label="Bouton commencer la chasse"
+          aria-label="Bouton commencer la chasse"
           className="button"
+          onClick={handleStartClick}
         >
           Commencer la chasse
         </Link>
+        {error && <div className="error-message">{error}</div>}
       </div>
     </div>
   );

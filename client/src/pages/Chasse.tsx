@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../assets/styles/page-layout.css";
 import "./Chasse.css";
 
@@ -7,6 +8,15 @@ export default function Chasse() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [photo, setPhoto] = useState<string | null>(null);
   const [uploadStatus, setUploadStatus] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const handleClose = () => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      const stream = videoRef.current.srcObject as MediaStream;
+      stream.getTracks().forEach((track) => track.stop());
+      videoRef.current.srcObject = null;
+    }
+    navigate("/");
+  };
 
   useEffect(() => {
     let stream: MediaStream | null = null;
@@ -40,7 +50,7 @@ export default function Chasse() {
     existingPhotos.push({
       photo: photoData,
       date: new Date().toISOString(),
-      user: "user_3", // Remplacer par l'utilisateur connecté plus tard
+      user: "user_3",
     });
     localStorage.setItem("userPhotos", JSON.stringify(existingPhotos));
   };
@@ -49,8 +59,8 @@ export default function Chasse() {
     try {
       const formData = new FormData();
       formData.append("photo", blob, "capture.png");
-      formData.append("userId", "3"); // Remplacer par vrai userId connecté
-      formData.append("artworkId", "1"); // Remplacer par vrai artworkId capturé
+      formData.append("userId", "3");
+      formData.append("artworkId", "1");
 
       const response = await fetch("http://localhost:3310/api/discovered", {
         method: "POST",
@@ -128,6 +138,14 @@ export default function Chasse() {
         )}
 
         {uploadStatus && <p className="page-text">{uploadStatus}</p>}
+        <button
+          type="button"
+          onClick={handleClose}
+          className="close-button"
+          aria-label="Fermer la chasse"
+        >
+          Fermer
+        </button>
       </div>
     </div>
   );

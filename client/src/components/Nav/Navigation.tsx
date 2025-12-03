@@ -51,7 +51,11 @@ function Navigation() {
     <>
       <nav className="menu-nav" ref={menuRef} aria-label="Barre de navigation">
         <HomeButton />
-        {!isHomePage && <h1 className="navH1">STREET ART HUNTER</h1>}
+        {!isHomePage ? (
+          <h1 className="navH1">STREET ART HUNTER</h1>
+        ) : (
+          <div className="nav-spacer" />
+        )}
         {openMenu && (
           <ul id="main-menu" className="liens">
             <UserProfile />
@@ -75,12 +79,12 @@ function Navigation() {
             </li>
             <li>
               <Link className="nav-button" onClick={closeMenu} to="/gallerie">
-                Galleries
+                Galerie
               </Link>
             </li>
             <li>
               <Link className="nav-button" onClick={closeMenu} to="/carte">
-                Cartes
+                Carte
               </Link>
             </li>
             <li>

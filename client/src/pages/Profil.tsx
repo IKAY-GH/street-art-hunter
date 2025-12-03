@@ -47,7 +47,6 @@ export default function Profil() {
 
         const data = await res.json();
 
-        // L'API retourne un tableau, prendre le premier élément
         const userDataFromAPI = Array.isArray(data) ? data[0] : data;
 
         if (!userDataFromAPI) {
@@ -76,9 +75,8 @@ export default function Profil() {
     }));
   };
 
-  // Fonction pour soumettre le formulaire et sauvegarder les modifications
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Empêche le rechargement de la page
+    e.preventDefault();
 
     setError(null);
     setSuccess(null);
@@ -93,7 +91,6 @@ export default function Profil() {
         return;
       }
 
-      // Appel API pour mettre à jour le profil
       const res = await fetch(
         `${import.meta.env.VITE_API_URL}/api/users/${userData.id}`,
         {
@@ -123,10 +120,8 @@ export default function Profil() {
 
       const updatedData = await res.json();
 
-      // Mettre à jour les données locales
       setUserData({ ...userData, ...updatedData });
 
-      // Mettre à jour le sessionStorage
       const currentUser = sessionStorage.getItem("user");
       if (currentUser) {
         const user = JSON.parse(currentUser);
@@ -136,7 +131,6 @@ export default function Profil() {
         );
       }
 
-      // Réinitialiser le formulaire
       setFormData({});
       setIsEditing(null);
       setSuccess("Profil mis à jour avec succès !");
@@ -148,7 +142,6 @@ export default function Profil() {
     }
   };
 
-  // État de chargement
   if (loading) {
     return (
       <div className="page-wrapper">
@@ -159,7 +152,6 @@ export default function Profil() {
     );
   }
 
-  // État d'erreur
   if (error || !userData) {
     return (
       <div className="page-wrapper">
@@ -174,7 +166,6 @@ export default function Profil() {
       <div className="page-content">
         <h2 className="page-title">Mon Profil</h2>
 
-        {/* Messages de succès et d'erreur */}
         {success && (
           <div
             className="page-text"
@@ -204,7 +195,6 @@ export default function Profil() {
           </div>
         )}
 
-        {/* Section Identité */}
         <div className="page-section">
           {isEditing !== "identity" ? (
             <>
@@ -222,7 +212,6 @@ export default function Profil() {
               </button>
             </>
           ) : (
-            // Mode édition
             <form className="page-form" onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="pseudo" className="form-label">

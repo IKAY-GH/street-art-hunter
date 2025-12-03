@@ -1,4 +1,3 @@
-/* Cacher par défaut sur mobile (mobile-first) */
 .desktopTabs {
   display: none;
   flex-direction: row;
@@ -42,7 +41,6 @@
   font-weight: bold;
 }
 
-/* Styles pour les tableaux de données */
 .tab-content {
   background: var(--color-light);
   border-radius: var(--border-radius);
@@ -81,7 +79,6 @@
   background-color: rgba(0, 0, 0, 0.02);
 }
 
-/* Actions dans le tableau */
 .table-actions {
   display: flex;
   gap: 0.5rem;
@@ -114,7 +111,6 @@
   background-color: darkred;
 }
 
-/* Loading et états vides */
 .loading-state {
   text-align: center;
   padding: 2rem;
@@ -128,7 +124,6 @@
   font-style: italic;
 }
 
-/* Mobile first - caché par défaut sur mobile */
 @media screen and (max-width: 768px) {
   .desktopTabs {
     display: none;
@@ -148,7 +143,6 @@
   }
 }
 
-/* Afficher desktop tabs à partir de 769px */
 @media screen and (min-width: 1030px) {
   .desktopTabs {
     display: flex;

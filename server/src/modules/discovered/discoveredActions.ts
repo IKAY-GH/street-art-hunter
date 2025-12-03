@@ -11,10 +11,8 @@ export const add = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    // Construire le chemin relatif vers la photo uploadée
     const imagePath = path.join("uploads", req.file.filename);
 
-    // Appeler la méthode create et récupérer le résultat SQL (insertId)
     const result = await discoveredRepository.create({
       user_id: Number(userId),
       artwork_id: Number(artworkId),
@@ -22,7 +20,6 @@ export const add = async (req: Request, res: Response): Promise<void> => {
       discovered_at: new Date(),
     });
 
-    // Construire un objet complet à renvoyer
     const newDiscoveredEntry = {
       id: result.insertId,
       user_id: Number(userId),

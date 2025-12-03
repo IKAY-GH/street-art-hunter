@@ -59,7 +59,6 @@ function Inscription() {
     setSuccessMessage(null);
 
     try {
-      // Préparer les données pour l'inscription
       const registerData: RegisterData = {
         pseudo: data.pseudo,
         first_name: data.first_name,
@@ -69,38 +68,30 @@ function Inscription() {
         zip_code: data.zip_code,
       };
 
-      // Appel à l'API via authService
       const response = await authService.register(registerData);
 
-      // Succès ! Afficher message de confirmation
       setSuccessMessage(
         ` Compte créé avec succès ! Bienvenue ${response.user.pseudo} ! Vous allez être redirigé...`
       );
 
-      // Réinitialiser le formulaire
       reset();
 
-      // Rediriger vers la page d'accueil après 2 secondes
       setTimeout(() => {
         navigate("/");
       }, 2000);
     } catch (error: any) {
-      // Gestion d'erreurs
       console.error("Erreur lors de l'inscription:", error);
 
       if (error.response) {
-        // Erreur retournée par le serveur
         setErrorMessage(
           error.response.data.message ||
             `Erreur ${error.response.status}: ${error.response.statusText}`
         );
       } else if (error.request) {
-        // Pas de réponse du serveur
         setErrorMessage(
           "Impossible de contacter le serveur. Vérifiez votre connexion."
         );
       } else {
-        // Autre erreur
         setErrorMessage(
           error.message || "Une erreur inattendue s'est produite."
         );

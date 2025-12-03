@@ -2,10 +2,10 @@ import databaseClient from "../../../database/client";
 import type { Result, Rows } from "../../../database/client";
 
 interface DiscoveredEntry {
-  id?: number; // Optionnel car auto-incrémenté
+  id?: number;
   user_id: number;
   artwork_id: number;
-  photo_url: string; // corrigé : doit correspondre à la colonne SQL
+  photo_url: string;
   discovered_at?: Date;
 }
 
@@ -13,7 +13,7 @@ class DiscoveredRepository {
   async create(
     data: Omit<DiscoveredEntry, "id" | "discovered_at"> & {
       discovered_at?: Date | string;
-    },
+    }
   ): Promise<Result> {
     const [result] = await databaseClient.query<Result>(
       "INSERT INTO discovered_artwork (user_id, artwork_id, photo_url, discovered_at) VALUES (?, ?, ?, ?)",
@@ -22,7 +22,7 @@ class DiscoveredRepository {
         data.artwork_id,
         data.photo_url,
         data.discovered_at || new Date(),
-      ],
+      ]
     );
     return result;
   }
@@ -30,14 +30,14 @@ class DiscoveredRepository {
   async read(id: number): Promise<DiscoveredEntry | undefined> {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM discovered_artwork WHERE id = ?",
-      [id],
+      [id]
     );
     return rows[0] as DiscoveredEntry | undefined;
   }
 
   async readAll(): Promise<DiscoveredEntry[]> {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM discovered_artwork",
+      "SELECT * FROM discovered_artwork"
     );
     return rows as DiscoveredEntry[];
   }
@@ -51,7 +51,7 @@ class DiscoveredRepository {
         data.photo_url,
         data.discovered_at,
         data.id,
-      ],
+      ]
     );
     return result;
   }
@@ -59,7 +59,7 @@ class DiscoveredRepository {
   async delete(id: number): Promise<Result> {
     const [result] = await databaseClient.query<Result>(
       "DELETE FROM discovered_artwork WHERE id = ?",
-      [id],
+      [id]
     );
     return result;
   }
