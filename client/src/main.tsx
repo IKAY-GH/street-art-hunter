@@ -101,6 +101,10 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      {
+        path: "*",
+        element: <Erreur />,
+      },
     ],
   },
 ]);

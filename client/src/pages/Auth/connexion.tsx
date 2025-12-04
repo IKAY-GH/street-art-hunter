@@ -71,7 +71,7 @@ function Connexion() {
 
   return (
     <div className="page-wrapper">
-      <div className="page-content connexion-content">
+      <div className="page-content">
         <h1 className="page-title">Connexion</h1>
 
         <form className="page-form" onSubmit={handleSubmit(onSubmit)}>

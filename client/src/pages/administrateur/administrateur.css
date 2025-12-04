@@ -10,14 +10,3 @@
   justify-content: flex-start;
   align-items: center;
 }
-
-.administrator-container h2 {
-  font-family: var(--font-retro);
-  color: var(--color-primary);
-  text-align: center;
-  margin-bottom: 1.5rem;
-  text-shadow: 0 0 10px rgba(64, 224, 208, 0.8);
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  max-width: 100%;
-}

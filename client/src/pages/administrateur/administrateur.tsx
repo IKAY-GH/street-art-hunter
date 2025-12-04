@@ -7,7 +7,7 @@ export default function administrateur() {
   return (
     <div className="administrator-container">
       <div className="page-content">
-        <h2 className="page-title">Administrateur</h2>
+        <h1 className="page-title">Administrateur</h1>
         <MobileTabs />
         <DesktopTabs />
       </div>
