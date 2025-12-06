@@ -7,6 +7,7 @@ import {
 } from "react";
 import { jwtDecode } from "jwt-decode";
 import type { JwtPayload } from "../../../server/src/utils/jwt";
+import authService from "../services/authService";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -15,6 +16,7 @@ interface AuthProviderProps {
 interface AuthContextType {
   isAuthenticated: boolean;
   role: "user" | "admin" | null;
+  isLoading: boolean;
   setIsAuthenticated: (value: boolean | ((prev: boolean) => boolean)) => void;
   setRole: (value: "user" | "admin" | null) => void;
   logout: () => void;
@@ -25,46 +27,45 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export function AuthProvider({ children }: AuthProviderProps) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [role, setRole] = useState<"user" | "admin" | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log("🔍 AuthContext useEffect déclenché");
-    const token = sessionStorage.getItem("jwt");
-    console.log("🔑 Token trouvé:", token ? "OUI" : "NON");
+    const token = authService.getToken();
 
     if (token) {
       try {
         const decoded = jwtDecode<JwtPayload>(token);
-        console.log("✅ Token décodé:", decoded);
 
         if (decoded.exp && decoded.exp * 1000 > Date.now()) {
-          console.log("✅ Token valide, mise à jour de l'état");
           setIsAuthenticated(true);
           setRole(decoded.role);
-          console.log("✅ État après mise à jour - isAuth devrait être true");
         } else {
-          console.log("❌ Token expiré");
-
-          sessionStorage.removeItem("jwt");
+          authService.logout();
         }
       } catch (error) {
-        console.log("❌ Erreur décodage token:", error);
-
-        sessionStorage.removeItem("jwt");
+        authService.logout();
       }
     }
+
+    setIsLoading(false);
   }, [setIsAuthenticated, setRole]);
 
   const logout = () => {
-    sessionStorage.removeItem("jwt");
-    sessionStorage.removeItem("user");
+    authService.logout();
     setIsAuthenticated(false);
     setRole(null);
-    window.location.href = "/";
   };
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, role, setIsAuthenticated, setRole, logout }}
+      value={{
+        isAuthenticated,
+        role,
+        isLoading,
+        setIsAuthenticated,
+        setRole,
+        logout,
+      }}
     >
       {children}
     </AuthContext.Provider>

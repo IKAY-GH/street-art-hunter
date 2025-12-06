@@ -7,13 +7,15 @@ interface AdminRouteProps {
 }
 
 export default function AdminRoute({ children }: AdminRouteProps) {
-  const { isAuthenticated, role } = useAuth();
+  const { isAuthenticated, role, isLoading } = useAuth();
 
-  if (!isAuthenticated) {
-    return <Navigate to="/connexion" replace />;
+  // Attendre que le chargement soit terminé
+  if (isLoading) {
+    return <div>Chargement...</div>;
   }
 
-  if (role !== "admin") {
+  // Si pas connecté ou pas admin, rediriger vers la page d'erreur
+  if (!isAuthenticated || role !== "admin") {
     return <Navigate to="/erreur" replace />;
   }
 

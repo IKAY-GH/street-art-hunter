@@ -1,4 +1,4 @@
-import { api } from "./api";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3311";
 
 export type RegisterData = {
   pseudo: string;
@@ -9,12 +9,12 @@ export type RegisterData = {
   zip_code: number;
 };
 
-export interface LoginData {
+export type LoginData = {
   email: string;
   password: string;
-}
+};
 
-export interface AuthResponse {
+export type AuthResponse = {
   token: string;
   user: {
     id: number;
@@ -22,25 +22,51 @@ export interface AuthResponse {
     email: string;
     role: "user" | "admin";
   };
-}
+};
 
 const authService = {
   async register(data: RegisterData): Promise<AuthResponse> {
-    const response = await api.post("/api/users/inscription", data);
+    const response = await fetch(`${API_URL}/api/users/inscription`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-    sessionStorage.setItem("jwt", response.token);
-    sessionStorage.setItem("user", JSON.stringify(response.user));
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `Erreur ${response.status}`);
+    }
 
-    return response;
+    const result = await response.json();
+
+    sessionStorage.setItem("jwt", result.token);
+    sessionStorage.setItem("user", JSON.stringify(result.user));
+
+    return result;
   },
 
   async login(data: LoginData): Promise<AuthResponse> {
-    const response = await api.post("/api/users/login", data);
+    const response = await fetch(`${API_URL}/api/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-    sessionStorage.setItem("jwt", response.token);
-    sessionStorage.setItem("user", JSON.stringify(response.user));
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `Erreur ${response.status}`);
+    }
 
-    return response;
+    const result = await response.json();
+
+    sessionStorage.setItem("jwt", result.token);
+    sessionStorage.setItem("user", JSON.stringify(result.user));
+
+    return result;
   },
 
   logout(): void {

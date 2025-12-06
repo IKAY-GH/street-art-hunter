@@ -6,7 +6,6 @@ import artworkActions from "./modules/artwork/artworkActions";
 import discoveredActions from "./modules/discovered/discoveredActions";
 import discoveredRouter from "./modules/discovered/discoveredRouter";
 import usersActions from "./modules/user/usersActions";
-import adminOnly from "./middlewares/adminOnly";
 
 const router = express.Router();
 
@@ -19,9 +18,14 @@ router.post(
 );
 router.post("/api/users/login", usersActions.login);
 router.put("/api/users/:id", authMiddleware.auth, usersActions.edit);
-router.get("admin/dashboard", authMiddleware.auth, adminOnly, (req, res) => {
-  res.json({ message: "Bienvenue administrateur" });
-});
+router.get(
+  "/admin/dashboard",
+  authMiddleware.auth,
+  authMiddleware.isAdmin,
+  (req, res) => {
+    res.json({ message: "Bienvenue administrateur" });
+  }
+);
 
 router.post("/api/discovered", upload.single("photo"), discoveredActions.add);
 router.use("/discovered", discoveredRouter);

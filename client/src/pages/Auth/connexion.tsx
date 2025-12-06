@@ -1,9 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
 import { jwtDecode } from "jwt-decode";
 import * as yup from "yup";
 import type { JwtPayload } from "../../../../server/src/utils/jwt";
+import authService from "../../services/authService";
 
 import "../../assets/styles/page-layout.css";
 
@@ -22,6 +24,7 @@ type FormData = yup.InferType<typeof validationSchema>;
 
 function Connexion() {
   const { setIsAuthenticated, setRole } = useAuth();
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const {
     register,
@@ -32,40 +35,22 @@ function Connexion() {
   });
 
   const onSubmit = async (data: FormData) => {
+    setErrorMessage(null);
+
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/users/login`,
-        {
-          method: "POST",
-          headers: { "Content-type": "application/json" },
-          body: JSON.stringify({
-            email: data.email,
-            password: data.password,
-          }),
-        }
-      );
+      const result = await authService.login({
+        email: data.email,
+        password: data.password,
+      });
 
-      if (!response.ok) {
-        alert("Email ou mot de passe incorrect");
-        return;
-      }
-
-      const result = await response.json();
-      const token = result.token;
-      const user = result.user;
-
-      sessionStorage.setItem("jwt", token);
-      sessionStorage.setItem("user", JSON.stringify(user));
-
-      const decoded = jwtDecode<JwtPayload>(token);
+      const decoded = jwtDecode<JwtPayload>(result.token);
 
       setIsAuthenticated(true);
       setRole(decoded.role);
 
       window.location.href = "/";
-    } catch (error) {
-      console.error("Erreur réseau", error);
-      alert("Problème de connexion au serveur");
+    } catch (error: any) {
+      setErrorMessage(error.message || "Email ou mot de passe incorrect");
     }
   };
 
@@ -73,6 +58,8 @@ function Connexion() {
     <div className="page-wrapper">
       <div className="page-content">
         <h1 className="page-title">Connexion</h1>
+
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
 
         <form className="page-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
@@ -82,9 +69,8 @@ function Connexion() {
             <input
               {...register("email")}
               className="form-input"
-              type="email"
+              type="text"
               id="email"
-              required
               aria-invalid={!!errors.email}
               aria-describedby={errors.email ? "email-error" : undefined}
             />
@@ -104,7 +90,6 @@ function Connexion() {
               className="form-input"
               type="password"
               id="password"
-              required
               aria-invalid={!!errors.password}
               aria-describedby={errors.password ? "password-error" : undefined}
             />

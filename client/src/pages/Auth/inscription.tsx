@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import { useAuth } from "../../context/AuthContext";
 import authService, { type RegisterData } from "../../services/authService";
 
 import "../../assets/styles/page-layout.css";
@@ -40,6 +41,7 @@ type FormData = yup.InferType<typeof validationSchema>;
 
 function Inscription() {
   const navigate = useNavigate();
+  const { setIsAuthenticated, setRole } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -68,11 +70,18 @@ function Inscription() {
         zip_code: data.zip_code,
       };
 
-      const response = await authService.register(registerData);
+      await authService.register(registerData);
 
-      setSuccessMessage(
-        ` Compte créé avec succès ! Bienvenue ${response.user.pseudo} ! Vous allez être redirigé...`
-      );
+      const currentUser = authService.getCurrentUser();
+
+      if (currentUser) {
+        setIsAuthenticated(true);
+        setRole(currentUser.role);
+
+        setSuccessMessage(
+          ` Compte créé avec succès ! Bienvenue ${currentUser.pseudo} ! Vous allez être redirigé...`
+        );
+      }
 
       reset();
 
@@ -122,7 +131,6 @@ function Inscription() {
               type="text"
               id="pseudo"
               autoComplete="userName"
-              required
               aria-describedby="pseudo_help"
               disabled={isLoading}
             />
@@ -145,7 +153,6 @@ function Inscription() {
               id="nom"
               autoComplete="family-name"
               disabled={isLoading}
-              required
             />
             {errors.first_name && (
               <p className="form-error">{errors.first_name.message}</p>
@@ -163,7 +170,6 @@ function Inscription() {
               id="prenom"
               autoComplete="given-name"
               disabled={isLoading}
-              required
             />
             {errors.last_name && (
               <p className="form-error">{errors.last_name.message}</p>
@@ -177,11 +183,10 @@ function Inscription() {
             <input
               {...register("email")}
               className="form-input"
-              type="email"
+              type="text"
               id="email"
               autoComplete="email"
               disabled={isLoading}
-              required
             />
             {errors.email && (
               <p className="form-error">{errors.email.message}</p>
@@ -198,7 +203,6 @@ function Inscription() {
               id="zip_code"
               autoComplete="postal-code"
               disabled={isLoading}
-              required
             />
             {errors.zip_code && (
               <p className="form-error">{errors.zip_code.message}</p>
@@ -215,7 +219,6 @@ function Inscription() {
               id="password"
               autoComplete="new-password"
               disabled={isLoading}
-              required
             />
             {errors.password && (
               <p className="form-error">{errors.password.message}</p>
@@ -233,7 +236,6 @@ function Inscription() {
               id="confirm_password"
               autoComplete="new-password"
               disabled={isLoading}
-              required
             />
             {errors.confirm_password && (
               <p className="form-error">{errors.confirm_password.message}</p>

@@ -14,22 +14,32 @@ export default function TabUser() {
       });
   }, []);
 
-  if (loading) return <p>Chargement des utilisateurs en cours...</p>;
+  if (loading) {
+    return (
+      <div role="status" aria-live="polite">
+        <p>Chargement des utilisateurs en cours...</p>
+      </div>
+    );
+  }
+
+  if (users.length === 0) {
+    return <p>Aucun utilisateur trouvé.</p>;
+  }
 
   return (
     <table>
       <caption>Les utilisateurs et utilisatrices de street art hunter</caption>
       <thead>
         <tr>
-          <th>Numéro d'identifiant</th>
-          <th>Email</th>
-          <th>Date de création du compte</th>
-          <th>Date de mise à jour du compte</th>
-          <th>Code postal</th>
-          <th>Nom</th>
-          <th>Prénom</th>
-          <th>Pseudonyme</th>
-          <th>Statut administrateur</th>
+          <th scope="col">Numéro d'identifiant</th>
+          <th scope="col">Email</th>
+          <th scope="col">Date de création du compte</th>
+          <th scope="col">Date de mise à jour du compte</th>
+          <th scope="col">Code postal</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Pseudonyme</th>
+          <th scope="col">Statut administrateur</th>
         </tr>
       </thead>
       <tbody>

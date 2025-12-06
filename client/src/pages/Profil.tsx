@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import authService from "../services/authService";
 import type { User } from "../../../server/src/modules/user/usersRepository";
 import "../assets/styles/page-layout.css";
 
@@ -18,15 +19,14 @@ export default function Profil() {
   useEffect(() => {
     const fetchUsersData = async () => {
       try {
-        const userString = sessionStorage.getItem("user");
-        if (!userString) {
+        const user = authService.getCurrentUser();
+        if (!user) {
           setError("Utilisateur non connecté");
           return;
         }
-        const user = JSON.parse(userString);
         const userId = user.id;
 
-        const token = sessionStorage.getItem("jwt");
+        const token = authService.getToken();
         if (!token) {
           setError("Session expirée");
           return;
@@ -84,7 +84,7 @@ export default function Profil() {
     if (!userData) return;
 
     try {
-      const token = sessionStorage.getItem("jwt");
+      const token = authService.getToken();
       if (!token) {
         setError("Session expirée");
         navigate("/connexion");
@@ -122,12 +122,11 @@ export default function Profil() {
 
       setUserData({ ...userData, ...updatedData });
 
-      const currentUser = sessionStorage.getItem("user");
+      const currentUser = authService.getCurrentUser();
       if (currentUser) {
-        const user = JSON.parse(currentUser);
         sessionStorage.setItem(
           "user",
-          JSON.stringify({ ...user, ...updatedData })
+          JSON.stringify({ ...currentUser, ...updatedData })
         );
       }
 
