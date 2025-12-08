@@ -1,5 +1,9 @@
 import "../assets/styles/page-layout.css";
 
+/**
+ * Ranking page - displays leaderboard of top street art hunters
+ * Shows users ranked by their discovery score
+ */
 function Classement() {
   return (
     <div className="page-wrapper">

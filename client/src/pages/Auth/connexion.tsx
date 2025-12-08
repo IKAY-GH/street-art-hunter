@@ -9,6 +9,13 @@ import authService from "../../services/authService";
 
 import "../../assets/styles/page-layout.css";
 
+/**
+ * Login page component
+ * Allows users to authenticate with email and password
+ * Uses react-hook-form for form management and Yup for validation
+ */
+
+// Yup schema for login form validation
 const validationSchema = yup.object({
   email: yup
     .string()
@@ -20,12 +27,18 @@ const validationSchema = yup.object({
     .min(6, "Mot de passe trop court"),
 });
 
+// Infer TypeScript type from validation schema
 type FormData = yup.InferType<typeof validationSchema>;
 
+// Login page component
 function Connexion() {
+  // Get auth context methods to update global state
   const { setIsAuthenticated, setRole } = useAuth();
+
+  // Local state for error messages
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  // Initialize react-hook-form with Yup validation
   const {
     register,
     handleSubmit,
@@ -34,20 +47,25 @@ function Connexion() {
     resolver: yupResolver(validationSchema),
   });
 
+  // Handle login form submission
   const onSubmit = async (data: FormData) => {
     setErrorMessage(null);
 
     try {
+      // Call login API
       const result = await authService.login({
         email: data.email,
         password: data.password,
       });
 
+      // Decode JWT to extract user role
       const decoded = jwtDecode<JwtPayload>(result.token);
 
+      // Update global authentication state
       setIsAuthenticated(true);
       setRole(decoded.role);
 
+      // Redirect to home page
       window.location.href = "/";
     } catch (error: any) {
       setErrorMessage(error.message || "Email ou mot de passe incorrect");

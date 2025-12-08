@@ -3,10 +3,15 @@ import "../assets/styles/page-layout.css";
 import { useAuth } from "../context/AuthContext";
 import React, { useState } from "react";
 
+/**
+ * Instructions page - explains game rules and how to play
+ * Displays game instructions and start button (authentication required)
+ */
 export default function Instructions() {
   const { isAuthenticated } = useAuth();
   const [error, setError] = useState<string | null>(null);
 
+  // Prevent unauthenticated users from starting the hunt
   const handleStartClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!isAuthenticated) {
       e.preventDefault();

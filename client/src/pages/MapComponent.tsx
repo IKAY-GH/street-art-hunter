@@ -7,6 +7,7 @@ import ChangeMapView from "../pages/ChangeMapView";
 import "../assets/styles/page-layout.css";
 import "./MapComponent.css";
 
+// Custom Leaflet marker icon configuration
 const defaultIcon = new L.Icon({
   iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
   iconSize: [25, 41],
@@ -16,18 +17,24 @@ const defaultIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
+// Map component with geolocation and nearby artworks display
 export default function MapComponent() {
+  // User's current GPS position
   const [currentPosition, setCurrentPosition] = useState<
     [number, number] | null
   >(null);
+
+  // Error and loading states
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [showNearbyArtworks, setShowNearbyArtworks] = useState(false);
 
+  // Request browser geolocation to get user's GPS coordinates
   const handleGeolocation = () => {
     if (navigator.geolocation) {
       setLoading(true);
       navigator.geolocation.getCurrentPosition(
+        // Success callback - update position state
         (position) => {
           setCurrentPosition([
             position.coords.latitude,
@@ -36,6 +43,7 @@ export default function MapComponent() {
           setError(null);
           setLoading(false);
         },
+        // Error callback - geolocation failed
         () => {
           setError("Impossible d'obtenir votre position.");
           setLoading(false);
@@ -46,6 +54,7 @@ export default function MapComponent() {
     }
   };
 
+  // Display nearby artworks if position is available
   const handleShowNearby = () => {
     if (currentPosition) {
       setShowNearbyArtworks(true);
@@ -62,6 +71,7 @@ export default function MapComponent() {
         <div className="map-section">
           <div className="map-container">
             <MapContainer
+              // Default to Toulouse coordinates if no position yet
               center={currentPosition || [43.604, 1.444]}
               zoom={13}
               scrollWheelZoom={true}

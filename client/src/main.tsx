@@ -22,6 +22,7 @@ import Gallerie from "./pages/gallerie";
 import Profil from "./pages/Profil";
 import ProtectedRoute from "./routes/ProtectedRoute.tsx";
 
+// React Router configuration with all application routes
 const router = createBrowserRouter([
   {
     element: <App />,
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Accueil />,
       },
+      // Protected route - admin only
       {
         path: "/administrateur",
         element: (
@@ -52,6 +54,7 @@ const router = createBrowserRouter([
         path: "/instructions",
         element: <Instructions />,
       },
+      // Protected route - authenticated users only
       {
         path: "/chasse",
         element: (

@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Home button component with house icon
+ * Navigates user to home page when clicked
+ */
 function HomeButton() {
   const navigate = useNavigate();
 
+  // Navigate to home page on click
   function handleclick() {
     navigate("/");
   }

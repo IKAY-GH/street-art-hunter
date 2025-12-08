@@ -1,12 +1,18 @@
 import { useState } from "react";
 
+// Props for LocationInput component
 type Props = {
   onPositionFound: (latitude: number, longitude: number) => void;
 };
 
+/**
+ * Location input component - allows users to share their position
+ * either via GPS geolocation or manual city entry
+ */
 export default function LocationInput({ onPositionFound }: Props) {
   const [city, setCity] = useState("");
 
+  // Handle GPS geolocation using browser's native API
   const handleGeolocation = () => {
     if (!navigator.geolocation) {
       alert("Géolocalisation non supportée");
@@ -23,6 +29,7 @@ export default function LocationInput({ onPositionFound }: Props) {
     );
   };
 
+  // Handle manual city input - currently only supports Toulouse
   const handleManualSubmit = () => {
     if (city.trim().toLowerCase() === "toulouse") {
       onPositionFound(43.6045, 1.4442);

@@ -2,6 +2,7 @@ import databaseClient from "../../../database/client";
 
 import type { Result, Rows } from "../../../database/client";
 
+// User entity type definition
 export type User = {
   id: number;
   email: string;
@@ -16,7 +17,9 @@ export type User = {
   is_admin: number;
 };
 
+// Repository for user database operations
 class UsersRepository {
+  // Insert a new user into database and return the generated ID
   async create(user: Omit<User, "id">) {
     const [result] = await databaseClient.query<Result>(
       "INSERT INTO user (email, avatar_url, zip_code, last_name, first_name, password_hash, pseudo, is_admin) values (?, ?, ?, ?, ?, ?, ?, ?)",
@@ -35,6 +38,7 @@ class UsersRepository {
     return result.insertId;
   }
 
+  // Fetch a user by ID (excludes password_hash from result)
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM user WHERE id = ?",
@@ -44,6 +48,7 @@ class UsersRepository {
     return rows as User[];
   }
 
+  // Fetch user by email INCLUDING password_hash (for authentication)
   async readByEmailWithPassword(email: string) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM user WHERE email = ?",
@@ -53,6 +58,7 @@ class UsersRepository {
     return rows[0] as User;
   }
 
+  // Fetch all users from database
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT email, avatar_url, created_at, updated_at, zip_code, last_name, first_name, password_hash, pseudo, is_admin FROM user"
@@ -61,6 +67,7 @@ class UsersRepository {
     return rows as User[];
   }
 
+  // Update user data (automatically sets updated_at timestamp)
   async update(user: User, id: number) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE user SET email = ?, avatar_url = ?, updated_at = NOW() ,zip_code = ?, first_name = ?, last_name = ?, password_hash = ?, pseudo = ?, is_admin = ? WHERE id = ?",
@@ -79,6 +86,7 @@ class UsersRepository {
     return result;
   }
 
+  // Delete user by ID
   async delete(id: number) {
     await databaseClient.query("DELETE FROM user WHERE id = ?", [id]);
   }

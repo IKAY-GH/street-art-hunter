@@ -1,16 +1,24 @@
+/**
+ * Mock artwork data for testing and development
+ * Contains street art locations in Toulouse with GPS coordinates
+ * This data will eventually be replaced by database queries
+ */
+
+// Artwork type definition
 export interface Artwork {
   id: number;
   title: string;
   description: string;
   imageUrl: string;
-  latitude: number;
-  longitude: number;
+  latitude: number; // GPS coordinate
+  longitude: number; // GPS coordinate
   artist: string;
-  address: string;
-  rating: number;
-  votes: number;
+  address: string; // Street address in Toulouse
+  rating: number; // Average rating (0-5)
+  votes: number; // Number of votes received
 }
 
+// Mock artwork data array - represents street art pieces in Toulouse
 export const mockArtworks: Artwork[] = [
   {
     id: 1,

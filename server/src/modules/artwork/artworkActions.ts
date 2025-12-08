@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import artworkRepository from "./artworkRepository";
 
+// Controller to retrieve all artworks
 const browse = async (req: Request, res: Response): Promise<void> => {
   try {
     const artworks = await artworkRepository.findAll();
@@ -11,6 +12,7 @@ const browse = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+// Controller to retrieve a single artwork by ID
 const read = async (req: Request, res: Response): Promise<void> => {
   try {
     const id = Number(req.params.id);
@@ -28,6 +30,7 @@ const read = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+// Controller to create a new artwork
 const add = async (req: Request, res: Response): Promise<void> => {
   try {
     const newArtwork = req.body;

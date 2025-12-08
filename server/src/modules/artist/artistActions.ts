@@ -2,6 +2,12 @@ import type { RequestHandler } from "express";
 
 import artistRepository from "./artistRepository";
 
+/**
+ * Controllers for artist-related API endpoints
+ * Handle HTTP requests/responses for artist operations
+ */
+
+// Controller to retrieve all artists
 const browse: RequestHandler = async (req, res, next) => {
   try {
     const artists = await artistRepository.readAll();
@@ -12,6 +18,7 @@ const browse: RequestHandler = async (req, res, next) => {
   }
 };
 
+// Controller to retrieve a single artist by ID
 const read: RequestHandler = async (req, res, next) => {
   try {
     const artistId = Number(req.params.id);
@@ -27,6 +34,7 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
+// Controller to create a new artist
 const add: RequestHandler = async (req, res, next) => {
   try {
     const newArtist = {
@@ -44,6 +52,7 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
+// Controller to delete an artist by ID
 const deleteArtist: RequestHandler = async (req, res, next) => {
   try {
     const artistId = Number(req.params.id);

@@ -5,14 +5,25 @@ import HomeButton from "./HomeButton.tsx";
 import UserProfile from "../userProfile.tsx";
 import "./navigation.css";
 
+/**
+ * Main navigation component with responsive hamburger menu
+ * Displays different links based on authentication status and user role
+ * Includes accessibility features (keyboard navigation, focus management)
+ */
 function Navigation() {
+  // Menu toggle state
   const [openMenu, setOpenMenu] = useState(false);
+
+  // Refs for click-outside detection
   const menuRef = useRef<HTMLElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
   const isHomePage = location.pathname === "/";
+
+  // Get authentication state from context
   const { role, isAuthenticated } = useAuth();
   const closeMenu = () => setOpenMenu(false);
 
+  // Close menu when clicking outside or pressing Escape
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -38,6 +49,7 @@ function Navigation() {
     };
   }, [openMenu]);
 
+  // Manage focus for accessibility when menu opens/closes
   useEffect(() => {
     if (openMenu && menuRef.current) {
       const firstLink = menuRef.current.querySelector("a");

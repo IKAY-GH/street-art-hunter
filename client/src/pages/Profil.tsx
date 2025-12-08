@@ -5,10 +5,15 @@ import authService from "../services/authService";
 import type { User } from "../../../server/src/modules/user/usersRepository";
 import "../assets/styles/page-layout.css";
 
+/**
+ * User profile page - displays and allows editing of user information
+ * Fetches user data from backend and provides inline editing capabilities
+ */
 export default function Profil() {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
 
+  // State for managing inline editing mode
   const [isEditing, setIsEditing] = useState<string | null>(null);
   const [userData, setUserData] = useState<User | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -16,6 +21,7 @@ export default function Profil() {
   const [formData, setFormData] = useState<Partial<User>>({});
   const [loading, setLoading] = useState(true);
 
+  // Fetch user data from backend on component mount
   useEffect(() => {
     const fetchUsersData = async () => {
       try {
@@ -47,6 +53,7 @@ export default function Profil() {
 
         const data = await res.json();
 
+        // Handle both array and object responses from API
         const userDataFromAPI = Array.isArray(data) ? data[0] : data;
 
         if (!userDataFromAPI) {
@@ -67,6 +74,7 @@ export default function Profil() {
     }
   }, [isAuthenticated]);
 
+  // Handle input changes for inline editing
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -75,6 +83,7 @@ export default function Profil() {
     }));
   };
 
+  // Handle form submission to update user data
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

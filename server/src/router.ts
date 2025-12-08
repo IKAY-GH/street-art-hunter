@@ -7,17 +7,24 @@ import discoveredActions from "./modules/discovered/discoveredActions";
 import discoveredRouter from "./modules/discovered/discoveredRouter";
 import usersActions from "./modules/user/usersActions";
 
+// Express router for all API endpoints
 const router = express.Router();
 
+// User routes
 router.get("/api/users", usersActions.browse);
 router.get("/api/users/:id", usersActions.read);
+// Registration route with password hashing middleware
 router.post(
   "/api/users/inscription",
   usersActions.hashPassword,
   usersActions.add
 );
+// Login route
 router.post("/api/users/login", usersActions.login);
+// Update user profile (requires authentication)
 router.put("/api/users/:id", authMiddleware.auth, usersActions.edit);
+
+// Admin dashboard route (admin only)
 router.get(
   "/admin/dashboard",
   authMiddleware.auth,
@@ -27,9 +34,11 @@ router.get(
   }
 );
 
+// Discovered artworks routes (photo upload)
 router.post("/api/discovered", upload.single("photo"), discoveredActions.add);
 router.use("/discovered", discoveredRouter);
 
+// Artwork routes (admin only for creation)
 router.post(
   "/api/artworks",
   authMiddleware.auth,
@@ -44,6 +53,7 @@ router.post(
   artistActions.add
 );
 
+// Artist routes (public read, admin write)
 router.get("/api/artist", artistActions.browse);
 router.get("/api/artist/:id", artistActions.read);
 router.put("/api/artist/:id", artistActions.add);

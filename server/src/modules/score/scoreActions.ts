@@ -1,8 +1,10 @@
 import type { RequestHandler } from "express";
 import scoreRepository from "./scoreRepository";
 
+// Initialize score repository instance
 const repository = new scoreRepository();
 
+// Controller to retrieve all user scores
 const browse: RequestHandler = async (req, res, next) => {
   try {
     const score = await repository.readAll();
@@ -12,6 +14,7 @@ const browse: RequestHandler = async (req, res, next) => {
   }
 };
 
+// Controller to retrieve a score by ID
 const read: RequestHandler = async (req, res, next) => {
   try {
     const scoreId = Number(req.params.id);
@@ -26,6 +29,7 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
+// Controller to create or update a user score
 const add: RequestHandler = async (req, res, next) => {
   try {
     const newscore = {

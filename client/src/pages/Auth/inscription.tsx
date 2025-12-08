@@ -8,6 +8,14 @@ import authService, { type RegisterData } from "../../services/authService";
 
 import "../../assets/styles/page-layout.css";
 
+/**
+ * Registration page component
+ * Allows new users to create an account
+ * Uses react-hook-form for form management and Yup for validation
+ * Automatically logs in user after successful registration
+ */
+
+// Yup schema for registration form validation
 const validationSchema = yup.object({
   pseudo: yup.string().required("Il faut préciser votre pseudo").min(2),
   first_name: yup.string().required("Il faut préciser votre nom").min(2),
@@ -28,6 +36,7 @@ const validationSchema = yup.object({
     .string()
     .required("Il faut préciser votre password")
     .min(6, "Mot de passe trop court"),
+  // Password confirmation must match password field
   confirm_password: yup
     .string()
     .oneOf(
@@ -37,15 +46,22 @@ const validationSchema = yup.object({
     .required("Confirmez votre mot de passe"),
 });
 
+// Infer TypeScript type from validation schema
 type FormData = yup.InferType<typeof validationSchema>;
 
+// Registration page component
 function Inscription() {
   const navigate = useNavigate();
+
+  // Get auth context methods to update global state
   const { setIsAuthenticated, setRole } = useAuth();
+
+  // Local state for loading and messages
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
+  // Initialize react-hook-form with Yup validation
   const {
     register,
     handleSubmit,
@@ -55,12 +71,14 @@ function Inscription() {
     resolver: yupResolver(validationSchema),
   });
 
+  // Handle registration form submission
   const onSubmit = async (data: FormData) => {
     setIsLoading(true);
     setErrorMessage(null);
     setSuccessMessage(null);
 
     try {
+      // Build registration data object (exclude confirm_password)
       const registerData: RegisterData = {
         pseudo: data.pseudo,
         first_name: data.first_name,
@@ -70,10 +88,13 @@ function Inscription() {
         zip_code: data.zip_code,
       };
 
+      // Register user (token is stored in sessionStorage by authService)
       await authService.register(registerData);
 
+      // Get current user from decoded JWT
       const currentUser = authService.getCurrentUser();
 
+      // Update global authentication state
       if (currentUser) {
         setIsAuthenticated(true);
         setRole(currentUser.role);
@@ -83,23 +104,28 @@ function Inscription() {
         );
       }
 
+      // Clear form fields
       reset();
 
+      // Redirect to home after 2 seconds
       setTimeout(() => {
         navigate("/");
       }, 2000);
     } catch (error: any) {
       console.error("Erreur lors de l'inscription:", error);
 
+      // Handle HTTP errors with server response
       if (error.response) {
         setErrorMessage(
           error.response.data.message ||
             `Erreur ${error.response.status}: ${error.response.statusText}`
         );
+        // Handle network errors (no response received)
       } else if (error.request) {
         setErrorMessage(
           "Impossible de contacter le serveur. Vérifiez votre connexion."
         );
+        // Handle unexpected errors
       } else {
         setErrorMessage(
           error.message || "Une erreur inattendue s'est produite."

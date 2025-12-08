@@ -3,12 +3,18 @@ import { useNavigate } from "react-router-dom";
 import "../assets/styles/page-layout.css";
 import "./Chasse.css";
 
+// Art hunt page - camera capture for discovered artworks
 export default function Chasse() {
+  // Refs for video stream and canvas for photo capture
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  // State for captured photo and upload status
   const [photo, setPhoto] = useState<string | null>(null);
   const [uploadStatus, setUploadStatus] = useState<string | null>(null);
   const navigate = useNavigate();
+
+  // Stop camera stream and navigate back to home
   const handleClose = () => {
     if (videoRef.current && videoRef.current.srcObject) {
       const stream = videoRef.current.srcObject as MediaStream;
@@ -18,9 +24,11 @@ export default function Chasse() {
     navigate("/");
   };
 
+  // Initialize camera on component mount
   useEffect(() => {
     let stream: MediaStream | null = null;
 
+    // Request access to user's camera
     const startCamera = async () => {
       try {
         stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -34,6 +42,7 @@ export default function Chasse() {
 
     startCamera();
 
+    // Cleanup: stop camera stream when component unmounts
     return () => {
       if (stream) {
         for (const track of stream.getTracks()) {
@@ -43,6 +52,7 @@ export default function Chasse() {
     };
   }, []);
 
+  // Save photo to localStorage for local backup
   const savePhotoLocally = (photoData: string) => {
     const existingPhotos = JSON.parse(
       localStorage.getItem("userPhotos") || "[]"
@@ -55,6 +65,7 @@ export default function Chasse() {
     localStorage.setItem("userPhotos", JSON.stringify(existingPhotos));
   };
 
+  // Upload photo to backend API
   const sendPhotoToBackend = async (blob: Blob) => {
     try {
       const formData = new FormData();
@@ -80,6 +91,7 @@ export default function Chasse() {
     }
   };
 
+  // Capture photo from video stream using canvas
   const capturePhoto = (): void => {
     if (!videoRef.current || !canvasRef.current) return;
 
